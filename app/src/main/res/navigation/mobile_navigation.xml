@@ -2,4 +2,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"/>
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/practicePage">
+    <fragment
+        android:id="@+id/routineCreator"
+        android:name="sheridan.climense.scales_app2.ui.Routine.RoutineCreator"
+        android:label="routine_creator_fragment"
+        tools:layout="@layout/routine_creator_fragment" >
+        <action
+            android:id="@+id/action_routine_to_practice"
+            app:destination="@id/practicePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/practicePage"
+        android:name="sheridan.climense.scales_app2.ui.Practice.PracticePage"
+        android:label="practice_page_fragment"
+        tools:layout="@layout/practice_page_fragment" >
+        <action
+            android:id="@+id/action_practice_to_routine"
+            app:destination="@id/routineCreator" />
+    </fragment>
+</navigation>
