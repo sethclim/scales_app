@@ -9,9 +9,15 @@ studentID:991599894
 class RoutineGenerator {
     companion object{
 
+        var routine : Array<String> = arrayOf()
 
 
+        fun generate(scales : MutableList<String>){
 
+            routine = scales.toTypedArray()
+
+
+        }
 
 
     }
