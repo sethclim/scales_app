@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
+import sheridan.climense.scales_app2.model.PracticeCycler
 
 class PracticePage : Fragment() {
 
@@ -23,7 +24,9 @@ class PracticePage : Fragment() {
         binding = PracticePageFragmentBinding.inflate(inflater, container, false)
         binding.practiceViewModel = viewModel
         binding.lifecycleOwner = this
-        viewModel.practiceArray = safeArgs.practicePackage.practice_array
+
+        val practiceArray = safeArgs.practicePackage.practice_array
+        PracticeCycler.practiceArray = practiceArray.toMutableList()
 
         binding.nextBt.setOnClickListener { next() }
 
@@ -32,10 +35,6 @@ class PracticePage : Fragment() {
 
     private fun next(){
         viewModel.next()
-
-        Log.d("safe_args array", safeArgs.practicePackage.practice_array[0])
     }
-
-
 
 }

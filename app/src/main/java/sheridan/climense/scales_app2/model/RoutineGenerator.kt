@@ -7,4 +7,12 @@ studentID:991599894
  *on2020-10-28
  */
 class RoutineGenerator {
+    companion object{
+
+
+
+
+
+
+    }
 }

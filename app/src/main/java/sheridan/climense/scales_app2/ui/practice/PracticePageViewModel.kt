@@ -4,14 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import sheridan.climense.scales_app2.model.PracticeCycler
 
 class PracticePageViewModel : ViewModel() {
 
-    var practiceArray : Array<String> = emptyArray()
     val _item = MutableLiveData<String>()
     var item: LiveData<String> = _item
 
     fun next(){
-        _item.value = practiceArray.random()
+        PracticeCycler.nextScale()
+        _item.value = PracticeCycler.currentScale
     }
 }
