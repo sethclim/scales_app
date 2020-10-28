@@ -1,15 +1,12 @@
-package sheridan.climense.scales_app2.ui.Routine
+package sheridan.climense.scales_app2.ui.routine
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelStore
 import androidx.navigation.fragment.findNavController
-import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.RoutineCreatorFragmentBinding
 import sheridan.climense.scales_app2.model.practice_package
 
@@ -35,6 +32,4 @@ class RoutineCreator : Fragment() {
         val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
         findNavController().navigate(action)
     }
-
-
 }

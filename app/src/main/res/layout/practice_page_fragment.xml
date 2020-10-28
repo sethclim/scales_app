@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="practiceViewModel"
+            type="sheridan.climense.scales_app2.ui.practice.PracticePageViewModel" />
     </data>
 
     <LinearLayout
@@ -12,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical"
-        tools:context=".ui.Practice.PracticePage">
+        tools:context=".ui.practice.PracticePage">
 
         <Space
             android:layout_width="match_parent"
@@ -24,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Db Minor"
+            android:text="@{practiceViewModel.item}"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <ImageButton

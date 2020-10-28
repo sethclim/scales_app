@@ -6,7 +6,7 @@
     app:startDestination="@id/routineCreator">
     <fragment
         android:id="@+id/routineCreator"
-        android:name="sheridan.climense.scales_app2.ui.Routine.RoutineCreator"
+        android:name="sheridan.climense.scales_app2.ui.routine.RoutineCreator"
         android:label="routine_creator_fragment"
         tools:layout="@layout/routine_creator_fragment" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/practicePage"
-        android:name="sheridan.climense.scales_app2.ui.Practice.PracticePage"
+        android:name="sheridan.climense.scales_app2.ui.practice.PracticePage"
         android:label="practice_page_fragment"
         tools:layout="@layout/practice_page_fragment" >
         <action
