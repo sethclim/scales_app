@@ -44,25 +44,25 @@
                 android:layout_height="match_parent">
 
                 <CheckBox
-                    android:id="@+id/checkBox5"
+                    android:id="@+id/maj_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Major" />
 
                 <CheckBox
-                    android:id="@+id/checkBox6"
+                    android:id="@+id/min_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Minor" />
 
                 <CheckBox
-                    android:id="@+id/checkBox16"
+                    android:id="@+id/dim_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Diminished" />
 
                 <CheckBox
-                    android:id="@+id/checkBox7"
+                    android:id="@+id/aug_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Augmented" />
@@ -73,19 +73,19 @@
                 android:layout_height="match_parent">
 
                 <CheckBox
-                    android:id="@+id/checkBox8"
+                    android:id="@+id/maj7_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Maj 7th" />
 
                 <CheckBox
-                    android:id="@+id/checkBox9"
+                    android:id="@+id/dom7_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dom 7th" />
 
                 <CheckBox
-                    android:id="@+id/checkBox10"
+                    android:id="@+id/min7_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Minor 7th" />
@@ -109,25 +109,25 @@
                 android:layout_height="match_parent">
 
                 <CheckBox
-                    android:id="@+id/checkBox11"
+                    android:id="@+id/scales_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Scales" />
 
                 <CheckBox
-                    android:id="@+id/checkBox12"
+                    android:id="@+id/arp_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Arpeggio" />
 
                 <CheckBox
-                    android:id="@+id/checkBox13"
+                    android:id="@+id/solidch_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Soild Chords" />
 
                 <CheckBox
-                    android:id="@+id/checkBox14"
+                    android:id="@+id/brch_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Br. Chords" />
@@ -139,13 +139,13 @@
                 android:layout_height="match_parent">
 
                 <CheckBox
-                    android:id="@+id/checkBox17"
+                    android:id="@+id/oct_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Octaves" />
 
                 <CheckBox
-                    android:id="@+id/checkBox18"
+                    android:id="@+id/conM_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Con. Motion" />
@@ -167,14 +167,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/set_custRoots_bt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
                 android:text="Set Roots" />
 
-            <Switch
-                android:id="@+id/switch1"
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/enable_custRoots_sw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp" />
@@ -190,14 +190,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/save_bt"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Save" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/practice_bt"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

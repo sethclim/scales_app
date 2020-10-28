@@ -4,9 +4,6 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,13 +11,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.routineCreator, R.id.practicePage, R.id.navigation_notifications))
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+
+        navView.setOnNavigationItemSelectedListener{
+            when(it.itemId){
+                R.id.nav_routine -> {
+                    navController.navigate(R.id.routineCreator)
+                    true
+                }
+                R.id.nav_practice -> {
+                    navController.navigate(R.id.practicePage)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 }
