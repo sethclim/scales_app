@@ -19,8 +19,9 @@ class RoutineCreatorViewModel : ViewModel() {
 
     fun generateRoutine(){
         val myScales = RoutineInputs.getScales()
+        val myTechnique = RoutineInputs.getTechnique()
 
-        RoutineGenerator.generate(myScales)
+        RoutineGenerator.generate(myScales, myTechnique )
 
 
     }

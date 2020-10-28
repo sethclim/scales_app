@@ -33,15 +33,27 @@ class RoutineCreator : Fragment() {
         //val practice_package = practice_package("Test Package", test_array)
         getInputs()
         viewModel.generateRoutine()
-        val practice_package = practice_package("MyPractice",RoutineGenerator.routine )
+        val routine =  RoutineGenerator.routine
+        val practice_package = practice_package("MyPractice",routine.toTypedArray())
         val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
         findNavController().navigate(action)
     }
 
     private fun getInputs(){
-        when( binding.scalesCb.isChecked){
-            true -> RoutineInputs.scales = true
-            else -> RoutineInputs.scales = false
+        RoutineInputs.apply {
+            maj = binding.majCb.isChecked
+            min = binding.minCb.isChecked
+            dim = binding.dimCb.isChecked
+            aug = binding.augCb.isChecked
+            maj7 = binding.maj7Cb.isChecked
+            min7 = binding.min7Cb.isChecked
+            dom7 = binding.dom7Cb.isChecked
+            scales = binding.scalesCb.isChecked
+            arps = binding.arpCb.isChecked
+            solid = binding.solidchCb.isChecked
+            broken = binding.brchCb.isChecked
+            octaves = binding.octCb.isChecked
+            contrary = binding.conMCb.isChecked
         }
     }
 }

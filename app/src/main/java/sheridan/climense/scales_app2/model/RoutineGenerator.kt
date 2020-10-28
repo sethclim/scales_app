@@ -9,14 +9,18 @@ studentID:991599894
 class RoutineGenerator {
     companion object{
 
-        var routine : Array<String> = arrayOf()
+        var routine : MutableList<String> = mutableListOf()
 
 
-        fun generate(scales : MutableList<String>){
+        fun generate(scales : MutableList<String>, techniques : MutableList<String>) : Array<String>{
 
-            routine = scales.toTypedArray()
-
-
+            for(item in scales){
+                for(tech in techniques){
+                    val oneItem = "${item} + ${tech}"
+                    routine.add(oneItem)
+                }
+            }
+            return routine.toTypedArray()
         }
 
 
