@@ -21,5 +21,8 @@
         <action
             android:id="@+id/action_practice_to_routine"
             app:destination="@id/routineCreator" />
+        <argument
+            android:name="practice_package"
+            app:argType="sheridan.climense.scales_app2.model.practice_package" />
     </fragment>
 </navigation>
