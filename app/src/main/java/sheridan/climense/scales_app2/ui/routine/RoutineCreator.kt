@@ -12,6 +12,7 @@ import sheridan.climense.scales_app2.databinding.RoutineCreatorFragmentBinding
 import sheridan.climense.scales_app2.model.RoutineGenerator
 import sheridan.climense.scales_app2.model.RoutineInputs
 import sheridan.climense.scales_app2.model.practice_package
+import sheridan.climense.scales_app2.ui.dialog.RootOptionDialog
 
 class RoutineCreator : Fragment() {
 
@@ -24,6 +25,7 @@ class RoutineCreator : Fragment() {
     ): View? {
         binding = RoutineCreatorFragmentBinding.inflate(inflater, container, false)
         binding.practiceBt.setOnClickListener { practice() }
+        binding.setCustRootsBt.setOnClickListener { openDialog() }
         binding.routineViewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -54,5 +56,10 @@ class RoutineCreator : Fragment() {
             techOptions[4].isUsed = binding.octCb.isChecked
             techOptions[5].isUsed = binding.conMCb.isChecked
         }
+    }
+
+    private fun openDialog(){
+        val rootOptionDialog = RootOptionDialog()
+        rootOptionDialog.show(childFragmentManager, "dialogTerm" )
     }
 }
