@@ -1,5 +1,7 @@
 package sheridan.climense.scales_app2.model
 
+import android.util.Log
+
 /**
  *scales_app2
 createdbyseth*
@@ -11,18 +13,36 @@ class RoutineGenerator {
 
         var routine : MutableList<String> = mutableListOf()
 
+        fun generate() : Array<String>{
+            val roots = RoutineInputs.RootOptions
+            val scales = RoutineInputs.scaleOptions
+            val techs = RoutineInputs.techOptions
 
-        fun generate(scales : MutableList<String>, techniques : MutableList<String>) : Array<String>{
+            for(root in roots){
 
-            for(item in scales){
-                for(tech in techniques){
-                    val oneItem = "${item} + ${tech}"
-                    routine.add(oneItem)
+                if(root.isUsed){
+                    for(scale in scales){
+                        if(scale.isUsed  && scale.isFour){
+                            for(tech in techs){
+                                if(tech.isUsed){
+                                    val temp = "${root.scale} ${scale.scale} ${tech.scale}"
+                                    routine.add(temp)
+                                }
+
+                            }
+                        }
+                        else if(scale.isUsed ){
+                            for(tech in techs){
+                                if(tech.isUsed){
+                                    val temp = "${root.scale} ${scale.scale} ${tech.scale}"
+                                    routine.add(temp)
+                                }
+                            }
+                        }
+                    }
                 }
             }
             return routine.toTypedArray()
         }
-
-
     }
 }

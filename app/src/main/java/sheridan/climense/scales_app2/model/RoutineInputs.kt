@@ -1,108 +1,45 @@
 package sheridan.climense.scales_app2.model
 
-/**
- *scales_app2
-createdbyseth*
-studentID:991599894
- *on2020-10-28
- */
 class RoutineInputs {
     companion object{
 
-        var maj : Boolean = false
-        var min : Boolean = false
-        var dim : Boolean = false
-        var aug : Boolean = false
-        var maj7 : Boolean = false
-        var dom7 : Boolean = false
-        var min7 : Boolean = false
-        var scales : Boolean = false
-        var arps : Boolean = false
-        var solid : Boolean = false
-        var broken : Boolean = false
-        var octaves : Boolean = false
-        var contrary : Boolean = false
+        data class scale (val scale : String, var isUsed : Boolean, val isFour : Boolean)
+        data class roots (val scale : String, var isUsed : Boolean)
+        data class tech (val scale : String, var isUsed : Boolean)
 
+         val scaleOptions = arrayOf(
+             scale("Major", false, true),
+             scale("Har. minor", false, true),
+             scale("Har. minor", false, true),
+             scale("Dim", false, true),
+             scale("Aug", false, true),
+             scale("Maj7", false, false),
+             scale("Dom7", false, false),
+             scale("min7", false, false),
+        )
 
-        var listOfScales = mutableListOf<String>()
-        var listOftechniques = mutableListOf<String>()
+         val RootOptions = arrayOf(
+             roots("C", true),
+             roots("C#", true),
+             roots("D", true),
+             roots("D#", true),
+             roots("E", true),
+             roots("F", true),
+             roots("F#", true),
+             roots("G", true),
+             roots("G#", true),
+             roots("A", true),
+             roots("A#", true),
+             roots("B", true)
+        )
 
-        fun getScales(): MutableList<String>{
-            if(maj)
-                listOfScales.add("Major")
-            else{
-                listOfScales.remove("Major")
-            }
-            if(min)
-                listOfScales.add("Minor")
-            else{
-                listOfScales.remove("Minor")
-            }
-            if(dim)
-                listOfScales.add("Dim")
-            else{
-                listOfScales.remove("Dim")
-            }
-            if(aug)
-                listOfScales.add("Aug")
-            else{
-                listOfScales.remove("Aug")
-            }
-            if(maj7)
-                listOfScales.add("Maj 7")
-            else{
-                listOfScales.remove("Maj 7")
-            }
-            if(min7)
-                listOfScales.add("min 7")
-            else{
-                listOfScales.remove("min 7")
-            }
-            if(dom7)
-                listOfScales.add("Dom 7")
-            else{
-                listOfScales.remove("Dom 7")
-            }
-
-            return listOfScales
-        }
-        fun getTechnique(): MutableList<String>{
-            if(scales)
-                listOftechniques.add("Scales")
-            else{
-                listOftechniques.remove("Scales")
-            }
-            if(arps)
-                listOftechniques.add("Arp")
-            else{
-                listOftechniques.remove("Arp")
-            }
-            if(scales)
-                listOftechniques.add("Scales")
-            else{
-                listOftechniques.remove("Scales")
-            }
-            if(solid)
-                listOftechniques.add("Solid Chords")
-            else{
-                listOftechniques.remove("Solid Chords")
-            }
-            if(broken)
-                listOftechniques.add("Broken Chords")
-            else{
-                listOftechniques.remove("Broken Chords")
-            }
-            if(octaves)
-                listOftechniques.add("Octaves")
-            else{
-                listOftechniques.remove("Octaves")
-            }
-            if(contrary)
-                listOftechniques.add("Con Motion")
-            else{
-                listOftechniques.remove("Con Motion")
-            }
-            return listOftechniques
-        }
+         val techOptions = arrayOf(
+             tech("Scale", false),
+             tech("Arp", false),
+             tech("Solid", false),
+             tech("Broken", false),
+             tech("Oct", false),
+             tech("C.M.", false),
+        )
     }
 }

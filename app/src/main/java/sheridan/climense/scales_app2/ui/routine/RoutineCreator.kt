@@ -1,6 +1,7 @@
 package sheridan.climense.scales_app2.ui.routine
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,31 +30,29 @@ class RoutineCreator : Fragment() {
     }
 
     private fun practice(){
-        //val test_array = arrayOf("C major", "D Major", "E Major")
-        //val practice_package = practice_package("Test Package", test_array)
         getInputs()
         viewModel.generateRoutine()
-        val routine =  RoutineGenerator.routine
-        val practice_package = practice_package("MyPractice",routine.toTypedArray())
+        val routine =  viewModel.routine
+        val practice_package = practice_package("MyPractice",routine)
         val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
         findNavController().navigate(action)
     }
 
     private fun getInputs(){
         RoutineInputs.apply {
-            maj = binding.majCb.isChecked
-            min = binding.minCb.isChecked
-            dim = binding.dimCb.isChecked
-            aug = binding.augCb.isChecked
-            maj7 = binding.maj7Cb.isChecked
-            min7 = binding.min7Cb.isChecked
-            dom7 = binding.dom7Cb.isChecked
-            scales = binding.scalesCb.isChecked
-            arps = binding.arpCb.isChecked
-            solid = binding.solidchCb.isChecked
-            broken = binding.brchCb.isChecked
-            octaves = binding.octCb.isChecked
-            contrary = binding.conMCb.isChecked
+            scaleOptions[0].isUsed = binding.majCb.isChecked
+            scaleOptions[1].isUsed = binding.minCb.isChecked
+            scaleOptions[2].isUsed = binding.dimCb.isChecked
+            scaleOptions[3].isUsed = binding.augCb.isChecked
+            scaleOptions[4].isUsed = binding.maj7Cb.isChecked
+            scaleOptions[5].isUsed = binding.min7Cb.isChecked
+            scaleOptions[6].isUsed = binding.dom7Cb.isChecked
+            techOptions[0].isUsed = binding.scalesCb.isChecked
+            techOptions[1].isUsed = binding.arpCb.isChecked
+            techOptions[2].isUsed = binding.solidchCb.isChecked
+            techOptions[3].isUsed = binding.brchCb.isChecked
+            techOptions[4].isUsed = binding.octCb.isChecked
+            techOptions[5].isUsed = binding.conMCb.isChecked
         }
     }
 }

@@ -17,12 +17,13 @@ class RoutineCreatorViewModel : ViewModel() {
     val _mutableInputs : MutableLiveData<RoutineInputs> = MutableLiveData<RoutineInputs>()
     var mutableInputs : LiveData<RoutineInputs> = _mutableInputs
 
+    var routine : Array<String> = arrayOf()
+
     fun generateRoutine(){
-        val myScales = RoutineInputs.getScales()
-        val myTechnique = RoutineInputs.getTechnique()
 
-        RoutineGenerator.generate(myScales, myTechnique )
 
+        routine =  RoutineGenerator.generate()
+        Log.d("routine gen",routine.toString())
 
     }
 
