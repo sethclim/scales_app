@@ -33,6 +33,21 @@ class RoutineInputs {
              roots("B", true)
         )
 
+        val CustRootOptions = arrayOf(
+            roots("C", true),
+            roots("C#", true),
+            roots("D", true),
+            roots("D#", true),
+            roots("E", true),
+            roots("F", true),
+            roots("F#", true),
+            roots("G", true),
+            roots("G#", true),
+            roots("A", true),
+            roots("A#", true),
+            roots("B", true)
+        )
+
          val techOptions = arrayOf(
              tech("Scale", false),
              tech("Arp", false),

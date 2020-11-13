@@ -13,10 +13,12 @@ class RoutineGenerator {
 
         var routine : MutableList<String> = mutableListOf()
 
+        var roots = RoutineInputs.RootOptions
+        val scales = RoutineInputs.scaleOptions
+        val techs = RoutineInputs.techOptions
+
         fun generate() : Array<String>{
-            val roots = RoutineInputs.RootOptions
-            val scales = RoutineInputs.scaleOptions
-            val techs = RoutineInputs.techOptions
+
 
             for(root in roots){
 

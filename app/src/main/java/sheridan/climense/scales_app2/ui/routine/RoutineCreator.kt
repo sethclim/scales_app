@@ -26,6 +26,11 @@ class RoutineCreator : Fragment() {
         binding = RoutineCreatorFragmentBinding.inflate(inflater, container, false)
         binding.practiceBt.setOnClickListener { practice() }
         binding.setCustRootsBt.setOnClickListener { openDialog() }
+        binding.enableCustRootsSw.setOnCheckedChangeListener({_,isChecked ->
+            if(isChecked){
+                RoutineGenerator.roots = RoutineInputs.CustRootOptions
+            }
+        })
         binding.routineViewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root

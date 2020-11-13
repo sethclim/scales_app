@@ -20,12 +20,12 @@ class RoutineCreatorViewModel : ViewModel() {
     var routine : Array<String> = arrayOf()
 
     fun generateRoutine(){
-
-
         routine =  RoutineGenerator.generate()
         Log.d("routine gen",routine.toString())
 
     }
+
+
 
 
 }
