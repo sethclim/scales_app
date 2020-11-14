@@ -11,13 +11,15 @@ studentID:991599894
 class RoutineGenerator {
     companion object{
 
-        var routine : MutableList<String> = mutableListOf()
+        data class practice (val root : String, val scale : String, val tech : String )
+
+        var routine : MutableList<practice> = mutableListOf()
 
         var roots = RoutineInputs.RootOptions
         val scales = RoutineInputs.scaleOptions
         val techs = RoutineInputs.techOptions
 
-        fun generate() : Array<String>{
+        fun generate() : Array<practice>{
 
 
             for(root in roots){
@@ -27,7 +29,8 @@ class RoutineGenerator {
                         if(scale.isUsed  && scale.isFour){
                             for(tech in techs){
                                 if(tech.isUsed){
-                                    val temp = "${root.scale} ${scale.scale} ${tech.scale}"
+                                    val temp = practice(root.scale, scale.scale, tech.scale)
+                                    //val temp = "${root.scale} ${scale.scale} ${tech.scale}"
                                     routine.add(temp)
                                 }
 
@@ -36,7 +39,8 @@ class RoutineGenerator {
                         else if(scale.isUsed ){
                             for(tech in techs){
                                 if(tech.isUsed){
-                                    val temp = "${root.scale} ${scale.scale} ${tech.scale}"
+                                    val temp = practice(root.scale, scale.scale, tech.scale)
+                                    //val temp = "${root.scale} ${scale.scale} ${tech.scale}"
                                     routine.add(temp)
                                 }
                             }

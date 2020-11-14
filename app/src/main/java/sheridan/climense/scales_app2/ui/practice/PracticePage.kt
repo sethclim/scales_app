@@ -1,7 +1,6 @@
 package sheridan.climense.scales_app2.ui.practice
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +24,7 @@ class PracticePage : Fragment() {
         binding.practiceViewModel = viewModel
         binding.lifecycleOwner = this
 
-        val practiceArray = safeArgs.practicePackage.practice_array
+        val practiceArray = safeArgs.PracticePackage.practice_array
         PracticeCycler.practiceArray = practiceArray.toMutableList()
 
         binding.nextBt.setOnClickListener { next() }

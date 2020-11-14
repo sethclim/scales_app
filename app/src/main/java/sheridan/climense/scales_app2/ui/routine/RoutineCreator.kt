@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import sheridan.climense.scales_app2.databinding.RoutineCreatorFragmentBinding
 import sheridan.climense.scales_app2.model.RoutineGenerator
 import sheridan.climense.scales_app2.model.RoutineInputs
-import sheridan.climense.scales_app2.model.practice_package
+import sheridan.climense.scales_app2.model.PracticePackage
 import sheridan.climense.scales_app2.ui.dialog.RootOptionDialog
 
 class RoutineCreator : Fragment() {
@@ -26,11 +26,13 @@ class RoutineCreator : Fragment() {
         binding = RoutineCreatorFragmentBinding.inflate(inflater, container, false)
         binding.practiceBt.setOnClickListener { practice() }
         binding.setCustRootsBt.setOnClickListener { openDialog() }
-        binding.enableCustRootsSw.setOnCheckedChangeListener({_,isChecked ->
-            if(isChecked){
+        binding.enableCustRootsSw.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
                 RoutineGenerator.roots = RoutineInputs.CustRootOptions
+            } else {
+                RoutineGenerator.roots = RoutineInputs.RootOptions
             }
-        })
+        }
         binding.routineViewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -40,7 +42,7 @@ class RoutineCreator : Fragment() {
         getInputs()
         viewModel.generateRoutine()
         val routine =  viewModel.routine
-        val practice_package = practice_package("MyPractice",routine)
+        val practice_package = PracticePackage("MyPractice",routine)
         val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
         findNavController().navigate(action)
     }
