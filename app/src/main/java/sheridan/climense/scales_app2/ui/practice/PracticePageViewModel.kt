@@ -15,9 +15,28 @@ class PracticePageViewModel : ViewModel() {
 
     val PracticeString = Transformations.map(item){scales -> "${scales.root} ${scales.scale} ${scales.tech}"}
 
+    var scaleCount = 0
+    var arpCount = 0
+    var solidCount = 0
+    var brokenCount = 0
+    var octCount = 0
+    var cmCount = 0
+
+
     fun next(){
         PracticeCycler.nextScale()
         _item.value = PracticeCycler.currentScale
+        getCount()
+    }
+    private fun getCount(){
+            when(item.value!!.tech){
+                "Scale" -> scaleCount += 1
+                "Arp" -> arpCount += 1
+                "Solid" -> solidCount += 1
+                "Broken" -> brokenCount += 1
+                "Oct" -> octCount += 1
+                "C.M." -> cmCount += 1
+            }
     }
 }
 
