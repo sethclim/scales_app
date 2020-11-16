@@ -22,7 +22,6 @@ class PracticePageViewModel : ViewModel() {
     var octCount = 0
     var cmCount = 0
 
-
     fun next(){
         PracticeCycler.nextScale()
         _item.value = PracticeCycler.currentScale
