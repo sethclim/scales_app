@@ -20,8 +20,8 @@ interface PracticeDao {
 //    @Query("SELECT * FROM practicerecord WHERE id=:key")
 //    fun get(key: Long) : LiveData<PracticeRecord>
 //
-//    @Query("SELECT * FROM practicerecord ORDER BY id")
-//    fun getAll() : LiveData<List<PracticeRecord>>
+    @Query("SELECT * FROM practicerecord ORDER BY date")
+    fun getAll() : LiveData<List<PracticeRecord>>
 
     @Query("SELECT SUM(scales) FROM practicerecord")
     fun getTotal() : LiveData<Int>

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
 import sheridan.climense.scales_app2.model.PracticeCycler
@@ -33,6 +34,7 @@ class PracticePage : Fragment() {
 
 
         binding.nextBt.setOnClickListener { next() }
+        binding.goToHistory.setOnClickListener { findNavController().navigate(PracticePageDirections.actionPracticePageToPracticeHistory()) }
 
         return binding.root
     }
@@ -50,6 +52,6 @@ class PracticePage : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        viewModel.record.observe(viewLifecycleOwner, Observer { viewModel.loadRecord(it) })
+        viewModel.record.observe(viewLifecycleOwner, { viewModel.loadRecord(it) })
     }
 }

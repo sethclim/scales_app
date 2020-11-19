@@ -10,7 +10,7 @@ class DateConverters {
     companion object{
 
         private val dateFormatter =
-                DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                DateTimeFormatter.ofPattern("dd-MM-yyyy")
 
         fun formatDate(date: Date?): String? {
             return date?.toInstant()

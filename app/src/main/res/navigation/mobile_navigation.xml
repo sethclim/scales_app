@@ -24,5 +24,12 @@
         <argument
             android:name="PracticePackage"
             app:argType="sheridan.climense.scales_app2.model.PracticePackage" />
+        <action
+            android:id="@+id/action_practicePage_to_practiceHistory"
+            app:destination="@id/practiceHistoryPage" />
     </fragment>
+    <fragment
+        android:id="@+id/practiceHistoryPage"
+        android:name="sheridan.climense.scales_app2.ui.practicehistory.PracticeHistoryPage"
+        android:label="PracticeHistoryPage" />
 </navigation>
