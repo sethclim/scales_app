@@ -23,6 +23,10 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     private val practiceDao: PracticeDao =
         PracticeDatabase.getInstance(application).practiceDao
 
+    val timeStamp : String? = DateConverters.formatDate (getCurrentDateTime())
+
+    val record : LiveData<PracticeRecord> = practiceDao.getDate(timeStamp!!)
+
     var scaleCount = 0
     var arpCount = 0
     var solidCount = 0
@@ -52,11 +56,20 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
         return cal
     }
 
-    val timeStamp : String? = DateConverters.formatDate (getCurrentDateTime())
+
 
     fun saveRecord(){
         viewModelScope.launch {
             practiceDao.insertOrUpdate(PracticeRecord(scaleCount,arpCount,octCount,solidCount,brokenCount, cmCount, timeStamp!!))
         }
+    }
+
+    fun loadRecord(practiceRecord: PracticeRecord){
+        scaleCount = practiceRecord.scales
+        arpCount = practiceRecord.arps
+        solidCount = practiceRecord.solid
+        brokenCount = practiceRecord.broken
+        octCount = practiceRecord.oct
+        cmCount = practiceRecord.conMotion
     }
 }

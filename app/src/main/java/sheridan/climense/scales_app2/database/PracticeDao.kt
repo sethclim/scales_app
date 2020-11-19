@@ -14,8 +14,8 @@ interface PracticeDao {
     @Update
     fun update(practiceRecord: PracticeRecord): Int
 
-    @Query("SELECT * FROM practiceRecord WHERE date BETWEEN :dayst AND :dayet")
-    fun getDate(dayst: Long, dayet: Long ): LiveData<PracticeRecord>
+    @Query("SELECT * FROM practiceRecord WHERE date = :date")
+    fun getDate(date : String): LiveData<PracticeRecord>
 
 //    @Query("SELECT * FROM practicerecord WHERE id=:key")
 //    fun get(key: Long) : LiveData<PracticeRecord>

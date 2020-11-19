@@ -46,4 +46,10 @@ class PracticePage : Fragment() {
         super.onPause()
         viewModel.saveRecord()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.record.observe(viewLifecycleOwner, Observer { viewModel.loadRecord(it) })
+    }
 }
