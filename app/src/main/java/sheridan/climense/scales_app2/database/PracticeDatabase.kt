@@ -1,29 +1,28 @@
 package sheridan.climense.scales_app2.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 
 @Database(entities = [PracticeRecord::class], version = 1, exportSchema = false)
-abstract class SavedRollDatabase : RoomDatabase() {
+//@TypeConverters(Converters::class)
+abstract class PracticeDatabase : RoomDatabase() {
 
     abstract val practiceDao: PracticeDao
 
     companion object{
 
         @Volatile
-        private var INSTANCE: SavedRollDatabase? = null
+        private var INSTANCE: PracticeDatabase? = null
 
-        fun getInstance(context: Context): SavedRollDatabase {
+        fun getInstance(context: Context): PracticeDatabase {
 
             synchronized(this) {
                 var instance = INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                            context.applicationContext,
-                            SavedRollDatabase::class.java,
-                            "practice_database"
+                        context.applicationContext,
+                        PracticeDatabase::class.java,
+                        "practice_database"
                     ).fallbackToDestructiveMigration().build()
 
                     INSTANCE = instance

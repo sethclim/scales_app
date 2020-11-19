@@ -1,19 +1,27 @@
 package sheridan.climense.scales_app2.ui.practice
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import kotlinx.coroutines.launch
+import sheridan.climense.scales_app2.database.Converters
+import sheridan.climense.scales_app2.database.PracticeDao
+import sheridan.climense.scales_app2.database.PracticeDatabase
+import sheridan.climense.scales_app2.database.PracticeRecord
 import sheridan.climense.scales_app2.model.PracticeCycler
 import sheridan.climense.scales_app2.model.RoutineGenerator
+import sheridan.climense.scales_app2.util.DateConverters
+import java.util.*
 
-class PracticePageViewModel : ViewModel() {
+class PracticePageViewModel(application: Application) : AndroidViewModel(application) {
 
     val _item = MutableLiveData<RoutineGenerator.Companion.practice>()
     var item: LiveData<RoutineGenerator.Companion.practice> = _item
 
     val PracticeString = Transformations.map(item){scales -> "${scales.root} ${scales.scale} ${scales.tech}"}
+
+    private val practiceDao: PracticeDao =
+        PracticeDatabase.getInstance(application).practiceDao
 
     var scaleCount = 0
     var arpCount = 0
@@ -37,6 +45,18 @@ class PracticePageViewModel : ViewModel() {
                 "C.M." -> cmCount += 1
             }
     }
+
+    fun getCurrentDateTime(): Date
+    {
+        val cal = Calendar.getInstance().time
+        return cal
+    }
+
+    val timeStamp : String? = DateConverters.formatDate (getCurrentDateTime())
+
+    fun saveRecord(){
+        viewModelScope.launch {
+            practiceDao.insertOrUpdate(PracticeRecord(scaleCount,arpCount,octCount,solidCount,brokenCount, cmCount, timeStamp!!))
+        }
+    }
 }
-
-

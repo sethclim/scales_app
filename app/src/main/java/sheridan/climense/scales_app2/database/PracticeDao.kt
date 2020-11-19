@@ -1,25 +1,38 @@
 package sheridan.climense.scales_app2.database
 
+import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
+import sheridan.climense.scales_app2.model.RoutineGenerator
+import java.util.*
 
 @Dao
 interface PracticeDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(practiceRecord: PracticeRecord): Long
 
-    @Query("SELECT * FROM practicerecord WHERE id=:key")
-    fun get(key: Long) : LiveData<PracticeRecord>
+    @Update
+    fun update(practiceRecord: PracticeRecord): Int
 
-    @Query("SELECT * FROM practicerecord ORDER BY id")
-    fun getAll() : LiveData<List<PracticeRecord>>
+    @Query("SELECT * FROM practiceRecord WHERE date BETWEEN :dayst AND :dayet")
+    fun getDate(dayst: Long, dayet: Long ): LiveData<PracticeRecord>
+
+//    @Query("SELECT * FROM practicerecord WHERE id=:key")
+//    fun get(key: Long) : LiveData<PracticeRecord>
+//
+//    @Query("SELECT * FROM practicerecord ORDER BY id")
+//    fun getAll() : LiveData<List<PracticeRecord>>
 
     @Query("SELECT SUM(scales) FROM practicerecord")
     fun getTotal() : LiveData<Int>
 
     @Query("DELETE FROM practicerecord")
     suspend fun deleteAll()
+
+    @Transaction
+    suspend fun insertOrUpdate(practiceRecord: PracticeRecord) {
+        val id = insert(practiceRecord)
+        if (id == -1L) update(practiceRecord)
+    }
 
 }
