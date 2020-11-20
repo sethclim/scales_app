@@ -1,4 +1,4 @@
-package sheridan.climense.scales_app2
+    package sheridan.climense.scales_app2
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_practice -> {
                     navController.navigate(R.id.practicePage)
+                    true
+                }
+                R.id.nav_history -> {
+                    navController.navigate(R.id.practiceHistoryPage)
                     true
                 }
                 else -> false

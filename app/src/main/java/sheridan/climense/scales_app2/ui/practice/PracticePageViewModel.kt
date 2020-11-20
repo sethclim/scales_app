@@ -60,7 +60,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     fun saveRecord(){
         viewModelScope.launch {
-            practiceDao.insertOrUpdate(PracticeRecord(scaleCount,arpCount,octCount,solidCount,brokenCount, cmCount, "20-11-2020"))
+            practiceDao.insertOrUpdate(PracticeRecord(scaleCount,arpCount,octCount,solidCount,brokenCount, cmCount, timeStamp!!))
         }
     }
 
