@@ -32,16 +32,13 @@ class PracticePage : Fragment() {
         PracticeCycler.practiceArray = practiceArray.toMutableList()
 
 
-
         binding.nextBt.setOnClickListener { next() }
-        binding.goToHistory.setOnClickListener { findNavController().navigate(PracticePageDirections.actionPracticePageToPracticeHistory()) }
 
         return binding.root
     }
 
     private fun next(){
         viewModel.next()
-
     }
 
     override fun onPause() {
@@ -52,6 +49,11 @@ class PracticePage : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        viewModel.record.observe(viewLifecycleOwner, { viewModel.loadRecord(it) })
+        if(viewModel.record?.value != null){
+            viewModel.record?.observe(viewLifecycleOwner, { viewModel.loadRecord(it) })
+        }
+        else{
+            Log.d("Its null", "Ya")
+        }
     }
 }

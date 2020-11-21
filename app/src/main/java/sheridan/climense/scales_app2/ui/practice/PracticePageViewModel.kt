@@ -25,7 +25,11 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     val timeStamp : String? = DateConverters.formatDate (getCurrentDateTime())
 
-    val record : LiveData<PracticeRecord> = practiceDao.getDate(timeStamp!!)
+    val record : LiveData<PracticeRecord>? = practiceDao.getDate(timeStamp!!)
+//    val record : LiveData<PracticeRecord>? = _record
+//        get() = if(field.value != null){
+//        return field
+//        }
 
     var scaleCount = 0
     var arpCount = 0
