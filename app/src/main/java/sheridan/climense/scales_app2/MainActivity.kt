@@ -1,4 +1,4 @@
-    package sheridan.climense.scales_app2
+package sheridan.climense.scales_app2
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView

@@ -22,7 +22,7 @@ class RoutineCreator : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = RoutineCreatorFragmentBinding.inflate(inflater, container, false)
         binding.practiceBt.setOnClickListener { practice() }
         binding.setCustRootsBt.setOnClickListener { openDialog() }
@@ -43,8 +43,13 @@ class RoutineCreator : Fragment() {
         viewModel.generateRoutine()
         val routine =  viewModel.routine
         val practice_package = PracticePackage("MyPractice",routine)
-        val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
-        findNavController().navigate(action)
+        if(routine.size != 0){
+            val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
+            findNavController().navigate(action)
+        }
+        else{
+//            TODO()
+        }
     }
 
     private fun getInputs(){

@@ -3,6 +3,7 @@ package sheridan.climense.scales_app2.database
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import sheridan.climense.scales_app2.model.PracticeCycler
 import sheridan.climense.scales_app2.model.RoutineGenerator
 import java.util.*
 
