@@ -16,7 +16,7 @@ class RootOptionDialog : DialogFragment() {
     private val routineCreatorViewModel: RoutineCreatorViewModel by viewModels()
     private lateinit var binding: DialogRootoptionsBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = DialogRootoptionsBinding.inflate(inflater, container, false)
 

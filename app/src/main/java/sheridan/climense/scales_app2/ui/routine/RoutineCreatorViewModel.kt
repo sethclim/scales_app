@@ -19,6 +19,11 @@ class RoutineCreatorViewModel : ViewModel() {
         routine =  RoutineGenerator.generate()
     }
 
+    fun saveRoutine(name : String){
+
+
+
+    }
 
 
 
