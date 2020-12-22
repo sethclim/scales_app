@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_routine_to_practice"
             app:destination="@id/practicePage" />
+        <action
+            android:id="@+id/action_routineCreator_to_savedRoutinesPage"
+            app:destination="@id/savedRoutinesPage" />
     </fragment>
     <fragment
         android:id="@+id/practicePage"
@@ -32,4 +35,8 @@
         android:id="@+id/practiceHistoryPage"
         android:name="sheridan.climense.scales_app2.ui.practicehistory.PracticeHistoryPage"
         android:label="PracticeHistoryPage" />
+    <fragment
+        android:id="@+id/savedRoutinesPage"
+        android:name="sheridan.climense.scales_app2.ui.SavedRoutines.SavedRoutinesPage"
+        android:label="SavedRoutinesPage" />
 </navigation>

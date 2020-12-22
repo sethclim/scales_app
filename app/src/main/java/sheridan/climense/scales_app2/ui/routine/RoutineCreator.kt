@@ -1,7 +1,6 @@
 package sheridan.climense.scales_app2.ui.routine
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,9 +46,7 @@ class RoutineCreator : Fragment() {
             val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
             findNavController().navigate(action)
         }
-        else{
-//            TODO()
-        }
+        //add warning message here
     }
 
     private fun getInputs(){

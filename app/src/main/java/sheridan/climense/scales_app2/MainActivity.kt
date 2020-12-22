@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.routineCreator)
                     true
                 }
-                R.id.nav_practice -> {
-                    navController.navigate(R.id.practicePage)
+                R.id.nav_saved -> {
+                    navController.navigate(R.id.savedRoutinesPage)
                     true
                 }
                 R.id.nav_history -> {

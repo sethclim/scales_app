@@ -33,7 +33,7 @@ class PracticeHistoryPage : Fragment(){
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = LinegraphBinding.inflate(inflater, container, false)
 
 

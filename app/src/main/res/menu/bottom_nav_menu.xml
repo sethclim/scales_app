@@ -7,9 +7,9 @@
         android:title="Routine Creator" />
 
     <item
-        android:id="@+id/nav_practice"
+        android:id="@+id/nav_saved"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Practice" />
+        android:title="Saved" />
 
     <item
         android:id="@+id/nav_history"
