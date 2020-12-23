@@ -12,6 +12,9 @@ interface PracticeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(practiceRecord: PracticeRecord): Long
 
+    @Insert
+    suspend fun insert(savedRoutine: SavedRoutine): Long
+
     @Update
     fun update(practiceRecord: PracticeRecord): Int
 
