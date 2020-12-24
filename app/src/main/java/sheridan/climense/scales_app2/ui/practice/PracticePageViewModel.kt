@@ -1,10 +1,8 @@
 package sheridan.climense.scales_app2.ui.practice
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import sheridan.climense.scales_app2.database.Converters
 import sheridan.climense.scales_app2.database.PracticeDao
 import sheridan.climense.scales_app2.database.PracticeDatabase
 import sheridan.climense.scales_app2.database.PracticeRecord
@@ -19,6 +17,12 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     var item: LiveData<RoutineGenerator.Companion.practice> = _item
 
     val PracticeString = Transformations.map(item){scales -> "${scales.root} ${scales.scale} ${scales.tech}"}
+
+    private val _progress = MutableLiveData<Int>()
+    var progress : LiveData<Int> = _progress
+
+    private val _pMax = MutableLiveData<Int>()
+    var pMax : LiveData<Int> = _pMax
 
     private val practiceDao: PracticeDao =
         PracticeDatabase.getInstance(application).practiceDao
@@ -43,6 +47,12 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
         _item.value = PracticeCycler.currentScale
         getCount()
     }
+
+    fun getProgress(oLength : Int) {
+        _progress.value = oLength -  PracticeCycler.practiceArray.size
+        _pMax.value = oLength
+    }
+
     private fun getCount(){
             when(item.value!!.tech){
                 "Scale" -> scaleCount += 1
@@ -54,13 +64,10 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
             }
     }
 
-    fun getCurrentDateTime(): Date
-    {
+    fun getCurrentDateTime(): Date {
         val cal = Calendar.getInstance().time
         return cal
     }
-
-
 
     fun saveRecord(){
         viewModelScope.launch {

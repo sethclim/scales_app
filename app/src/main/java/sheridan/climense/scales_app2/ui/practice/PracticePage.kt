@@ -23,7 +23,7 @@ class PracticePage : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = PracticePageFragmentBinding.inflate(inflater, container, false)
         binding.practiceViewModel = viewModel
         binding.lifecycleOwner = this
@@ -32,13 +32,14 @@ class PracticePage : Fragment() {
         PracticeCycler.practiceArray = practiceArray.toMutableList()
 
 
-        binding.nextBt.setOnClickListener { next() }
+        binding.nextBt.setOnClickListener { next(practiceArray.size) }
 
         return binding.root
     }
 
-    private fun next(){
+    private fun next(size : Int){
         viewModel.next()
+        viewModel.getProgress(size)
     }
 
     override fun onPause() {

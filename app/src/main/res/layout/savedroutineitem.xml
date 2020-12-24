@@ -9,45 +9,60 @@
             type="sheridan.climense.scales_app2.database.SavedRoutine" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        app:cardBackgroundColor="#A282EC">
 
-        <TextView
-            android:id="@+id/routineTitle_tv"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@{routines.title}"
-            tools:text="Hard Scales" />
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/routineProgress_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:text="progress"
-            app:layout_constraintBottom_toBottomOf="@+id/routineTitle_tv"
-            app:layout_constraintStart_toEndOf="@+id/routineTitle_tv"
-            app:layout_constraintTop_toTopOf="@+id/routineTitle_tv"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="Size: 15" />
+            <TextView
+                android:id="@+id/routineTitle_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{routines.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Hard Scales" />
 
-        <TextView
-            android:id="@+id/routineDate_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:text="11/20/2020"
-            app:layout_constraintBottom_toBottomOf="@+id/routineProgress_tv"
-            app:layout_constraintStart_toEndOf="@+id/routineProgress_tv"
-            app:layout_constraintTop_toTopOf="@+id/routineProgress_tv"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="15/20/2020" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/routineDate_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="184dp"
+                android:text="11/20/2020"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/routineTitle_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/routineTitle_tv"
+                tools:text="15/20/2020" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="336dp"
+                app:layout_constraintBottom_toBottomOf="@+id/routineDate_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/routineDate_tv"
+                app:srcCompat="@drawable/abc_vector_test" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                app:layout_constraintStart_toStartOf="@+id/routineTitle_tv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>
