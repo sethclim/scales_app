@@ -1,14 +1,16 @@
 package sheridan.climense.scales_app2.ui.SavedRoutines
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import sheridan.climense.scales_app2.database.SavedRoutine
 import sheridan.climense.scales_app2.databinding.SavedroutineitemBinding
 import sheridan.climense.scales_app2.model.PracticePackage
 
-class EntryRecyclerViewAdapter() : RecyclerView.Adapter<EntryRecyclerViewAdapter.ViewHolder>() {
+class SavedRoutinesRecyclerViewAdapter() : RecyclerView.Adapter<SavedRoutinesRecyclerViewAdapter.ViewHolder>() {
 
-    var routines: List<PracticePackage>? = null
+    var routines: List<SavedRoutine>? = null
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -22,12 +24,10 @@ class EntryRecyclerViewAdapter() : RecyclerView.Adapter<EntryRecyclerViewAdapter
         holder.bind(routines!![position])
     }
 
-    override fun getItemCount(): Int = routines?.size ?: 0
+    override fun getItemCount(): Int = routines?.size?: 0
 
     class ViewHolder private constructor(private val binding: SavedroutineitemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(routine: PracticePackage) {
-            binding.routines = routine
-        }
+        fun bind(routine: SavedRoutine) { binding.routines = routine }
 
         companion object {
             fun from(parent: ViewGroup) : ViewHolder {

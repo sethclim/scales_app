@@ -39,4 +39,8 @@ interface PracticeDao {
         if (id == -1L) update(practiceRecord)
     }
 
+    @Query("SELECT * FROM savedroutine")
+    fun getSaved() : LiveData<List<SavedRoutine>>
+
+
 }

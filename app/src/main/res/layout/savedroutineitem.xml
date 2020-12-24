@@ -6,7 +6,7 @@
     <data>
         <variable
             name="routines"
-            type="sheridan.climense.scales_app2.model.PracticePackage" />
+            type="sheridan.climense.scales_app2.database.SavedRoutine" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,14 +21,16 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:text="@{routines.title}"
             tools:text="Hard Scales" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/routineProgress_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="progress"
             app:layout_constraintBottom_toBottomOf="@+id/routineTitle_tv"
             app:layout_constraintStart_toEndOf="@+id/routineTitle_tv"
             app:layout_constraintTop_toTopOf="@+id/routineTitle_tv"
@@ -36,14 +38,15 @@
             tools:text="Size: 15" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/routineDate_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="@+id/textView19"
-            app:layout_constraintStart_toEndOf="@+id/textView19"
-            app:layout_constraintTop_toTopOf="@+id/textView19"
+            android:text="11/20/2020"
+            app:layout_constraintBottom_toBottomOf="@+id/routineProgress_tv"
+            app:layout_constraintStart_toEndOf="@+id/routineProgress_tv"
+            app:layout_constraintTop_toTopOf="@+id/routineProgress_tv"
             app:layout_constraintVertical_bias="0.0"
             tools:text="15/20/2020" />
     </androidx.constraintlayout.widget.ConstraintLayout>

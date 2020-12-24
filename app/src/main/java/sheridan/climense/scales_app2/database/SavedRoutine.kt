@@ -19,7 +19,7 @@ data class SavedRoutine (
         val routine : Array<RoutineGenerator.Companion.practice>,
 
         @ColumnInfo(name = "Progress")
-        val progess : Int,
+        val progress : Int,
 
         @ColumnInfo(name = "Date")
         val date : Long,

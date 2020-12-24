@@ -53,7 +53,7 @@ class RoutineCreator : Fragment() {
         //add warning message here
     }
 
-    private fun getInputs(){
+     fun getInputs(){
         RoutineInputs.apply {
             scaleOptions[0].isUsed = binding.majCb.isChecked
             scaleOptions[1].isUsed = binding.minCb.isChecked
@@ -77,6 +77,7 @@ class RoutineCreator : Fragment() {
     }
 
     private fun openSaveDialog() {
+        getInputs()
         val SavedDialog = SavedDialog()
         SavedDialog.show(childFragmentManager, "dialogTerm" )
     }

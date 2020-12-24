@@ -1,6 +1,12 @@
 package sheridan.climense.scales_app2.model
 
-class RoutineInputs {
+import android.util.Log
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import sheridan.climense.scales_app2.BR
+
+class RoutineInputs : BaseObservable() {
+
     companion object{
 
         data class scale (val scale : String, var isUsed : Boolean, val isFour : Boolean)
