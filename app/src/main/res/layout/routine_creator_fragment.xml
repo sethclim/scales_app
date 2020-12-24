@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -14,200 +15,245 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.routine.RoutineCreator"
-        android:orientation="vertical">
+        android:background="#878BDC"
+        android:orientation="vertical"
+        tools:context=".ui.routine.RoutineCreator">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Create Routine"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/white" />
 
-        <Space
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1" />
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TableRow
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Scales"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-            </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Scales"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                </TableRow>
 
-                <CheckBox
-                    android:id="@+id/maj_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Major"
-                    />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <CheckBox
-                    android:id="@+id/min_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Minor" />
+                    <CheckBox
+                        android:id="@+id/maj_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Major" />
 
-                <CheckBox
-                    android:id="@+id/dim_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Diminished" />
+                    <CheckBox
+                        android:id="@+id/min_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Minor" />
 
-                <CheckBox
-                    android:id="@+id/aug_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Augmented" />
-            </TableRow>
+                    <CheckBox
+                        android:id="@+id/dim_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Diminished" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/aug_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Augmented" />
+                </TableRow>
 
-                <CheckBox
-                    android:id="@+id/maj7_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Maj 7th" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <CheckBox
-                    android:id="@+id/dom7_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dom 7th" />
+                    <CheckBox
+                        android:id="@+id/maj7_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Maj 7th" />
 
-                <CheckBox
-                    android:id="@+id/min7_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Minor 7th" />
+                    <CheckBox
+                        android:id="@+id/dom7_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Dom 7th" />
 
-            </TableRow>
+                    <CheckBox
+                        android:id="@+id/min7_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Minor 7th" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Techniques"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-            </TableRow>
+            </TableLayout>
+        </androidx.cardview.widget.CardView>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <CheckBox
-                    android:id="@+id/scales_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Scales" />
-
-                <CheckBox
-                    android:id="@+id/arp_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Arpeggio" />
-
-                <CheckBox
-                    android:id="@+id/solidch_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Soild Chords" />
-
-                <CheckBox
-                    android:id="@+id/brch_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Br. Chords" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <CheckBox
-                    android:id="@+id/oct_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Octaves" />
-
-                <CheckBox
-                    android:id="@+id/conM_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Con. Motion" />
-            </TableRow>
-        </TableLayout>
-
-        <TextView
-            android:id="@+id/textView4"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Custom Roots"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Techniques"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/scales_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Scales" />
+
+                    <CheckBox
+                        android:id="@+id/arp_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Arpeggio" />
+
+                    <CheckBox
+                        android:id="@+id/solidch_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Soild Chords" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/brch_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Br. Chords" />
+
+                    <CheckBox
+                        android:id="@+id/oct_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Octaves" />
+
+                    <CheckBox
+                        android:id="@+id/conM_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/architects_daughter"
+                        android:text="Con. Motion" />
+                </TableRow>
+
+            </TableLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp">
 
-            <Button
-                android:id="@+id/set_custRoots_bt"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:text="Set Roots" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/enable_custRoots_sw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Custom Roots"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/set_custRoots_bt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:text="Set Roots"
+                    app:cornerRadius="5dp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/enable_custRoots_sw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:id="@+id/padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/save_bt"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_margin="10dp"
-                android:text="Save" />
+                android:text="Save"
+                app:cornerRadius="5dp" />
 
             <Button
                 android:id="@+id/practice_bt"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_margin="10dp"
-                android:text="Practice" />
+                android:text="Practice"
+                app:cornerRadius="5dp" />
         </LinearLayout>
 
         <Space
