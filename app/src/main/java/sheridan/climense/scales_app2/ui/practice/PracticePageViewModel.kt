@@ -1,6 +1,7 @@
 package sheridan.climense.scales_app2.ui.practice
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.PracticeDao
@@ -16,7 +17,17 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     val _item = MutableLiveData<RoutineGenerator.Companion.practice>()
     var item: LiveData<RoutineGenerator.Companion.practice> = _item
 
-    val PracticeString = Transformations.map(item){scales -> "${scales.root} ${scales.scale} ${scales.tech}"}
+
+    var _isEnd = MutableLiveData(false)
+    var isEnd : LiveData<Boolean> = _isEnd
+
+    var done = false
+
+    val _msg = MutableLiveData("You're Done")
+    var msg : LiveData<String> = _msg
+
+    val practiceString  =  Transformations.map(item){scales -> "${scales.root} ${scales.scale} ${scales.tech}"}
+
 
     private val _progress = MutableLiveData<Int>()
     var progress : LiveData<Int> = _progress
@@ -46,11 +57,19 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
         PracticeCycler.nextScale()
         _item.value = PracticeCycler.currentScale
         getCount()
+        _isEnd.value = true
     }
 
     fun getProgress(oLength : Int) {
-        _progress.value = oLength -  PracticeCycler.practiceArray.size
+        val cSize = PracticeCycler.practiceArray.size
+        _progress.value = oLength -  cSize
         _pMax.value = oLength
+
+        if(cSize == 0){
+            _msg.value = "You're Done"
+            _isEnd.value = false
+            done = true
+        }
     }
 
     private fun getCount(){

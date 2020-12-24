@@ -6,13 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
 import sheridan.climense.scales_app2.model.PracticeCycler
-import java.util.*
 
 class PracticePage : Fragment() {
 
@@ -31,8 +29,10 @@ class PracticePage : Fragment() {
         val practiceArray = safeArgs.PracticePackage.practice_array
         PracticeCycler.practiceArray = practiceArray.toMutableList()
 
-
+        viewModel._msg.value = "Click Next to Begin"
         binding.nextBt.setOnClickListener { next(practiceArray.size) }
+
+
 
         return binding.root
     }
@@ -40,6 +40,8 @@ class PracticePage : Fragment() {
     private fun next(size : Int){
         viewModel.next()
         viewModel.getProgress(size)
+        if(viewModel.done){binding.nextBt.isVisible = false}
+        Log.d("VM done", viewModel.done.toString())
     }
 
     override fun onPause() {
