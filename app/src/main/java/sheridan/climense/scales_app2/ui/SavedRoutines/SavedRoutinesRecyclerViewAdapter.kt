@@ -1,16 +1,16 @@
 package sheridan.climense.scales_app2.ui.SavedRoutines
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import sheridan.climense.scales_app2.database.SavedRoutine
 import sheridan.climense.scales_app2.databinding.SavedroutineitemBinding
 import sheridan.climense.scales_app2.model.PracticePackage
 
-class SavedRoutinesRecyclerViewAdapter() : RecyclerView.Adapter<SavedRoutinesRecyclerViewAdapter.ViewHolder>() {
+class SavedRoutinesRecyclerViewAdapter(private val viewModel: SavedRoutinesViewModel) : RecyclerView.Adapter<SavedRoutinesRecyclerViewAdapter.ViewHolder>() {
 
-    var routines: List<SavedRoutine>? = null
+    var routines: MutableList<SavedRoutine>? = null
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -24,10 +24,28 @@ class SavedRoutinesRecyclerViewAdapter() : RecyclerView.Adapter<SavedRoutinesRec
         holder.bind(routines!![position])
     }
 
+    fun removeAt(position: Int) {
+
+        val routine = routines?.get(position)
+
+        routines?.removeAt(position)
+        notifyItemRemoved(position)
+
+        if (routine != null) {
+            viewModel.removeSavedroutine(routine.key)
+        }
+    }
+
     override fun getItemCount(): Int = routines?.size?: 0
 
     class ViewHolder private constructor(private val binding: SavedroutineitemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(routine: SavedRoutine) { binding.routines = routine }
+        fun bind(routine: SavedRoutine) {
+            binding.routines = routine
+            binding.root.setOnClickListener{
+                val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage(routine.title,routine.routine))
+                it.findNavController().navigate(action)
+            }
+        }
 
         companion object {
             fun from(parent: ViewGroup) : ViewHolder {

@@ -42,5 +42,8 @@ interface PracticeDao {
     @Query("SELECT * FROM savedroutine")
     fun getSaved() : LiveData<List<SavedRoutine>>
 
+    @Query("DELETE FROM SavedRoutine WHERE `Key`=:ID")
+    suspend fun deleteSavedRoutine(ID : Long)
+
 
 }

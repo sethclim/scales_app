@@ -38,5 +38,9 @@
     <fragment
         android:id="@+id/savedRoutinesPage"
         android:name="sheridan.climense.scales_app2.ui.SavedRoutines.SavedRoutinesPage"
-        android:label="SavedRoutinesPage" />
+        android:label="SavedRoutinesPage" >
+        <action
+            android:id="@+id/savedRoutine_to_practice"
+            app:destination="@id/practicePage" />
+    </fragment>
 </navigation>
