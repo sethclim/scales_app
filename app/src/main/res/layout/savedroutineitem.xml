@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="184dp"
-                android:text="11/20/2020"
+                app:date="@{routines.date}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/routineTitle_tv"

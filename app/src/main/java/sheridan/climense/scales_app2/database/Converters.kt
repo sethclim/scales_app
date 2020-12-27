@@ -29,6 +29,11 @@ class Converters {
 //    }
 
     @TypeConverter
+    fun toTimestamp(date: Date?): Long? {
+        return date?.time
+    }
+
+    @TypeConverter
     fun fromDateToString(date: Date?): String {
         var strDate : String? = ""
         if(date != null)
@@ -37,6 +42,11 @@ class Converters {
             strDate = "empty"
         }
         return strDate!!
+    }
+
+    @TypeConverter
+    fun toDate(timestamp: Long?): Date? {
+        return timestamp?.let { Date(it) }
     }
 
     @TypeConverter

@@ -3,9 +3,12 @@ package sheridan.climense.scales_app2.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import sheridan.climense.scales_app2.model.RoutineGenerator
+import java.util.*
 
 @Entity(tableName = "SavedRoutine")
+@TypeConverters(Converters::class)
 data class SavedRoutine (
 
         @PrimaryKey(autoGenerate = true)
@@ -22,7 +25,7 @@ data class SavedRoutine (
         val progress : Int,
 
         @ColumnInfo(name = "Date")
-        val date : Long,
+        val date : Date,
 
         ) {
         override fun equals(other: Any?): Boolean {

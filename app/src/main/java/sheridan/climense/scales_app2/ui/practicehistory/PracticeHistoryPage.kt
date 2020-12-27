@@ -39,10 +39,6 @@ class PracticeHistoryPage : Fragment(){
 
         val data = mutableListOf<PracticeRecord>()
         viewModel.allPractice.observe(viewLifecycleOwner, { setData(it) })
-        Log.d("it", data.toString())
-
-
-
 
         return binding.root
     }

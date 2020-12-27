@@ -11,6 +11,7 @@ import sheridan.climense.scales_app2.database.PracticeDatabase
 import sheridan.climense.scales_app2.database.SavedRoutine
 import sheridan.climense.scales_app2.model.RoutineGenerator
 import sheridan.climense.scales_app2.model.RoutineInputs
+import java.util.*
 
 class RoutineCreatorViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -26,16 +27,12 @@ class RoutineCreatorViewModel(application: Application) : AndroidViewModel(appli
         routine =  RoutineGenerator.generate()
     }
 
-    fun saveRoutine(name : String){
+    fun saveRoutine(name : String, date : Date){
 
         generateRoutine()
 
-        if(routine.size == 0){
-            Log.d("Size", 0.toString())
-        }
-
         viewModelScope.launch {
-            val savedRoutine = SavedRoutine(0L, name, routine, 50, 45604125 )
+            val savedRoutine = SavedRoutine(0L, name, routine, 50, date )
             practiceDao.insert(savedRoutine)
         }
     }

@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import sheridan.climense.scales_app2.databinding.DialogsaveBinding
 import sheridan.climense.scales_app2.ui.routine.RoutineCreator
 import sheridan.climense.scales_app2.ui.routine.RoutineCreatorViewModel
+import sheridan.climense.scales_app2.util.DateConverters
+import java.util.*
 
 class SavedDialog : DialogFragment() {
     private val routineCreatorViewModel: RoutineCreatorViewModel by viewModels()
@@ -18,11 +20,10 @@ class SavedDialog : DialogFragment() {
 
         binding = DialogsaveBinding.inflate(inflater, container, false)
 
-         val r = RoutineCreator()
-
         binding.confirmsaveBt.setOnClickListener{
             val name = binding.nameInputEt.text
-            routineCreatorViewModel.saveRoutine(name.toString())
+            val date = getCurrentDateTime()
+            routineCreatorViewModel.saveRoutine(name.toString(),date)
             dismiss()
         }
 
@@ -30,6 +31,9 @@ class SavedDialog : DialogFragment() {
 
     }
 
-
+    fun getCurrentDateTime(): Date {
+        val cal = Calendar.getInstance().time
+        return cal
+    }
 
 }

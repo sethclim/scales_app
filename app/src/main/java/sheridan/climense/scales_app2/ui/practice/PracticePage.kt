@@ -41,7 +41,6 @@ class PracticePage : Fragment() {
         viewModel.next()
         viewModel.getProgress(size)
         if(viewModel.done){binding.nextBt.isVisible = false}
-        Log.d("VM done", viewModel.done.toString())
     }
 
     override fun onPause() {
@@ -54,9 +53,6 @@ class PracticePage : Fragment() {
 
         if(viewModel.record?.value != null){
             viewModel.record?.observe(viewLifecycleOwner, { viewModel.loadRecord(it) })
-        }
-        else{
-            Log.d("Its null", "Ya")
         }
     }
 }
