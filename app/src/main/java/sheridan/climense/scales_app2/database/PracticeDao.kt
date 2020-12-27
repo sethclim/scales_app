@@ -18,20 +18,20 @@ interface PracticeDao {
     @Update
     fun update(practiceRecord: PracticeRecord): Int
 
-    @Query("SELECT * FROM practiceRecord WHERE date = :date")
+    @Update
+    suspend fun update(savedRoutine: SavedRoutine): Int
+
+    @Query("SELECT * FROM PracticeRecord WHERE date = :date")
     fun getDate(date : String): LiveData<PracticeRecord>?
 
-//    @Query("SELECT * FROM practicerecord WHERE id=:key")
-//    fun get(key: Long) : LiveData<PracticeRecord>
-//
-    @Query("SELECT * FROM practicerecord ORDER BY date")
+    @Query("SELECT * FROM PracticeRecord ORDER BY date")
     fun getAll() : LiveData<List<PracticeRecord>>
 
-    @Query("SELECT SUM(scales) FROM practicerecord")
-    fun getTotal() : LiveData<Int>
-
-    @Query("DELETE FROM practicerecord")
+    @Query("DELETE FROM PracticeRecord")
     suspend fun deleteAll()
+
+    @Query("SELECT SUM(scales) FROM PracticeRecord")
+    fun getTotal() : LiveData<Int>
 
     @Transaction
     suspend fun insertOrUpdate(practiceRecord: PracticeRecord) {

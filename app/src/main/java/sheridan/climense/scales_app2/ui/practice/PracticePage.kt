@@ -32,8 +32,6 @@ class PracticePage : Fragment() {
         viewModel._msg.value = "Click Next to Begin"
         binding.nextBt.setOnClickListener { next(practiceArray.size) }
 
-
-
         return binding.root
     }
 
@@ -46,6 +44,16 @@ class PracticePage : Fragment() {
     override fun onPause() {
         super.onPause()
         viewModel.saveRecord()
+
+        if(safeArgs.PracticePackage.savedPractice){
+            viewModel.updatedSavedProgress(
+                    safeArgs.PracticePackage.key,
+                    safeArgs.PracticePackage.routine_name,
+                    safeArgs.PracticePackage.practice_array,
+                    safeArgs.PracticePackage.total,
+                    safeArgs.PracticePackage.date
+            )
+        }
     }
 
     override fun onResume() {

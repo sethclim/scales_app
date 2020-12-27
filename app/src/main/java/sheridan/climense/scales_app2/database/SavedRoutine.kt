@@ -24,6 +24,9 @@ data class SavedRoutine (
         @ColumnInfo(name = "Progress")
         val progress : Int,
 
+        @ColumnInfo(name = "Total")
+        val total : Int,
+
         @ColumnInfo(name = "Date")
         val date : Date,
 

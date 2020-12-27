@@ -39,13 +39,11 @@ class RoutineCreator : Fragment() {
         return binding.root
     }
 
-
-
     private fun practice(){
         getInputs()
         viewModel.generateRoutine()
         val routine =  viewModel.routine
-        val practice_package = PracticePackage("MyPractice",routine)
+        val practice_package = PracticePackage("MyPractice",routine, false, total=routine.size)
         if(routine.size != 0){
             val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
             findNavController().navigate(action)

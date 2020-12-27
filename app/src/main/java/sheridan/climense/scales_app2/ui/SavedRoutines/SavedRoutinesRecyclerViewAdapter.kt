@@ -42,7 +42,13 @@ class SavedRoutinesRecyclerViewAdapter(private val viewModel: SavedRoutinesViewM
         fun bind(routine: SavedRoutine) {
             binding.routines = routine
             binding.root.setOnClickListener{
-                val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage(routine.title,routine.routine))
+                val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage(
+                        routine.title,
+                        routine.routine,
+                        true,
+                        routine.key,
+                        routine.total,
+                        routine.date ))
                 it.findNavController().navigate(action)
             }
         }

@@ -60,7 +60,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 app:layout_constraintStart_toStartOf="@+id/routineTitle_tv"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:progress="@{routines.progress}"
+                android:max="@{routines.total}"
+                android:min="0"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

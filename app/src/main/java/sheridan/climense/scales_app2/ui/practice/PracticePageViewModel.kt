@@ -1,12 +1,12 @@
 package sheridan.climense.scales_app2.ui.practice
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.PracticeDao
 import sheridan.climense.scales_app2.database.PracticeDatabase
 import sheridan.climense.scales_app2.database.PracticeRecord
+import sheridan.climense.scales_app2.database.SavedRoutine
 import sheridan.climense.scales_app2.model.PracticeCycler
 import sheridan.climense.scales_app2.model.RoutineGenerator
 import sheridan.climense.scales_app2.util.DateConverters
@@ -101,5 +101,11 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
         brokenCount = practiceRecord.broken
         octCount = practiceRecord.oct
         cmCount = practiceRecord.conMotion
+    }
+
+    fun updatedSavedProgress(key : Long, title : String, routine: Array<RoutineGenerator.Companion.practice>, total : Int,date : Date ) {
+        viewModelScope.launch {
+            practiceDao.update(SavedRoutine(key,title,routine,progress.value!!,total, date))
+        }
     }
 }

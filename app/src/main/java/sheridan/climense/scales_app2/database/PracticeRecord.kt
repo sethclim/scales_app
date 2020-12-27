@@ -1,7 +1,6 @@
 package sheridan.climense.scales_app2.database
 
 import androidx.room.*
-import java.util.*
 
 @Entity(tableName = "PracticeRecord")
 data class PracticeRecord (

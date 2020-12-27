@@ -33,16 +33,16 @@ class Converters {
         return date?.time
     }
 
-    @TypeConverter
-    fun fromDateToString(date: Date?): String {
-        var strDate : String? = ""
-        if(date != null)
-            strDate = formatDate(date)
-        else{
-            strDate = "empty"
-        }
-        return strDate!!
-    }
+//    @TypeConverter
+//    fun fromDateToString(date: Date?): String {
+//        var strDate : String? = ""
+//        if(date != null)
+//            strDate = formatDate(date)
+//        else{
+//            strDate = "empty"
+//        }
+//        return strDate!!
+//    }
 
     @TypeConverter
     fun toDate(timestamp: Long?): Date? {
