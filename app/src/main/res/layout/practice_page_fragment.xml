@@ -32,17 +32,17 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="C Major Scale" />
 
+
         <ImageButton
             android:id="@+id/fav_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="36dp"
             android:src="@android:drawable/btn_star"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <Button
             android:id="@+id/next_bt"

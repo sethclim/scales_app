@@ -4,10 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import sheridan.climense.scales_app2.database.PracticeDao
-import sheridan.climense.scales_app2.database.PracticeDatabase
-import sheridan.climense.scales_app2.database.PracticeRecord
-import sheridan.climense.scales_app2.database.SavedRoutine
+import sheridan.climense.scales_app2.database.*
 import sheridan.climense.scales_app2.model.PracticeCycler
 import sheridan.climense.scales_app2.model.RoutineGenerator
 import sheridan.climense.scales_app2.util.DateConverters
@@ -15,7 +12,7 @@ import java.util.*
 
 class PracticePageViewModel(application: Application) : AndroidViewModel(application) {
 
-    val _item = MutableLiveData<RoutineGenerator.Companion.practice>()
+    private val _item = MutableLiveData<RoutineGenerator.Companion.practice>()
     var item: LiveData<RoutineGenerator.Companion.practice> = _item
 
 
@@ -23,6 +20,9 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     var isEnd : LiveData<Boolean> = _isEnd
 
     var done = false
+
+    var _isFav = MutableLiveData(false)
+    var isFav : LiveData<Boolean> = _isFav
 
     val _msg = MutableLiveData("You're Done")
     var msg : LiveData<String> = _msg
@@ -59,6 +59,16 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     fun next(){
         PracticeCycler.nextScale()
         _item.value = PracticeCycler.currentScale
+
+        viewModelScope.launch{
+            val key =item.value!!.root+item.value!!.scale+item.value!!.tech
+            val fav = practiceDao.selectFavourite(key)
+
+            if(fav == key){ _isFav.value = true}else{
+                _isFav.value = false
+            }
+        }
+
         getCount()
         _isEnd.value = true
     }
@@ -110,6 +120,21 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     fun updatedSavedProgress(key : Long, title : String, routine: Array<RoutineGenerator.Companion.practice>,inProgress: Array<RoutineGenerator.Companion.practice>, total : Int,date : Date ) {
         viewModelScope.launch {
             practiceDao.update(SavedRoutine(key,title,routine,inProgress,progress.value!!,total, date))
+        }
+    }
+
+    fun handleFav(){
+        viewModelScope.launch {
+            val key =item.value!!.root+item.value!!.scale+item.value!!.tech
+            val fav = practiceDao.selectFavourite(key)
+            if(fav != key){
+                practiceDao.insert(Favourites(key, item.value!!.root,item.value!!.scale,item.value!!.tech, true))
+                _isFav.value = true
+            }
+            else{
+                practiceDao.deleteFavourite(key)
+                _isFav.value  = false
+            }
         }
     }
 }

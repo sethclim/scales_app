@@ -1,5 +1,6 @@
 package sheridan.climense.scales_app2.ui.practice
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.navArgs
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
 import sheridan.climense.scales_app2.model.PracticeCycler
@@ -34,6 +36,13 @@ class PracticePage : Fragment() {
 
         viewModel._msg.value = "Click Next to Begin"
         binding.nextBt.setOnClickListener { next(totalLength) }
+        binding.favBt.setOnClickListener { viewModel.handleFav() }
+
+        viewModel.isFav.observe(viewLifecycleOwner, {
+            Log.d("IT????", it.toString())
+            if(it == true){binding.favBt.setBackgroundColor(Color.RED)}else{binding.favBt.setBackgroundColor(Color.GRAY)}
+        })
+
 
         return binding.root
     }
@@ -42,6 +51,7 @@ class PracticePage : Fragment() {
         viewModel.next()
         viewModel.getProgress(size)
         if(viewModel.done){binding.nextBt.isVisible = false}
+
     }
 
     override fun onPause() {

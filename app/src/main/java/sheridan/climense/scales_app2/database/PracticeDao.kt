@@ -1,11 +1,8 @@
 package sheridan.climense.scales_app2.database
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import sheridan.climense.scales_app2.model.PracticeCycler
 import sheridan.climense.scales_app2.model.RoutineGenerator
-import java.util.*
 
 @Dao
 interface PracticeDao {
@@ -14,6 +11,9 @@ interface PracticeDao {
 
     @Insert
     suspend fun insert(savedRoutine: SavedRoutine): Long
+
+    @Insert
+    suspend fun insert(favourites: Favourites): Long
 
     @Update
     fun update(practiceRecord: PracticeRecord): Int
@@ -30,6 +30,12 @@ interface PracticeDao {
     @Query("DELETE FROM PracticeRecord")
     suspend fun deleteAll()
 
+    @Query("DELETE FROM Favourites WHERE `key`=:ID")
+    suspend fun deleteFavourite(ID : String)
+
+    @Query("SELECT `Key` FROM Favourites WHERE `key`=:ID")
+    suspend fun selectFavourite(ID : String) : String
+
     @Query("SELECT SUM(scales) FROM PracticeRecord")
     fun getTotal() : LiveData<Int>
 
@@ -45,5 +51,7 @@ interface PracticeDao {
     @Query("DELETE FROM SavedRoutine WHERE `Key`=:ID")
     suspend fun deleteSavedRoutine(ID : Long)
 
+    @Query("SELECT Root, Scale, Tech, Fav, `Key` FROM  Favourites")
+    suspend fun getFavourites() : Array<RoutineGenerator.Companion.practice>
 
 }

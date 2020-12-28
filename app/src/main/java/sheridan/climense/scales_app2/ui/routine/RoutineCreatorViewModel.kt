@@ -24,13 +24,14 @@ class RoutineCreatorViewModel(application: Application) : AndroidViewModel(appli
             PracticeDatabase.getInstance(application).practiceDao
 
     fun generateRoutine(){
+        viewModelScope.launch {
+            RoutineGenerator.favourites =  practiceDao.getFavourites()
+        }
         routine =  RoutineGenerator.generate()
     }
 
     fun saveRoutine(name : String, date : Date){
-
         generateRoutine()
-
         viewModelScope.launch {
             val savedRoutine = SavedRoutine(0L, name, routine,null, 0,routine.size, date)
             practiceDao.insert(savedRoutine)

@@ -1,18 +1,13 @@
 package sheridan.climense.scales_app2.model
 
-import android.util.Log
+import androidx.room.ColumnInfo
 
-/**
- *scales_app2
-createdbyseth*
-studentID:991599894
- *on2020-10-28
- */
 class RoutineGenerator {
     companion object{
 
-        data class practice (val root : String, val scale : String, val tech : String )
+        data class practice (@ColumnInfo(name = "Root") val root : String, @ColumnInfo(name = "Scale") val scale : String, @ColumnInfo(name = "Tech") val tech : String)
 
+        var favourites : Array<practice> = arrayOf()
         var routine : MutableList<practice> = mutableListOf()
 
         var roots = RoutineInputs.RootOptions
@@ -30,7 +25,6 @@ class RoutineGenerator {
                             for(tech in techs){
                                 if(tech.isUsed){
                                     val temp = practice(root.scale, scale.scale, tech.scale)
-                                    //val temp = "${root.scale} ${scale.scale} ${tech.scale}"
                                     routine.add(temp)
                                 }
 
@@ -40,7 +34,6 @@ class RoutineGenerator {
                             for(tech in techs){
                                 if(tech.isUsed){
                                     val temp = practice(root.scale, scale.scale, tech.scale)
-                                    //val temp = "${root.scale} ${scale.scale} ${tech.scale}"
                                     routine.add(temp)
                                 }
                             }
