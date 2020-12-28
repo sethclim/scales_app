@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
 import sheridan.climense.scales_app2.model.PracticeCycler
+import sheridan.climense.scales_app2.model.RoutineGenerator
 
 class PracticePage : Fragment() {
 
@@ -27,10 +28,12 @@ class PracticePage : Fragment() {
         binding.lifecycleOwner = this
 
         val practiceArray = safeArgs.PracticePackage.practice_array
+        val totalLength = safeArgs.PracticePackage.total
+
         PracticeCycler.practiceArray = practiceArray.toMutableList()
 
         viewModel._msg.value = "Click Next to Begin"
-        binding.nextBt.setOnClickListener { next(practiceArray.size) }
+        binding.nextBt.setOnClickListener { next(totalLength) }
 
         return binding.root
     }
@@ -50,6 +53,7 @@ class PracticePage : Fragment() {
                     safeArgs.PracticePackage.key,
                     safeArgs.PracticePackage.routine_name,
                     safeArgs.PracticePackage.practice_array,
+                    PracticeCycler.practiceArray.toTypedArray(),
                     safeArgs.PracticePackage.total,
                     safeArgs.PracticePackage.date
             )

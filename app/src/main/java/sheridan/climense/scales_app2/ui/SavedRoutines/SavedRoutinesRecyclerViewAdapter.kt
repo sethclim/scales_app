@@ -1,12 +1,15 @@
 package sheridan.climense.scales_app2.ui.SavedRoutines
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import sheridan.climense.scales_app2.database.SavedRoutine
 import sheridan.climense.scales_app2.databinding.SavedroutineitemBinding
 import sheridan.climense.scales_app2.model.PracticePackage
+import sheridan.climense.scales_app2.model.RoutineGenerator
 
 class SavedRoutinesRecyclerViewAdapter(private val viewModel: SavedRoutinesViewModel) : RecyclerView.Adapter<SavedRoutinesRecyclerViewAdapter.ViewHolder>() {
 
@@ -42,16 +45,27 @@ class SavedRoutinesRecyclerViewAdapter(private val viewModel: SavedRoutinesViewM
         fun bind(routine: SavedRoutine) {
             binding.routines = routine
             binding.root.setOnClickListener{
-                val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage(
-                        routine.title,
-                        routine.routine,
-                        true,
-                        routine.key,
-                        routine.total,
-                        routine.date ))
-                it.findNavController().navigate(action)
+
+                    val routineToSend : Array<RoutineGenerator.Companion.practice>
+
+                    if(routine.inProgress != null && routine.inProgress.isNotEmpty()){
+                        routineToSend = routine.inProgress
+                        Log.d("IF State", "In Progress" + routine.inProgress.size.toString())
+                    }else{
+                        routineToSend = routine.routine
+                        Log.d("IF State", "routine routine " + routineToSend.size + "out of " + routine.total)
+                    }
+                    val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage(
+                            routine.title,
+                            routineToSend,
+                            true,
+                            routine.key,
+                            routine.total,
+                            routine.date ))
+                    it.findNavController().navigate(action)
             }
         }
+
 
         companion object {
             fun from(parent: ViewGroup) : ViewHolder {

@@ -32,7 +32,7 @@ class RoutineCreatorViewModel(application: Application) : AndroidViewModel(appli
         generateRoutine()
 
         viewModelScope.launch {
-            val savedRoutine = SavedRoutine(0L, name, routine, 0,routine.size, date)
+            val savedRoutine = SavedRoutine(0L, name, routine,null, 0,routine.size, date)
             practiceDao.insert(savedRoutine)
         }
     }

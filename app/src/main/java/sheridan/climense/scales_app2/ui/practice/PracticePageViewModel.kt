@@ -1,6 +1,7 @@
 package sheridan.climense.scales_app2.ui.practice
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.PracticeDao
@@ -35,6 +36,8 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     private val _pMax = MutableLiveData<Int>()
     var pMax : LiveData<Int> = _pMax
 
+
+
     private val practiceDao: PracticeDao =
         PracticeDatabase.getInstance(application).practiceDao
 
@@ -62,6 +65,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     fun getProgress(oLength : Int) {
         val cSize = PracticeCycler.practiceArray.size
+        Log.d("cSize in VM", cSize.toString())
         _progress.value = oLength -  cSize
         _pMax.value = oLength
 
@@ -103,9 +107,9 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
         cmCount = practiceRecord.conMotion
     }
 
-    fun updatedSavedProgress(key : Long, title : String, routine: Array<RoutineGenerator.Companion.practice>, total : Int,date : Date ) {
+    fun updatedSavedProgress(key : Long, title : String, routine: Array<RoutineGenerator.Companion.practice>,inProgress: Array<RoutineGenerator.Companion.practice>, total : Int,date : Date ) {
         viewModelScope.launch {
-            practiceDao.update(SavedRoutine(key,title,routine,progress.value!!,total, date))
+            practiceDao.update(SavedRoutine(key,title,routine,inProgress,progress.value!!,total, date))
         }
     }
 }

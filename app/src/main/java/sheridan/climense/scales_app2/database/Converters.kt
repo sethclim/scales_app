@@ -50,15 +50,25 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromString(value: String?): Array<RoutineGenerator.Companion.practice?> {
+    fun fromString(value: String?): Array<RoutineGenerator.Companion.practice?>? {
         val arrayType: Type = object : TypeToken<Array<RoutineGenerator.Companion.practice?>?>() {}.type
-        return Gson().fromJson(value, arrayType)
+        if(value != null){
+            return Gson().fromJson(value, arrayType)
+        }
+        else{
+            return null
+        }
+
     }
 
     @TypeConverter
-    fun fromArray(array: Array<RoutineGenerator.Companion.practice>): String {
+    fun fromArray(array: Array<RoutineGenerator.Companion.practice>?): String? {
         val gson = Gson()
         Log.d("JSON??", gson.toJson(array))
-        return gson.toJson(array)
+        if(array != null)
+            return gson.toJson(array)
+        else{
+            return null
+        }
     }
 }

@@ -21,6 +21,9 @@ data class SavedRoutine (
         @ColumnInfo(name = "Routine")
         val routine : Array<RoutineGenerator.Companion.practice>,
 
+        @ColumnInfo(name = "inProgress")
+        val inProgress : Array<RoutineGenerator.Companion.practice>?,
+
         @ColumnInfo(name = "Progress")
         val progress : Int,
 
