@@ -46,7 +46,9 @@ class RoutineCreator : Fragment() {
         val practice_package = PracticePackage("MyPractice",routine, false, total=routine.size)
         if(routine.size != 0){
             val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
+            RoutineGenerator.routine.clear()
             findNavController().navigate(action)
+
         }
         //add warning message here
     }

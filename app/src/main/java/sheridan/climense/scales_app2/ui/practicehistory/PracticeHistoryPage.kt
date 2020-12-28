@@ -54,6 +54,7 @@ class PracticeHistoryPage : Fragment(){
             // turn your data into Entry objects
             val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
             val temp = LocalDate.parse(obj.date, formatter).dayOfWeek.value.toFloat()
+            Log.d("temp in setData", temp.toString())
             scales.add(Entry(temp, obj.scales.toFloat()));
             oct.add(Entry(temp, obj.oct.toFloat()));
             solid.add(Entry(temp, obj.solid.toFloat()));
@@ -62,10 +63,11 @@ class PracticeHistoryPage : Fragment(){
             cm.add(Entry(temp, obj.conMotion.toFloat()));
         }
 
-        val quarters = arrayOf("Sun", "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat")
+        val quarters = arrayOf("Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun", "Mon", "Tues", "Weds")
         val formatter: ValueFormatter = object : ValueFormatter() {
             override fun getAxisLabel(value: Float, axis: AxisBase): String {
-                return quarters[value.toInt()]
+                Log.d("Value in format", value.toString())
+                return quarters[value.toInt() - 1]
             }
         }
 
@@ -97,7 +99,7 @@ class PracticeHistoryPage : Fragment(){
         dataSets.add(cmSet)
 
         val lineData = LineData(dataSets)
-        chart.setData(lineData)
+        chart.data = lineData
 
         val left: YAxis = chart.getAxisLeft()
         left.setAxisMinimum(0f);

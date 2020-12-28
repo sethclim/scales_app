@@ -1,9 +1,8 @@
 package sheridan.climense.scales_app2.ui.SavedRoutines
 
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import sheridan.climense.scales_app2.database.SavedRoutine
@@ -50,10 +49,8 @@ class SavedRoutinesRecyclerViewAdapter(private val viewModel: SavedRoutinesViewM
 
                     if(routine.inProgress != null && routine.inProgress.isNotEmpty()){
                         routineToSend = routine.inProgress
-                        Log.d("IF State", "In Progress" + routine.inProgress.size.toString())
                     }else{
                         routineToSend = routine.routine
-                        Log.d("IF State", "routine routine " + routineToSend.size + "out of " + routine.total)
                     }
                     val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage(
                             routine.title,
