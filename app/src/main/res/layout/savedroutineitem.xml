@@ -12,19 +12,22 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#A282EC">
+        android:layout_margin="2dp"
+        app:cardBackgroundColor="#66CF95"
+        app:cardElevation="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:layout_margin="5dp"
+            android:padding="3dp">
 
             <TextView
                 android:id="@+id/routineTitle_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{routines.title}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -34,36 +37,28 @@
                 android:id="@+id/routineDate_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="184dp"
-                app:date="@{routines.date}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_marginStart="116dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
+                app:date="@{routines.date}"
                 app:layout_constraintBottom_toBottomOf="@+id/routineTitle_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/routineTitle_tv"
+                app:layout_constraintVertical_bias="0.0"
                 tools:text="15/20/2020" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="336dp"
-                app:layout_constraintBottom_toBottomOf="@+id/routineDate_tv"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/routineDate_tv"
-                app:srcCompat="@drawable/abc_vector_test" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="300dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                app:layout_constraintStart_toStartOf="@+id/routineTitle_tv"
-                app:layout_constraintTop_toTopOf="parent"
-                app:progress="@{routines.progress}"
+                android:layout_marginStart="216dp"
                 android:max="@{routines.total}"
-                android:min="0"/>
+                android:min="0"
+                app:layout_constraintBottom_toBottomOf="@+id/routineDate_tv"
+                app:layout_constraintStart_toStartOf="@+id/routineTitle_tv"
+                app:layout_constraintTop_toTopOf="@+id/routineDate_tv"
+                app:progress="@{routines.progress}" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

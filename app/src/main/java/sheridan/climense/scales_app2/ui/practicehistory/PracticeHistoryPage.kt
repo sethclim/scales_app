@@ -63,11 +63,11 @@ class PracticeHistoryPage : Fragment(){
             cm.add(Entry(temp, obj.conMotion.toFloat()));
         }
 
-        val quarters = arrayOf("Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun", "Mon", "Tues", "Weds")
+        val quarters = arrayOf("Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun", "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun",)
         val formatter: ValueFormatter = object : ValueFormatter() {
             override fun getAxisLabel(value: Float, axis: AxisBase): String {
                 Log.d("Value in format", value.toString())
-                return quarters[value.toInt() - 1]
+                return quarters[value.toInt()]
             }
         }
 

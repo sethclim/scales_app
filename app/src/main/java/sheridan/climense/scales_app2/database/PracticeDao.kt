@@ -6,6 +6,7 @@ import sheridan.climense.scales_app2.model.RoutineGenerator
 
 @Dao
 interface PracticeDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(practiceRecord: PracticeRecord): Long
 
@@ -53,5 +54,8 @@ interface PracticeDao {
 
     @Query("SELECT Root, Scale, Tech, Fav, `Key` FROM  Favourites")
     fun getFavourites() : LiveData<Array<RoutineGenerator.Companion.practice>>
+
+    @Query("SELECT Root, Scale, Tech, Fav, `Key` FROM  Favourites")
+    suspend fun getNLFavourites() : Array<RoutineGenerator.Companion.practice>
 
 }

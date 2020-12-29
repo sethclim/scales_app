@@ -10,10 +10,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Theme.Scales_app2.background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:background="#878BDC"
         android:orientation="vertical"
         tools:context=".ui.practice.PracticePage">
 
@@ -46,6 +46,7 @@
 
         <Button
             android:id="@+id/next_bt"
+            style="@style/Theme.Scales_app2.primaryButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

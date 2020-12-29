@@ -23,6 +23,7 @@ class RoutineCreator : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = RoutineCreatorFragmentBinding.inflate(inflater, container, false)
         binding.practiceBt.setOnClickListener { practice() }
         binding.setCustRootsBt.setOnClickListener { openDialog() }
