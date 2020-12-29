@@ -19,15 +19,10 @@
         android:orientation="vertical"
         tools:context=".ui.routine.RoutineCreator">
 
-        <TextView
+        <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="10dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Create Routine"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/white" />
+            android:layout_weight=".2" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
