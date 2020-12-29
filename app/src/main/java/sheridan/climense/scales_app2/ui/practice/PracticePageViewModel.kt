@@ -115,7 +115,11 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     fun updatedSavedProgress(key : Long, title : String, routine: Array<RoutineGenerator.Companion.practice>,inProgress: Array<RoutineGenerator.Companion.practice>, total : Int,date : Date ) {
         viewModelScope.launch {
-            practiceDao.update(SavedRoutine(key,title,routine,inProgress,progress.value!!,total, date))
+            val num = progress.value
+            if(num != null){
+            practiceDao.update(SavedRoutine(key,title,routine,inProgress,num,total, date))
+        }
+
         }
     }
 
