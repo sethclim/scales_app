@@ -67,18 +67,19 @@
                         android:text="Minor" />
 
                     <CheckBox
+                        android:id="@+id/minM_cb2"
+                        style="@style/Theme.Scales_app2.checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mel.  Minor" />
+
+                    <CheckBox
                         android:id="@+id/dim_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Diminished" />
 
-                    <CheckBox
-                        android:id="@+id/aug_cb"
-                        style="@style/Theme.Scales_app2.checkbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Augmented" />
                 </TableRow>
 
                 <TableRow
@@ -93,6 +94,13 @@
                         android:text="Maj 7th" />
 
                     <CheckBox
+                        android:id="@+id/min7_cb"
+                        style="@style/Theme.Scales_app2.checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Min 7th" />
+
+                    <CheckBox
                         android:id="@+id/dom7_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
@@ -100,11 +108,11 @@
                         android:text="Dom 7th" />
 
                     <CheckBox
-                        android:id="@+id/min7_cb"
+                        android:id="@+id/aug_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Minor 7th" />
+                        android:text="Augmented" />
 
                 </TableRow>
 

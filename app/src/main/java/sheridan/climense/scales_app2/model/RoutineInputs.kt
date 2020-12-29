@@ -16,12 +16,12 @@ class RoutineInputs : BaseObservable() {
          val scaleOptions = arrayOf(
              scale("Major", false, true),
              scale("Har. minor", false, true),
-             scale("Har. minor", false, true),
+             scale("Mel. minor", false, true),
              scale("Dim", false, true),
-             scale("Aug", false, true),
              scale("Maj7", false, false),
-             scale("Dom7", false, false),
              scale("min7", false, false),
+             scale("Dom7", false, false),
+             scale("Aug", false, true)
         )
 
          val RootOptions = arrayOf(

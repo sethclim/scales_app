@@ -58,11 +58,12 @@ class RoutineCreator : Fragment() {
         RoutineInputs.apply {
             scaleOptions[0].isUsed = binding.majCb.isChecked
             scaleOptions[1].isUsed = binding.minCb.isChecked
-            scaleOptions[2].isUsed = binding.dimCb.isChecked
-            scaleOptions[3].isUsed = binding.augCb.isChecked
+            scaleOptions[2].isUsed = binding.minMCb2.isChecked
+            scaleOptions[3].isUsed = binding.dimCb.isChecked
             scaleOptions[4].isUsed = binding.maj7Cb.isChecked
             scaleOptions[5].isUsed = binding.min7Cb.isChecked
             scaleOptions[6].isUsed = binding.dom7Cb.isChecked
+            scaleOptions[7].isUsed = binding.augCb.isChecked
             techOptions[0].isUsed = binding.scalesCb.isChecked
             techOptions[1].isUsed = binding.arpCb.isChecked
             techOptions[2].isUsed = binding.solidchCb.isChecked
