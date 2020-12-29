@@ -17,12 +17,13 @@
         android:orientation="vertical"
         tools:context=".ui.practice.PracticePage">
 
+
         <TextView
             android:id="@+id/output_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="176dp"
+            android:layout_marginTop="136dp"
             android:text="@{practiceViewModel.isEnd ? practiceViewModel.practiceString : practiceViewModel.msg}"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/white"
@@ -32,17 +33,20 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="C Major Scale" />
 
-
         <ImageButton
             android:id="@+id/fav_bt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="28dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
             android:src="@android:drawable/btn_star"
+            android:tint="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <Button
             android:id="@+id/next_bt"

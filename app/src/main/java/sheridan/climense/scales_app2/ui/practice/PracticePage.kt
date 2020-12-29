@@ -1,6 +1,7 @@
 package sheridan.climense.scales_app2.ui.practice
 
 import android.graphics.Color
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -39,10 +40,12 @@ class PracticePage : Fragment() {
         binding.favBt.setOnClickListener { viewModel.handleFav() }
 
         viewModel.isFav.observe(viewLifecycleOwner, {
-            Log.d("IT????", it.toString())
-            if(it == true){binding.favBt.setBackgroundColor(Color.RED)}else{binding.favBt.setBackgroundColor(Color.GRAY)}
+            if(it == true){binding.favBt.setColorFilter(Color.argb(96,245,243,56))}else{binding.favBt.setColorFilter(Color.WHITE)}
         })
 
+        viewModel.isEnd.observe(viewLifecycleOwner, {
+            if(it == false){binding.favBt.visibility = View.GONE}else{binding.favBt.visibility = View.VISIBLE}
+        })
 
         return binding.root
     }
