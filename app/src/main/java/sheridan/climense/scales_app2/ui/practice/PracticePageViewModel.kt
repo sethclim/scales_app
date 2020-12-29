@@ -15,7 +15,6 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     private val _item = MutableLiveData<RoutineGenerator.Companion.practice>()
     var item: LiveData<RoutineGenerator.Companion.practice> = _item
 
-
     var _isEnd = MutableLiveData(false)
     var isEnd : LiveData<Boolean> = _isEnd
 
@@ -28,7 +27,6 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     var msg : LiveData<String> = _msg
 
     val practiceString  =  Transformations.map(item){scales -> "${scales.root} ${scales.scale} ${scales.tech}"}
-
 
     private val _progress = MutableLiveData<Int>()
     var progress : LiveData<Int> = _progress
@@ -64,9 +62,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
             val key =item.value!!.root+item.value!!.scale+item.value!!.tech
             val fav = practiceDao.selectFavourite(key)
 
-            if(fav == key){ _isFav.value = true}else{
-                _isFav.value = false
-            }
+            _isFav.value = fav == key
         }
 
         getCount()

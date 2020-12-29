@@ -16,7 +16,6 @@ class RoutineGenerator {
 
         fun generate() : Array<practice>{
 
-
             for(root in roots){
 
                 if(root.isUsed){

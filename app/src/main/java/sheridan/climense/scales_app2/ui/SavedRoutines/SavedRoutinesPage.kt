@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.SimpleAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import sheridan.climense.scales_app2.databinding.SavedroutinespageBinding
+import sheridan.climense.scales_app2.model.PracticePackage
+import sheridan.climense.scales_app2.model.RoutineGenerator
 import sheridan.climense.scales_app2.util.SwipeToDeleteCallback
 
 class SavedRoutinesPage : Fragment() {
@@ -26,13 +29,20 @@ class SavedRoutinesPage : Fragment() {
     ): View {
 
         binding = SavedroutinespageBinding.inflate(inflater, container, false)
-        adapter = SavedRoutinesRecyclerViewAdapter(viewModel)
+            adapter = SavedRoutinesRecyclerViewAdapter(viewModel)
 
         with(binding){
             val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
             savedRecyclerView.adapter = adapter
             savedRecyclerView.addItemDecoration(divider)
             savedRecyclerView.layoutManager = LinearLayoutManager(context)
+
+            favBeginBt.setOnClickListener {
+                viewModel.favourites.observe(viewLifecycleOwner){
+                    val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage("favourites", it, true, total = it.size ))
+                    findNavController().navigate(action)
+                }
+            }
         }
 
         val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {

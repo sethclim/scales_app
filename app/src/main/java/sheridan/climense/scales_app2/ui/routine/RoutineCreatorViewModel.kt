@@ -25,7 +25,7 @@ class RoutineCreatorViewModel(application: Application) : AndroidViewModel(appli
 
     fun generateRoutine(){
         viewModelScope.launch {
-            RoutineGenerator.favourites =  practiceDao.getFavourites()
+            RoutineGenerator.favourites =  practiceDao.getFavourites().value!!
         }
         routine =  RoutineGenerator.generate()
     }

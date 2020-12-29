@@ -52,6 +52,6 @@ interface PracticeDao {
     suspend fun deleteSavedRoutine(ID : Long)
 
     @Query("SELECT Root, Scale, Tech, Fav, `Key` FROM  Favourites")
-    suspend fun getFavourites() : Array<RoutineGenerator.Companion.practice>
+    fun getFavourites() : LiveData<Array<RoutineGenerator.Companion.practice>>
 
 }
