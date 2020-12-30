@@ -1,6 +1,7 @@
 package sheridan.climense.scales_app2.ui.practicehistory
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -36,25 +37,25 @@ class PracticeHistoryPage : Fragment(){
     ): View {
         binding = LinegraphBinding.inflate(inflater, container, false)
 
-
-        val data = mutableListOf<PracticeRecord>()
         viewModel.allPractice.observe(viewLifecycleOwner, { setData(it) })
 
         return binding.root
     }
 
     private fun setData(data: List<PracticeRecord>){
-        val scales : MutableList<Entry>  = mutableListOf();
-        val oct : MutableList<Entry>  = mutableListOf();
-        val solid : MutableList<Entry>  = mutableListOf();
-        val broken : MutableList<Entry>  = mutableListOf();
-        val arps : MutableList<Entry>  = mutableListOf();
-        val cm : MutableList<Entry>  = mutableListOf();
+        val scales : MutableList<Entry>  = mutableListOf()
+        val oct : MutableList<Entry>  = mutableListOf()
+        val solid : MutableList<Entry>  = mutableListOf()
+        val broken : MutableList<Entry>  = mutableListOf()
+        val arps : MutableList<Entry>  = mutableListOf()
+        val cm : MutableList<Entry>  = mutableListOf()
+
         for ( obj in data) {
             // turn your data into Entry objects
             val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
             val temp = LocalDate.parse(obj.date, formatter).dayOfWeek.value.toFloat()
-            Log.d("temp in setData", temp.toString())
+
+
             scales.add(Entry(temp, obj.scales.toFloat()));
             oct.add(Entry(temp, obj.oct.toFloat()));
             solid.add(Entry(temp, obj.solid.toFloat()));
@@ -66,7 +67,7 @@ class PracticeHistoryPage : Fragment(){
         val quarters = arrayOf("Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun", "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun",)
         val formatter: ValueFormatter = object : ValueFormatter() {
             override fun getAxisLabel(value: Float, axis: AxisBase): String {
-                Log.d("Value in format", value.toString())
+
                 return quarters[value.toInt()]
             }
         }
@@ -77,17 +78,58 @@ class PracticeHistoryPage : Fragment(){
         xAxis.valueFormatter = formatter
 
         val scalesset = LineDataSet(scales, "scales")
-        scalesset.setColors(intArrayOf(R.color.design_default_color_primary), context)
+        scalesset.setColor(Color.rgb(255, 241, 46));
+        scalesset.setCircleColor(Color.rgb(255, 241, 46))
+        scalesset.setLineWidth(2f)
+        scalesset.setCircleRadius(5f)
+        scalesset.setDrawCircleHole(false)
+        scalesset.label = "Scales"
+        scalesset.valueTextSize = 10f
+
         val octSet = LineDataSet(oct, "oct")
         octSet.setColors(intArrayOf(R.color.design_default_color_secondary_variant), context)
-        val solidSet = LineDataSet(oct, "solid")
+        octSet.setCircleColor(R.color.design_default_color_secondary_variant)
+        octSet.setLineWidth(2f)
+        octSet.setCircleRadius(5f)
+        octSet.setDrawCircleHole(false)
+        octSet.label = "Oct"
+        octSet.valueTextSize = 10f
+
+        val solidSet = LineDataSet(solid, "solid")
         solidSet.setColors(intArrayOf(R.color.design_default_color_error), context)
-        val brokenSet = LineDataSet(oct, "broken")
-        brokenSet.setColors(intArrayOf(R.color.design_default_color_primary), context)
-        val arpsSet = LineDataSet(oct, "arps")
-        arpsSet.setColors(intArrayOf(R.color.design_default_color_primary), context)
-        val cmSet = LineDataSet(oct, "cm")
-        cmSet.setColors(intArrayOf(R.color.black), context)
+        solidSet.setCircleColor(R.color.design_default_color_error)
+        solidSet.setLineWidth(2f)
+        solidSet.setCircleRadius(5f)
+        solidSet.setDrawCircleHole(false)
+        solidSet.label = "Solid"
+        solidSet.valueTextSize = 10f
+
+        val brokenSet = LineDataSet(broken, "broken")
+        brokenSet.setColor(Color.rgb(78, 222, 62));
+        brokenSet.setCircleColor(Color.rgb(78, 222, 62))
+        brokenSet.setLineWidth(2f)
+        brokenSet.setCircleRadius(5f)
+        brokenSet.setDrawCircleHole(false)
+        brokenSet.label = "Broken"
+        brokenSet.valueTextSize = 10f
+
+        val arpsSet = LineDataSet(arps, "arps")
+        arpsSet.setColor(Color.rgb(240, 76, 69));
+        arpsSet.setCircleColor(Color.rgb(240, 76, 69))
+        arpsSet.setLineWidth(2f)
+        arpsSet.setCircleRadius(5f)
+        arpsSet.setDrawCircleHole(false)
+        arpsSet.label = "Arps"
+
+        arpsSet.valueTextSize = 10f
+
+        val cmSet = LineDataSet(cm, "cm")
+        cmSet.setColor(Color.rgb(56, 124, 245));
+        cmSet.setCircleColor(Color.rgb(56, 124, 245))
+        cmSet.setLineWidth(2f)
+        cmSet.setCircleRadius(5f)
+        cmSet.setDrawCircleHole(false)
+        cmSet.label = "CM"
 
 
         val dataSets: MutableList<ILineDataSet> = ArrayList()
@@ -101,12 +143,21 @@ class PracticeHistoryPage : Fragment(){
         val lineData = LineData(dataSets)
         chart.data = lineData
 
-        val left: YAxis = chart.getAxisLeft()
-        left.setAxisMinimum(0f);
+        val right = chart.axisRight
+        right.isEnabled = false
+
+        val left: YAxis = chart.axisLeft
+//        left.setAxisMinimum(0f);
         //left.setAxisMaximum(100f);
         //left.granularity
         left.axisMinimum = 0f
         left.axisMaximum = 100f
+
+        val top: XAxis = chart.xAxis
+        top.axisMinimum = 0f
+        top.axisMaximum = 6f
+
+        top.mAxisRange = 6f
 
         val legend = chart.getLegend();
         legend.isEnabled = true

@@ -75,9 +75,6 @@ class PracticePage : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
-        if(viewModel.record?.value != null){
-            viewModel.record?.observe(viewLifecycleOwner, { viewModel.loadRecord(it) })
-        }
+        viewModel.loadRecord()
     }
 }

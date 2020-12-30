@@ -41,11 +41,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     val timeStamp : String? = DateConverters.formatDate (getCurrentDateTime())
 
-    val record : LiveData<PracticeRecord>? = practiceDao.getDate(timeStamp!!)
-//    val record : LiveData<PracticeRecord>? = _record
-//        get() = if(field.value != null){
-//        return field
-//        }
+//    var record : PracticeRecord? = null
 
     var scaleCount = 0
     var arpCount = 0
@@ -71,7 +67,6 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     fun getProgress(oLength : Int) {
         val cSize = PracticeCycler.practiceArray.size
-        Log.d("cSize in VM", cSize.toString())
         _progress.value = oLength -  cSize
         _pMax.value = oLength
 
@@ -100,26 +95,37 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     fun saveRecord(){
         viewModelScope.launch {
-            practiceDao.insertOrUpdate(PracticeRecord(scaleCount,arpCount,octCount,solidCount,brokenCount, cmCount, timeStamp!!))
+            val record = practiceDao.getDate(timeStamp!!)
+            if(record != null){
+                val scale = record.scales + scaleCount
+                val arp = record.arps + arpCount
+                val oct = record.oct + octCount
+                val solid = record.solid + solidCount
+                val broke = record.broken + brokenCount
+                val cm = record.conMotion + cmCount
+                Log.d("Update",scale.toString()+arp+oct+solid+broke+cm )
+                practiceDao.insertOrUpdate(PracticeRecord(scale,arp,oct,solid,broke, cm, timeStamp))
+
+            }else{
+                Log.d("insert",scaleCount.toString()+arpCount+octCount+solidCount+brokenCount+cmCount )
+                practiceDao.insertOrUpdate(PracticeRecord(scaleCount,arpCount,octCount,solidCount,brokenCount, cmCount, timeStamp))
+            }
+
         }
     }
 
-    fun loadRecord(practiceRecord: PracticeRecord){
-        scaleCount = practiceRecord.scales
-        arpCount = practiceRecord.arps
-        solidCount = practiceRecord.solid
-        brokenCount = practiceRecord.broken
-        octCount = practiceRecord.oct
-        cmCount = practiceRecord.conMotion
+    fun loadRecord(){
+        viewModelScope.launch{
+
+        }
     }
 
     fun updatedSavedProgress(key : Long, title : String, routine: Array<RoutineGenerator.Companion.practice>,inProgress: Array<RoutineGenerator.Companion.practice>, total : Int,date : Date ) {
         viewModelScope.launch {
             val num = progress.value
             if(num != null){
-            practiceDao.update(SavedRoutine(key,title,routine,inProgress,num,total, date))
-        }
-
+                practiceDao.update(SavedRoutine(key,title,routine,inProgress,num,total, date))
+            }
         }
     }
 

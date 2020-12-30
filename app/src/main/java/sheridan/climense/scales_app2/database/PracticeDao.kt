@@ -23,7 +23,7 @@ interface PracticeDao {
     suspend fun update(savedRoutine: SavedRoutine): Int
 
     @Query("SELECT * FROM PracticeRecord WHERE date = :date")
-    fun getDate(date : String): LiveData<PracticeRecord>?
+    suspend fun getDate(date : String): PracticeRecord?
 
     @Query("SELECT * FROM PracticeRecord ORDER BY date")
     fun getAll() : LiveData<List<PracticeRecord>>
