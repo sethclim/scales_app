@@ -43,4 +43,8 @@
             android:id="@+id/savedRoutine_to_practice"
             app:destination="@id/practicePage" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsPage"
+        android:name="sheridan.climense.scales_app2.ui.SettingsPage"
+        android:label="SettingsPage" /><action android:id="@+id/action_global_settingsPage" app:destination="@id/settingsPage"/>
 </navigation>

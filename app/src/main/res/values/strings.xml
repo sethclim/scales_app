@@ -7,4 +7,5 @@
     <string name="practice_error_empty">No Routine to Practice</string>
     <string name="empty_name_error">Please Enter a Name</string>
     <string name="no_favs_error">No Favs</string>
+    <string name="settings">Settings</string>
 </resources>

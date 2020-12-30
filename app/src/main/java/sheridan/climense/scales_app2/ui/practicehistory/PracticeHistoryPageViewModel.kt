@@ -15,9 +15,4 @@ class PracticeHistoryPageViewModel(application: Application) : AndroidViewModel(
 
     val allPractice : LiveData<List<PracticeRecord>> = practiceDao.getAll()
 
-
-
-
-
-
 }
