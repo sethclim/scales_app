@@ -1,11 +1,78 @@
 <resources>
+
+<!--App Level-->
     <string name="app_name">Scales App</string>
+    <string name="save">Save</string>
+
+    <!--Bottom Nav-->
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <!--Dialogs & Validation-->
     <string name="save_error_empty">No Practice to Save</string>
     <string name="practice_error_empty">No Routine to Practice</string>
     <string name="empty_name_error">Please Enter a Name</string>
     <string name="no_favs_error">No Favs</string>
+
+    <!--Menu-->
     <string name="settings">Settings</string>
+
+    <!--Routine Generator-->
+    <string name="scales">Scales</string>
+    <string name="major">Major</string>
+    <string name="minor">Minor</string>
+    <string name="mel_minor">Mel. Minor</string>
+    <string name="diminished">Diminished</string>
+    <string name="maj_7th">Maj 7th</string>
+    <string name="min_7th">Min 7th</string>
+    <string name="dom_7th">Dom 7th</string>
+    <string name="augmented">Augmented</string>
+    <string name="techniques">Techniques</string>
+    <string name="arpeggio">Arpeggio</string>
+    <string name="solid_chords">Solid Chords</string>
+    <string name="br_chords">Br. Chords</string>
+    <string name="octaves">Octaves</string>
+    <string name="con_motion">Con. Motion</string>
+    <string name="custom_roots">Custom Roots</string>
+    <string name="set_roots">Set Roots</string>
+    <string name="practice">Practice</string>
+
+
+    <!--Practice Page-->
+    <string name="next">Next</string>
+    <string name="fav_button">Fav Button</string>
+
+    <!--Saved History Page-->
+    <string name="favourites">Favourites</string>
+    <string name="begin">Begin</string>
+
+    <!--Settings Page-->
+    <string name="day_night">Day/ Night</string>
+    <string name="delete_all">Delete All</string>
+    <string name="delete_history">Delete History</string>
+    <string name="delete_favorites">Delete favorites</string>
+    <string name="delete">Delete</string>
+
+    <!--Save Dialog-->
+    <string name="enter_a_name">Enter a name</string>
+    <string name="save_routine">Save Routine</string>
+
+    <!--Select Roots Dialog-->
+    <string name="select_roots">Select Roots</string>
+    <string name="c">C</string>
+    <string name="fSharp">F#</string>
+    <string name="g">G</string>
+    <string name="a">A</string>
+    <string name="aSharp">A#</string>
+    <string name="b">B</string>
+    <string name="gSharp">G#</string>
+    <string name="cSharp">C#</string>
+    <string name="d">D</string>
+    <string name="dSharp">D#</string>
+    <string name="e">E</string>
+    <string name="f">F</string>
+    <string name="cancel">Cancel</string>
+
+
 </resources>

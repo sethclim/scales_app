@@ -44,7 +44,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Scales"
+                        android:text="@string/scales"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </TableRow>
 
@@ -57,28 +57,28 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Major" />
+                        android:text="@string/major" />
 
                     <CheckBox
                         android:id="@+id/min_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Minor" />
+                        android:text="@string/minor" />
 
                     <CheckBox
                         android:id="@+id/minM_cb2"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mel.  Minor" />
+                        android:text="@string/mel_minor" />
 
                     <CheckBox
                         android:id="@+id/dim_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Diminished" />
+                        android:text="@string/diminished" />
 
                 </TableRow>
 
@@ -91,28 +91,28 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Maj 7th" />
+                        android:text="@string/maj_7th" />
 
                     <CheckBox
                         android:id="@+id/min7_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Min 7th" />
+                        android:text="@string/min_7th" />
 
                     <CheckBox
                         android:id="@+id/dom7_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dom 7th" />
+                        android:text="@string/dom_7th" />
 
                     <CheckBox
                         android:id="@+id/aug_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Augmented" />
+                        android:text="@string/augmented" />
 
                 </TableRow>
 
@@ -139,7 +139,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Techniques"
+                        android:text="@string/techniques"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </TableRow>
 
@@ -152,21 +152,21 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Scales" />
+                        android:text="@string/scales" />
 
                     <CheckBox
                         android:id="@+id/arp_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Arpeggio" />
+                        android:text="@string/arpeggio" />
 
                     <CheckBox
                         android:id="@+id/solidch_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Soild Chords" />
+                        android:text="@string/solid_chords" />
 
                 </TableRow>
 
@@ -179,21 +179,21 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Br. Chords" />
+                        android:text="@string/br_chords" />
 
                     <CheckBox
                         android:id="@+id/oct_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Octaves" />
+                        android:text="@string/octaves" />
 
                     <CheckBox
                         android:id="@+id/conM_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Con. Motion" />
+                        android:text="@string/con_motion" />
                 </TableRow>
 
             </TableLayout>
@@ -218,7 +218,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Custom Roots"
+                    android:text="@string/custom_roots"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <Button
@@ -227,7 +227,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginStart="10dp"
-                    android:text="Set Roots"
+                    android:text="@string/set_roots"
                     app:cornerRadius="5dp" />
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
@@ -253,7 +253,7 @@
                 android:layout_width="150dp"
                 android:layout_height="45dp"
                 android:layout_marginStart="24dp"
-                android:text="Practice"
+                android:text="@string/practice"
                 app:layout_constraintBottom_toBottomOf="@+id/save_bt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -268,7 +268,7 @@
                 android:layout_height="45dp"
                 android:layout_marginStart="44dp"
                 android:layout_marginTop="40dp"
-                android:text="Save"
+                android:text="@string/save"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
