@@ -1,6 +1,6 @@
 package sheridan.climense.scales_app2.ui.practicehistory
 
-
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,6 +29,8 @@ class PracticeHistoryPage : Fragment(){
     private  lateinit var  binding : LinegraphBinding
     private val viewModel : PracticeHistoryPageViewModel by viewModels()
 
+
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -36,12 +38,13 @@ class PracticeHistoryPage : Fragment(){
     ): View {
         binding = LinegraphBinding.inflate(inflater, container, false)
 
-        viewModel.allPractice.observe(viewLifecycleOwner, { setData(it) })
+        val mode = context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
+        viewModel.allPractice.observe(viewLifecycleOwner, { setData(it, mode) })
 
         return binding.root
     }
 
-    private fun setData(data: List<PracticeRecord>){
+    private fun setData(data: List<PracticeRecord>, mode: Int?){
         val scales : MutableList<Entry>  = mutableListOf()
         val oct : MutableList<Entry>  = mutableListOf()
         val solid : MutableList<Entry>  = mutableListOf()
@@ -160,6 +163,22 @@ class PracticeHistoryPage : Fragment(){
 
         val legend = chart.getLegend();
         legend.isEnabled = true
+
+        chart.description.text = ""
+
+        when (mode) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                left.textColor = Color.WHITE
+                right.textColor = Color.WHITE
+                legend.textColor= Color.WHITE
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                left.textColor = Color.BLACK
+                right.textColor = Color.BLACK
+                legend.textColor= Color.BLACK
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {}
+        }
 
         chart.invalidate();
     }

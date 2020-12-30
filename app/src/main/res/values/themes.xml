@@ -77,4 +77,20 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Theme.Scales_app2.savedItemCard">
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Scales_app2.recyclerBK">
+        <item name="background">@color/offWhite</item>
+    </style>
+
+    <style name="Theme.Scales_app2.dialogBK">
+        <item name="backgroundColor">#ECECEC</item>
+    </style>
+
+    <style name="Theme.Scales_app2.progressbar" parent="android:Widget.Holo.ProgressBar.Horizontal">
+        <item name="android:progressTint">@color/myGreen</item>
+    </style>
+
 </resources>

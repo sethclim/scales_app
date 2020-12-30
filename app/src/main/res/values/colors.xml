@@ -13,6 +13,8 @@
 
 
     <color name="actionBarBK">#66CF95</color>
+    <color name="actionBarBKNight">#504F4F</color>
     <color name="myGreen">#66CF95</color>
+    <color name="offWhite">#ECECEC</color>#ECECEC
 
 </resources>
