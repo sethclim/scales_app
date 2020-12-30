@@ -23,11 +23,13 @@ class RoutineCreatorViewModel(application: Application) : AndroidViewModel(appli
     private val practiceDao: PracticeDao =
             PracticeDatabase.getInstance(application).practiceDao
 
-    fun generateRoutine(){
+    fun generateRoutine() : Boolean{
         viewModelScope.launch {
             RoutineGenerator.favourites =  practiceDao.getNLFavourites()
         }
         routine =  RoutineGenerator.generate()
+
+        return routine.isNotEmpty()
     }
 
     fun saveRoutine(name : String, date : Date){

@@ -7,7 +7,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#ECECEC">
 
@@ -29,9 +29,8 @@
             android:id="@+id/b_cb"
             android:layout_width="34dp"
             android:layout_height="20dp"
-            android:layout_marginStart="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView16"
-            app:layout_constraintStart_toEndOf="@+id/textView16"
+            app:layout_constraintStart_toStartOf="@+id/aSharp_cb"
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <CheckBox
@@ -60,9 +59,9 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="0dp"
+            style="@style/Theme.Scales_app2.background"
+            android:layout_width="400dp"
             android:layout_height="45dp"
-            android:background="#232121"
             android:gravity="center"
             android:text="Select Roots"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -240,8 +239,9 @@
         <Button
             android:id="@+id/ok_bt"
             android:layout_width="81dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="24dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="12dp"
+            android:padding="0dp"
             android:text="OK"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="@+id/cancel_bt"
@@ -252,10 +252,11 @@
         <Button
             android:id="@+id/cancel_bt"
             android:layout_width="81dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="184dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="200dp"
             android:layout_marginTop="236dp"
-            android:text="cancel"
+            android:padding="0dp"
+            android:text="Cancel"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />

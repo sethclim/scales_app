@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.DialogsaveBinding
 import sheridan.climense.scales_app2.ui.routine.RoutineCreator
 import sheridan.climense.scales_app2.ui.routine.RoutineCreatorViewModel
@@ -22,10 +23,19 @@ class SavedDialog : DialogFragment() {
 
         binding.confirmsaveBt.setOnClickListener{
             val name = binding.nameInputEt.text
-            val date = getCurrentDateTime()
-            routineCreatorViewModel.saveRoutine(name.toString(),date)
-            dismiss()
+
+            if(name.isNotEmpty()){
+                val date = getCurrentDateTime()
+                routineCreatorViewModel.saveRoutine(name.toString(),date)
+                binding.saveDialogErrorTv.text = ""
+                dismiss()
+            }
+            else{
+                binding.saveDialogErrorTv.text = getString(R.string.empty_name_error)
+            }
+
         }
+        binding.saveCancelBt.setOnClickListener { dismiss() }
 
         return binding.root
 

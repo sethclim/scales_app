@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.SavedroutinespageBinding
 import sheridan.climense.scales_app2.model.PracticePackage
 import sheridan.climense.scales_app2.util.SwipeToDeleteCallback
@@ -37,9 +38,17 @@ class SavedRoutinesPage : Fragment() {
 
             favBeginBt.setOnClickListener {
                 viewModel.favourites.observe(viewLifecycleOwner){
-                    val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage("favourites", it, true, total = it.size ))
-                    findNavController().navigate(action)
+                    if(!it.isNullOrEmpty()){
+                        binding.beginErrorTv.text = ""
+                        val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage("favourites", it, true, total = it.size ))
+                        findNavController().navigate(action)   
+                    }
+                    else{
+                        binding.beginErrorTv.text = getString(R.string.no_favs_error)
+                    }
+                    
                 }
+
             }
         }
 

@@ -9,40 +9,67 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="300dp"
-        android:layout_height="wrap_content">
+        android:layout_height="160dp">
 
 
         <EditText
             android:id="@+id/nameInput_et"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:hint="Enter a name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.194"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/textView17">
 
         </EditText>
 
         <Button
-            android:id="@+id/confirmsave_bt"
+            android:id="@+id/save_cancel_bt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
-            android:text="Save"
-            app:layout_constraintBottom_toBottomOf="@+id/button2"
-            app:layout_constraintStart_toEndOf="@+id/button2"
-            app:layout_constraintTop_toTopOf="@+id/button2"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="72dp"
             android:layout_marginTop="116dp"
-            android:text="Button"
+            android:padding="0dp"
+            android:text="@android:string/cancel"
             app:layout_constraintStart_toStartOf="@+id/nameInput_et"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/confirmsave_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="28dp"
+            android:padding="0dp"
+            android:text="Save"
+            app:layout_constraintBottom_toBottomOf="@+id/save_cancel_bt"
+            app:layout_constraintStart_toEndOf="@+id/save_cancel_bt"
+            app:layout_constraintTop_toTopOf="@+id/save_cancel_bt"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@color/myGreen"
+            android:padding="5dp"
+            android:text="Save Routine"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/save_dialog_error_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_dark"
+            android:textIsSelectable="true"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/nameInput_et"
+            app:layout_constraintStart_toStartOf="@+id/nameInput_et"
+            tools:text="Please enter a Name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

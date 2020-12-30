@@ -3,4 +3,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="save_error_empty">No Practice to Save</string>
+    <string name="practice_error_empty">No Routine to Practice</string>
+    <string name="empty_name_error">Please Enter a Name</string>
+    <string name="no_favs_error">No Favs</string>
 </resources>

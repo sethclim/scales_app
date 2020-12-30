@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.RoutineCreatorFragmentBinding
 import sheridan.climense.scales_app2.model.RoutineGenerator
 import sheridan.climense.scales_app2.model.RoutineInputs
@@ -49,9 +50,11 @@ class RoutineCreator : Fragment() {
             val action = RoutineCreatorDirections.actionRoutineToPractice(practice_package)
             RoutineGenerator.routine.clear()
             findNavController().navigate(action)
-
+            binding.practiceErrorTv.text = ""
         }
-        //add warning message here
+        else{
+            binding.practiceErrorTv.text = getString(R.string.practice_error_empty)
+        }
     }
 
      fun getInputs(){
@@ -80,7 +83,14 @@ class RoutineCreator : Fragment() {
 
     private fun openSaveDialog() {
         getInputs()
-        val SavedDialog = SavedDialog()
-        SavedDialog.show(childFragmentManager, "dialogTerm" )
+        val proceed = viewModel.generateRoutine()
+        if(proceed){
+            val SavedDialog = SavedDialog()
+            SavedDialog.show(childFragmentManager, "dialogTerm" )
+            binding.saveErrorTv.text = ""
+        }
+        else{
+            binding.saveErrorTv.text = getString(R.string.save_error_empty)
+        }
     }
 }
