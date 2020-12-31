@@ -1,6 +1,7 @@
 package sheridan.climense.scales_app2.database
 
 import androidx.room.*
+import java.time.LocalDate
 
 @Entity(tableName = "PracticeRecord")
 data class PracticeRecord (
@@ -25,6 +26,6 @@ data class PracticeRecord (
 
         @PrimaryKey
         @ColumnInfo(name = "date")
-        val date: String,
+        val date: LocalDate,
 
         )

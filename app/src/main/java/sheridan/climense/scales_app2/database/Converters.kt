@@ -6,8 +6,12 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import sheridan.climense.scales_app2.model.RoutineGenerator
 import java.lang.reflect.Type
+import java.security.Timestamp
+import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoField
 import java.util.*
 
 
@@ -23,27 +27,20 @@ class Converters {
                 ?.format(dateFormatter)
     }
 
-//    @TypeConverter
-//    fun fromStringToDate(value: Long?): String? {
-//
-//    }
+    @TypeConverter
+    fun toLong(date: LocalDate): Long {
+        return date.toEpochDay()
+    }
+
+    @TypeConverter
+    fun toLocalDate(timestamp: Long): LocalDate? {
+        return LocalDate.ofEpochDay(timestamp)
+    }
 
     @TypeConverter
     fun toTimestamp(date: Date?): Long? {
         return date?.time
     }
-
-//    @TypeConverter
-//    fun fromDateToString(date: Date?): String {
-//        var strDate : String? = ""
-//        if(date != null)
-//            strDate = formatDate(date)
-//        else{
-//            strDate = "empty"
-//        }
-//        return strDate!!
-//    }
-
 
     @TypeConverter
     fun toDate(timestamp: Long?): Date? {

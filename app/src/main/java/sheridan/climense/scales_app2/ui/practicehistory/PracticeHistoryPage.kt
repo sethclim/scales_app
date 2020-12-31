@@ -29,8 +29,6 @@ class PracticeHistoryPage : Fragment(){
     private  lateinit var  binding : LinegraphBinding
     private val viewModel : PracticeHistoryPageViewModel by viewModels()
 
-
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -52,21 +50,31 @@ class PracticeHistoryPage : Fragment(){
         val arps : MutableList<Entry>  = mutableListOf()
         val cm : MutableList<Entry>  = mutableListOf()
 
-        for ( obj in data) {
-            // turn your data into Entry objects
-            val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-            val temp = LocalDate.parse(obj.date, formatter).dayOfWeek.value.toFloat()
-
-
-            scales.add(Entry(temp, obj.scales.toFloat()));
-            oct.add(Entry(temp, obj.oct.toFloat()));
-            solid.add(Entry(temp, obj.solid.toFloat()));
-            broken.add(Entry(temp, obj.broken.toFloat()));
-            arps.add(Entry(temp, obj.arps.toFloat()));
-            cm.add(Entry(temp, obj.conMotion.toFloat()));
+        var max = 0
+        fun getMax(value : Int){
+            if(value > max ){
+                max = value
+            }
         }
 
-        val quarters = arrayOf("Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun", "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun",)
+        for ( obj in data) {
+            // turn your data into Entry objects
+            val temp = obj.date.dayOfWeek.value.toFloat() - 1
+            scales.add(Entry(temp, obj.scales.toFloat()));
+            getMax(obj.scales)
+            oct.add(Entry(temp, obj.oct.toFloat()));
+            getMax(obj.oct)
+            solid.add(Entry(temp, obj.solid.toFloat()));
+            getMax(obj.solid)
+            broken.add(Entry(temp, obj.broken.toFloat()));
+            getMax(obj.broken)
+            arps.add(Entry(temp, obj.arps.toFloat()));
+            getMax(obj.arps)
+            cm.add(Entry(temp, obj.conMotion.toFloat()));
+            getMax(obj.conMotion)
+        }
+
+        val quarters = arrayOf( "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun",)
         val formatter: ValueFormatter = object : ValueFormatter() {
             override fun getAxisLabel(value: Float, axis: AxisBase): String {
 
@@ -156,7 +164,7 @@ class PracticeHistoryPage : Fragment(){
         //left.setAxisMaximum(100f);
         //left.granularity
         left.axisMinimum = 0f
-        left.axisMaximum = 100f
+        left.axisMaximum = (max + 40).toFloat()
 
         val top: XAxis = chart.xAxis
         top.axisMinimum = 0f

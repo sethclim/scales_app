@@ -8,6 +8,7 @@ import sheridan.climense.scales_app2.database.*
 import sheridan.climense.scales_app2.model.PracticeCycler
 import sheridan.climense.scales_app2.model.RoutineGenerator
 import sheridan.climense.scales_app2.util.DateConverters
+import java.time.LocalDate
 import java.util.*
 
 class PracticePageViewModel(application: Application) : AndroidViewModel(application) {
@@ -39,7 +40,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     private val practiceDao: PracticeDao =
         PracticeDatabase.getInstance(application).practiceDao
 
-    val timeStamp : String? = DateConverters.formatDate (getCurrentDateTime())
+//    /val timeStamp : String? = DateConverters.formatDate (getCurrentDateTime())
 
 //    var record : PracticeRecord? = null
 
@@ -55,7 +56,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
         _item.value = PracticeCycler.currentScale
 
         viewModelScope.launch{
-            val key =item.value!!.root+item.value!!.scale+item.value!!.tech
+            val key = item.value!!.root+item.value!!.scale+item.value!!.tech
             val fav = practiceDao.selectFavourite(key)
 
             _isFav.value = fav == key
@@ -88,14 +89,15 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
             }
     }
 
-    fun getCurrentDateTime(): Date {
-        val cal = Calendar.getInstance().time
-        return cal
+    fun getCurrentDateTime(): LocalDate {
+        val date = LocalDate.now()
+        return date
     }
+
 
     fun saveRecord(){
         viewModelScope.launch {
-            val record = practiceDao.getDate(timeStamp!!)
+            val record = practiceDao.getDate(getCurrentDateTime())
             if(record != null){
                 val scale = record.scales + scaleCount
                 val arp = record.arps + arpCount
@@ -103,12 +105,12 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
                 val solid = record.solid + solidCount
                 val broke = record.broken + brokenCount
                 val cm = record.conMotion + cmCount
-                Log.d("Update",scale.toString()+arp+oct+solid+broke+cm )
-                practiceDao.insertOrUpdate(PracticeRecord(scale,arp,oct,solid,broke, cm, timeStamp))
+
+                practiceDao.insertOrUpdate(PracticeRecord(scale,arp,oct,solid,broke, cm, getCurrentDateTime()))
 
             }else{
-                Log.d("insert",scaleCount.toString()+arpCount+octCount+solidCount+brokenCount+cmCount )
-                practiceDao.insertOrUpdate(PracticeRecord(scaleCount,arpCount,octCount,solidCount,brokenCount, cmCount, timeStamp))
+
+                practiceDao.insertOrUpdate(PracticeRecord(scaleCount,arpCount,octCount,solidCount,brokenCount, cmCount, getCurrentDateTime()))
             }
 
         }

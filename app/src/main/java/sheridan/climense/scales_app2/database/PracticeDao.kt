@@ -3,6 +3,8 @@ package sheridan.climense.scales_app2.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import sheridan.climense.scales_app2.model.RoutineGenerator
+import java.time.LocalDate
+import java.util.*
 
 @Dao
 interface PracticeDao {
@@ -23,10 +25,13 @@ interface PracticeDao {
     suspend fun update(savedRoutine: SavedRoutine): Int
 
     @Query("SELECT * FROM PracticeRecord WHERE date = :date")
-    suspend fun getDate(date : String): PracticeRecord?
+    suspend fun getDate(date : LocalDate): PracticeRecord?
 
     @Query("SELECT * FROM PracticeRecord ORDER BY date")
     fun getAll() : LiveData<List<PracticeRecord>>
+
+    @Query("SELECT * FROM PracticeRecord WHERE date BETWEEN :startDate AND :endDate  ORDER BY date")
+    fun getLastSevenDays(startDate : LocalDate, endDate : LocalDate) : LiveData<List<PracticeRecord>>
 
     @Query("DELETE FROM PracticeRecord")
     suspend fun deleteAll()
