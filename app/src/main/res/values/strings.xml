@@ -1,6 +1,6 @@
 <resources>
 
-<!--App Level-->
+    <!--App Level-->
     <string name="app_name">Scales App</string>
     <string name="save">Save</string>
 
@@ -73,6 +73,11 @@
     <string name="e">E</string>
     <string name="f">F</string>
     <string name="cancel">Cancel</string>
+
+    <!--Bottom Nav Menu-->
+    <string name="routine_creator">Routine Creator</string>
+    <string name="saved">Saved</string>
+    <string name="history">History</string>
 
 
 </resources>

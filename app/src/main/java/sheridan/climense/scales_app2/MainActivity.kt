@@ -1,10 +1,13 @@
 package sheridan.climense.scales_app2
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -19,6 +22,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        val sharedPreferences : SharedPreferences = getSharedPreferences("My_Prefs", Context.MODE_PRIVATE)
+        if(!sharedPreferences.contains("theme")){
+            val editor = sharedPreferences.edit()
+            editor.putInt("theme", 0)
+            editor.apply()
+        }
+        val theme = sharedPreferences.getInt("theme", 1)
+        if (theme == 1) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
 
         // make the navigation work with the toolbar
         val navController = findNavController(R.id.nav_host_fragment)

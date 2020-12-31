@@ -17,4 +17,9 @@
     <color name="myGreen">#66CF95</color>
     <color name="offWhite">#ECECEC</color>#ECECEC
 
+
+    <!--Light theme -->
+    <color name="light_secondary">#3C8DAC</color>
+    <color name="light_bk">#E1F4FD</color>
+
 </resources>

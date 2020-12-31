@@ -17,6 +17,7 @@
         app:cardElevation="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/Theme.Scales_app2.textWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -24,20 +25,24 @@
 
             <TextView
                 android:id="@+id/routineTitle_tv"
-                android:layout_width="wrap_content"
+                style="@style/Theme.Scales_app2.textWhite"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/interv"
                 android:text="@{routines.title}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Hard Scales" />
 
             <TextView
                 android:id="@+id/routineDate_tv"
+                style="@style/Theme.Scales_app2.textWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="116dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginStart="140dp"
+                android:fontFamily="@font/interv"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:date="@{routines.date}"
                 app:layout_constraintBottom_toBottomOf="@+id/routineTitle_tv"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,14 +53,15 @@
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="@style/Theme.Scales_app2.progressbar"
-                android:layout_width="180dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="216dp"
+                android:layout_marginStart="228dp"
                 android:max="@{routines.total}"
                 android:min="0"
                 app:layout_constraintBottom_toBottomOf="@+id/routineDate_tv"
                 app:layout_constraintStart_toStartOf="@+id/routineTitle_tv"
                 app:layout_constraintTop_toTopOf="@+id/routineDate_tv"
+                app:layout_constraintVertical_bias="0.333"
                 app:progress="@{routines.progress}" />
 
 

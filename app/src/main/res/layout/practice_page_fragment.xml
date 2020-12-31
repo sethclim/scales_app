@@ -20,14 +20,15 @@
 
         <TextView
             android:id="@+id/output_tv"
+            style="@style/Theme.Scales_app2.textBasic"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="136dp"
+            android:fontFamily="@font/interv"
             android:text="@{practiceViewModel.isEnd ? practiceViewModel.practiceString : practiceViewModel.msg}"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/white"
             android:textSize="46sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="48dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/interv"
             android:text="@string/next"
             app:layout_constraintEnd_toEndOf="@+id/output_tv"
             app:layout_constraintHorizontal_bias="0.496"
@@ -65,7 +66,7 @@
 
         <ProgressBar
             android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyleHorizontal"
+            style="@style/Theme.Scales_app2.progressbarMain"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="272dp"

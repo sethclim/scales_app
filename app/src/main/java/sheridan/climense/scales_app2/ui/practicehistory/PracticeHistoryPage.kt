@@ -86,7 +86,7 @@ class PracticeHistoryPage : Fragment(){
         scalesset.setCircleRadius(5f)
         scalesset.setDrawCircleHole(false)
         scalesset.label = "Scales"
-        scalesset.valueTextSize = 10f
+        scalesset.setDrawValues(false)
 
         val octSet = LineDataSet(oct, "oct")
         octSet.setColors(intArrayOf(R.color.design_default_color_secondary_variant), context)
@@ -95,7 +95,7 @@ class PracticeHistoryPage : Fragment(){
         octSet.setCircleRadius(5f)
         octSet.setDrawCircleHole(false)
         octSet.label = "Oct"
-        octSet.valueTextSize = 10f
+        octSet.setDrawValues(false)
 
         val solidSet = LineDataSet(solid, "solid")
         solidSet.setColors(intArrayOf(R.color.design_default_color_error), context)
@@ -104,7 +104,7 @@ class PracticeHistoryPage : Fragment(){
         solidSet.setCircleRadius(5f)
         solidSet.setDrawCircleHole(false)
         solidSet.label = "Solid"
-        solidSet.valueTextSize = 10f
+        solidSet.setDrawValues(false)
 
         val brokenSet = LineDataSet(broken, "broken")
         brokenSet.setColor(Color.rgb(78, 222, 62));
@@ -114,6 +114,7 @@ class PracticeHistoryPage : Fragment(){
         brokenSet.setDrawCircleHole(false)
         brokenSet.label = "Broken"
         brokenSet.valueTextSize = 10f
+        brokenSet.setDrawValues(false)
 
         val arpsSet = LineDataSet(arps, "arps")
         arpsSet.setColor(Color.rgb(240, 76, 69));
@@ -122,8 +123,9 @@ class PracticeHistoryPage : Fragment(){
         arpsSet.setCircleRadius(5f)
         arpsSet.setDrawCircleHole(false)
         arpsSet.label = "Arps"
+        arpsSet.setDrawValues(false)
 
-        arpsSet.valueTextSize = 10f
+
 
         val cmSet = LineDataSet(cm, "cm")
         cmSet.setColor(Color.rgb(56, 124, 245));
@@ -132,6 +134,7 @@ class PracticeHistoryPage : Fragment(){
         cmSet.setCircleRadius(5f)
         cmSet.setDrawCircleHole(false)
         cmSet.label = "CM"
+        cmSet.setDrawValues(false)
 
 
         val dataSets: MutableList<ILineDataSet> = ArrayList()
@@ -169,12 +172,12 @@ class PracticeHistoryPage : Fragment(){
         when (mode) {
             Configuration.UI_MODE_NIGHT_YES -> {
                 left.textColor = Color.WHITE
-                right.textColor = Color.WHITE
+                top.textColor = Color.WHITE
                 legend.textColor= Color.WHITE
             }
             Configuration.UI_MODE_NIGHT_NO -> {
                 left.textColor = Color.BLACK
-                right.textColor = Color.BLACK
+                top.textColor = Color.BLACK
                 legend.textColor= Color.BLACK
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {}

@@ -44,6 +44,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/interv"
                         android:text="@string/scales"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </TableRow>
@@ -57,28 +58,36 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/major" />
+                        android:fontFamily="@font/interv"
+                        android:text="@string/major"
+                        android:typeface="normal" />
 
                     <CheckBox
                         android:id="@+id/min_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/minor" />
+                        android:fontFamily="@font/interv"
+                        android:text="@string/minor"
+                        android:typeface="normal" />
 
                     <CheckBox
                         android:id="@+id/minM_cb2"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/mel_minor" />
+                        android:fontFamily="@font/interv"
+                        android:text="@string/mel_minor"
+                        android:typeface="normal" />
 
                     <CheckBox
                         android:id="@+id/dim_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/diminished" />
+                        android:fontFamily="@font/interv"
+                        android:text="@string/diminished"
+                        android:typeface="normal" />
 
                 </TableRow>
 
@@ -91,28 +100,36 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/maj_7th" />
+                        android:fontFamily="@font/interv"
+                        android:text="@string/maj_7th"
+                        android:typeface="normal" />
 
                     <CheckBox
                         android:id="@+id/min7_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/min_7th" />
+                        android:fontFamily="@font/interv"
+                        android:text="@string/min_7th"
+                        android:typeface="normal" />
 
                     <CheckBox
                         android:id="@+id/dom7_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/dom_7th" />
+                        android:fontFamily="@font/interv"
+                        android:text="@string/dom_7th"
+                        android:typeface="normal" />
 
                     <CheckBox
                         android:id="@+id/aug_cb"
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/augmented" />
+                        android:fontFamily="@font/interv"
+                        android:text="@string/augmented"
+                        android:typeface="normal" />
 
                 </TableRow>
 
@@ -139,6 +156,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/interv"
                         android:text="@string/techniques"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </TableRow>
@@ -152,6 +170,7 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/interv"
                         android:text="@string/scales" />
 
                     <CheckBox
@@ -159,6 +178,7 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/interv"
                         android:text="@string/arpeggio" />
 
                     <CheckBox
@@ -166,6 +186,7 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/interv"
                         android:text="@string/solid_chords" />
 
                 </TableRow>
@@ -179,6 +200,7 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/interv"
                         android:text="@string/br_chords" />
 
                     <CheckBox
@@ -186,6 +208,7 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/interv"
                         android:text="@string/octaves" />
 
                     <CheckBox
@@ -193,6 +216,7 @@
                         style="@style/Theme.Scales_app2.checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/interv"
                         android:text="@string/con_motion" />
                 </TableRow>
 
@@ -218,6 +242,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/interv"
                     android:text="@string/custom_roots"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -227,6 +252,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/interv"
                     android:text="@string/set_roots"
                     app:cornerRadius="5dp" />
 
@@ -253,6 +279,7 @@
                 android:layout_width="150dp"
                 android:layout_height="45dp"
                 android:layout_marginStart="24dp"
+                android:fontFamily="@font/interv"
                 android:text="@string/practice"
                 app:layout_constraintBottom_toBottomOf="@+id/save_bt"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -268,6 +295,7 @@
                 android:layout_height="45dp"
                 android:layout_marginStart="44dp"
                 android:layout_marginTop="40dp"
+                android:fontFamily="@font/interv"
                 android:text="@string/save"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -277,6 +305,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                android:fontFamily="@font/interv"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/save_bt"
                 app:layout_constraintStart_toStartOf="@+id/save_bt"
@@ -287,6 +316,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                android:fontFamily="@font/interv"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/practice_bt"
                 app:layout_constraintStart_toStartOf="@+id/practice_bt"
