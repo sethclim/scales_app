@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="practiceViewModel"
+            type="sheridan.climense.scales_app2.ui.practice.PracticePageViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Theme.Scales_app2.background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:context=".ui.practice.PracticePage">
+
+
+        <TextView
+            android:id="@+id/output_tv"
+            style="@style/Theme.Scales_app2.textBasic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/interv"
+            android:text="@{practiceViewModel.isEnd ? practiceViewModel.practiceString : practiceViewModel.msg}"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="46sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="C Major Scale" />
+
+        <ImageButton
+            android:id="@+id/fav_bt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/fav_button"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/btn_star"
+            android:tint="#FFFFFF"
+            app:layout_constraintStart_toStartOf="@+id/output_tv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/next_bt"
+            style="@style/Theme.Scales_app2.primaryButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/interv"
+            android:text="@string/next"
+            app:layout_constraintEnd_toEndOf="@+id/output_tv"
+            app:layout_constraintHorizontal_bias="0.499"
+            app:layout_constraintStart_toStartOf="@+id/output_tv"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="@style/Theme.Scales_app2.progressbarMain"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:max="@{practiceViewModel.PMax}"
+            android:min="0"
+            android:progress="@{practiceViewModel.progress}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

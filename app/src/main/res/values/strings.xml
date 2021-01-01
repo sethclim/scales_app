@@ -78,6 +78,9 @@
     <string name="routine_creator">Routine Creator</string>
     <string name="saved">Saved</string>
     <string name="history">History</string>
+    <string name="delete_saved">Delete Saved</string>
+    <string name="aug">Aug</string>
+    <string name="oct">Oct</string>
 
 
 </resources>
