@@ -34,7 +34,13 @@ interface PracticeDao {
     fun getLastSevenDays(startDate : LocalDate, endDate : LocalDate) : LiveData<List<PracticeRecord>>
 
     @Query("DELETE FROM PracticeRecord")
-    suspend fun deleteAll()
+    suspend fun deletePracticeRecord()
+
+    @Query("DELETE FROM SavedRoutine")
+    suspend fun deleteSavedRoutines()
+
+    @Query("DELETE FROM Favourites")
+    suspend fun deleteFavorites()
 
     @Query("DELETE FROM Favourites WHERE `key`=:ID")
     suspend fun deleteFavourite(ID : String)
@@ -62,5 +68,6 @@ interface PracticeDao {
 
     @Query("SELECT Root, Scale, Tech, Fav, `Key` FROM  Favourites")
     suspend fun getNLFavourites() : Array<RoutineGenerator.Companion.practice>
+
 
 }

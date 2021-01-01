@@ -86,7 +86,8 @@
     </style>
 
     <style name="Theme.Scales_app2.dialogBK">
-        <item name="backgroundColor">#ECECEC</item>
+        <item name="background">@color/offWhite</item>
+        <item name="cardBackgroundColor">@color/offWhite</item>
     </style>
 
     <style name="Theme.Scales_app2.progressbar" parent="android:Widget.Holo.ProgressBar.Horizontal">

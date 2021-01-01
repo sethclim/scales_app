@@ -45,6 +45,6 @@
     </fragment>
     <fragment
         android:id="@+id/settingsPage"
-        android:name="sheridan.climense.scales_app2.ui.SettingsPage"
+        android:name="sheridan.climense.scales_app2.ui.settings.SettingsPage"
         android:label="SettingsPage" /><action android:id="@+id/action_global_settingsPage" app:destination="@id/settingsPage"/>
 </navigation>

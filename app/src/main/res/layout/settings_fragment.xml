@@ -13,12 +13,24 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/deleteHistory_tv2"
+            style="@style/Theme.Scales_app2.settingsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/interv"
+            android:text="Delete Saved "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toStartOf="@+id/deleteFavs_tv"
+            app:layout_constraintTop_toBottomOf="@+id/deleteFavs_tv" />
+
+        <TextView
             android:id="@+id/dayNight_tv"
             style="@style/Theme.Scales_app2.settingsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="100dp"
             android:fontFamily="@font/interv"
             android:text="@string/day_night"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -30,7 +42,7 @@
             style="@style/Theme.Scales_app2.settingsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/interv"
             android:text="@string/delete_all"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -42,19 +54,19 @@
             style="@style/Theme.Scales_app2.settingsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/interv"
             android:text="@string/delete_history"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintStart_toStartOf="@+id/deleteFavs_tv"
-            app:layout_constraintTop_toBottomOf="@+id/deleteFavs_tv" />
+            app:layout_constraintStart_toStartOf="@+id/deleteHistory_tv2"
+            app:layout_constraintTop_toBottomOf="@+id/deleteHistory_tv2" />
 
         <TextView
             android:id="@+id/deleteFavs_tv"
             style="@style/Theme.Scales_app2.settingsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/interv"
             android:text="@string/delete_favorites"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -73,7 +85,7 @@
             app:layout_constraintTop_toTopOf="@+id/dayNight_tv" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/settings_delete_favs_bt"
             style="@style/Theme.Scales_app2.primaryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,7 +97,19 @@
             app:layout_constraintTop_toTopOf="@+id/deleteFavs_tv" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/settings_delete_saved_bt"
+            style="@style/Theme.Scales_app2.primaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/interv"
+            android:padding="0dp"
+            android:text="@string/delete"
+            app:layout_constraintBottom_toBottomOf="@+id/deleteHistory_tv2"
+            app:layout_constraintStart_toStartOf="@+id/settings_delete_favs_bt"
+            app:layout_constraintTop_toTopOf="@+id/deleteHistory_tv2" />
+
+        <Button
+            android:id="@+id/settings_delete_history_bt"
             style="@style/Theme.Scales_app2.primaryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,11 +117,12 @@
             android:padding="0dp"
             android:text="@string/delete"
             app:layout_constraintBottom_toBottomOf="@+id/deleteHistory_tv"
-            app:layout_constraintStart_toStartOf="@+id/button"
-            app:layout_constraintTop_toTopOf="@+id/deleteHistory_tv" />
+            app:layout_constraintStart_toStartOf="@+id/settings_delete_saved_bt"
+            app:layout_constraintTop_toTopOf="@+id/deleteHistory_tv"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/settings_delete_all_bt"
             style="@style/Theme.Scales_app2.primaryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,7 +130,7 @@
             android:padding="0dp"
             android:text="@string/delete"
             app:layout_constraintBottom_toBottomOf="@+id/deleteAll_tv"
-            app:layout_constraintStart_toStartOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="@+id/settings_delete_history_bt"
             app:layout_constraintTop_toTopOf="@+id/deleteAll_tv" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
