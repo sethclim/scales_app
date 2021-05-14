@@ -37,9 +37,10 @@
 
                     <TextView
                         android:id="@+id/textView3"
+                        style="@style/Theme.Scales_app2.textlabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/interv"
+                        android:fontFamily="@font/nexafemobold"
                         android:text="@string/scales"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </TableRow>
@@ -143,9 +144,10 @@
 
                     <TextView
                         android:id="@+id/textView2"
+                        style="@style/Theme.Scales_app2.textlabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/interv"
+                        android:fontFamily="@font/nexafemobold"
                         android:text="@string/techniques"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -228,9 +230,10 @@
 
                     <TextView
                         android:id="@+id/textView4"
+                        style="@style/Theme.Scales_app2.textlabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/interv"
+                        android:fontFamily="@font/nexafemobold"
                         android:text="@string/custom_roots"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 

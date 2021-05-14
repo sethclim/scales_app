@@ -48,7 +48,7 @@
     <string name="begin">Begin</string>
 
     <!--Settings Page-->
-    <string name="day_night">Day/ Night</string>
+    <string name="day_night">Day / Night</string>
     <string name="delete_all">Delete All</string>
     <string name="delete_history">Delete History</string>
     <string name="delete_favorites">Delete Favorites</string>
