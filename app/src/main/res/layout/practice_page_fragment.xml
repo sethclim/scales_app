@@ -24,52 +24,46 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="136dp"
+            android:layout_marginTop="88dp"
             android:fontFamily="@font/interv"
             android:text="@{practiceViewModel.isEnd ? practiceViewModel.practiceString : practiceViewModel.msg}"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textSize="46sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="C Major Scale" />
 
-        <ImageButton
-            android:id="@+id/fav_bt"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="28dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@android:drawable/btn_star"
-            android:tint="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/fav_button" />
 
-        <Button
-            android:id="@+id/next_bt"
-            style="@style/Theme.Scales_app2.primaryButton"
-            android:layout_width="150dp"
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/compose_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="48dp"
-            android:fontFamily="@font/interv"
-            android:text="@string/next"
-            app:layout_constraintEnd_toEndOf="@+id/output_tv"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="@+id/output_tv"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/star_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/compose_view"
+            app:layout_constraintVertical_bias="0.284" />
 
         <ProgressBar
             android:id="@+id/progressBar2"
             style="@style/Theme.Scales_app2.progressbarMain"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="272dp"
+            android:layout_marginTop="232dp"
             android:max="@{practiceViewModel.PMax}"
             android:min="0"
             android:progress="@{practiceViewModel.progress}"

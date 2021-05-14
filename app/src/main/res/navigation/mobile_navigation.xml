@@ -24,12 +24,12 @@
         <action
             android:id="@+id/action_practice_to_routine"
             app:destination="@id/routineCreator" />
-        <argument
-            android:name="PracticePackage"
-            app:argType="sheridan.climense.scales_app2.model.PracticePackage" />
         <action
             android:id="@+id/action_practicePage_to_practiceHistory"
             app:destination="@id/practiceHistoryPage" />
+        <argument
+            android:name="practicePackage"
+            app:argType="sheridan.climense.scales_app2.model.PracticePackage" />
     </fragment>
     <fragment
         android:id="@+id/practiceHistoryPage"
