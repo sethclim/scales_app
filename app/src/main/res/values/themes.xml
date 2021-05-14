@@ -116,5 +116,16 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="Theme.Scales_app2.bottomnav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="Theme.Scales_app2.maincard">
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Scales_app2.error">
+        <item name="android:textColor">@color/red</item>
+    </style>
 
 </resources>

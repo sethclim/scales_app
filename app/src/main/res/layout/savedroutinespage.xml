@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
+            style="@style/Theme.Scales_app2.maincard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
