@@ -7,6 +7,8 @@
         <entry key="app/src/main/res/layout-land/practice_page_fragment.xml" value="0.28125" />
         <entry key="app/src/main/res/layout-land/routine_creator_fragment.xml" value="0.28125" />
         <entry key="app/src/main/res/layout-land/settings_fragment.xml" value="0.28125" />
+        <entry key="app/src/main/res/layout/dialog_rootoptions.xml" value="0.24456521739130435" />
+        <entry key="app/src/main/res/layout/dialogconfirmation.xml" value="0.24456521739130435" />
         <entry key="app/src/main/res/layout/practice_page_fragment.xml" value="0.17147922998986828" />
         <entry key="app/src/main/res/layout/routine_creator_fragment.xml" value="0.24456521739130435" />
         <entry key="app/src/main/res/layout/savedroutinespage.xml" value="0.24456521739130435" />

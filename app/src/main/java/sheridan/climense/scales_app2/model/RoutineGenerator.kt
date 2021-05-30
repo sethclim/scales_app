@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo
 class RoutineGenerator {
     companion object{
 
-        data class practice (@ColumnInfo(name = "Root") val root : String, @ColumnInfo(name = "Scale") val scale : String, @ColumnInfo(name = "Tech") val tech : String)
+        data class practice (@ColumnInfo(name = "Root") val root : String, @ColumnInfo(name = "Scale") val scale : String, @ColumnInfo(name = "Tech") val tech : RoutineInputs.Companion.TechTypes)
 
         var favourites : Array<practice> = arrayOf()
         var routine : MutableList<practice> = mutableListOf()

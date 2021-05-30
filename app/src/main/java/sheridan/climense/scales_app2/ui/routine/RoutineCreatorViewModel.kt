@@ -15,7 +15,7 @@ import java.util.*
 
 class RoutineCreatorViewModel(application: Application) : AndroidViewModel(application) {
 
-    val _mutableInputs : MutableLiveData<RoutineInputs> = MutableLiveData<RoutineInputs>()
+    private val _mutableInputs : MutableLiveData<RoutineInputs> = MutableLiveData<RoutineInputs>()
     var mutableInputs : LiveData<RoutineInputs> = _mutableInputs
 
     var routine : Array<RoutineGenerator.Companion.practice> = arrayOf()

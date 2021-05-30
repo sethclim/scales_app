@@ -7,7 +7,7 @@ class PracticeCycler {
     companion object{
         var practiceArray : MutableList<RoutineGenerator.Companion.practice> = mutableListOf()
 
-        var currentScale = RoutineGenerator.Companion.practice("-1", "-1", "-1")
+        var currentScale = RoutineGenerator.Companion.practice("-1", "-1", RoutineInputs.Companion.TechTypes.Scale)
 
         fun nextScale(){
             val index = Random.nextInt(0, practiceArray.size)

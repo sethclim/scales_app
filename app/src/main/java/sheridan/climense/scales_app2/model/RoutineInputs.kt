@@ -1,9 +1,6 @@
 package sheridan.climense.scales_app2.model
 
-import android.util.Log
 import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
-import sheridan.climense.scales_app2.BR
 
 class RoutineInputs : BaseObservable() {
 
@@ -11,7 +8,7 @@ class RoutineInputs : BaseObservable() {
 
         data class scale (val scale : String, var isUsed : Boolean, val isFour : Boolean)
         data class roots (val scale : String, var isUsed : Boolean)
-        data class tech (val scale : String, var isUsed : Boolean)
+        data class tech (val scale : TechTypes, var isUsed : Boolean)
 
          val scaleOptions = arrayOf(
              scale("Major", false, true),
@@ -40,27 +37,35 @@ class RoutineInputs : BaseObservable() {
         )
 
         val CustRootOptions = arrayOf(
-            roots("C", true),
-            roots("C#", true),
-            roots("D", true),
-            roots("D#", true),
-            roots("E", true),
-            roots("F", true),
-            roots("F#", true),
-            roots("G", true),
-            roots("G#", true),
-            roots("A", true),
-            roots("A#", true),
-            roots("B", true)
+            roots("C", false),
+            roots("C#", false),
+            roots("D", false),
+            roots("D#", false),
+            roots("E", false),
+            roots("F", false),
+            roots("F#", false),
+            roots("G", false),
+            roots("G#", false),
+            roots("A", false),
+            roots("A#", false),
+            roots("B", false)
         )
 
+        enum class TechTypes(val strName: String){
+            Scale("Scale"), Arp("Arp"), Solid("Solid"), Broken("Broken"),Oct("Oct"), CM("C.M.");
+
+            companion object {
+                fun from(s: String): TechTypes? = values().find { it.strName == s }
+            }
+        }
+
          val techOptions = arrayOf(
-             tech("Scale", false),
-             tech("Arp", false),
-             tech("Solid", false),
-             tech("Broken", false),
-             tech("Oct", false),
-             tech("C.M.", false),
+             tech(TechTypes.Scale, false),
+             tech(TechTypes.Arp, false),
+             tech(TechTypes.Solid, false),
+             tech(TechTypes.Broken, false),
+             tech(TechTypes.Oct, false),
+             tech(TechTypes.CM, false),
         )
     }
 }

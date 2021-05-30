@@ -13,6 +13,8 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoField
 import java.util.*
+import android.R.attr.category
+import sheridan.climense.scales_app2.model.RoutineInputs
 
 
 class Converters {
@@ -68,5 +70,14 @@ class Converters {
         else{
             return null
         }
+    }
+
+    @TypeConverter
+    fun fromTechTypeToString(techtype: RoutineInputs.Companion.TechTypes?): String? {
+        return techtype?.strName
+    }
+    @TypeConverter
+    fun fromStringToTechType(techtype: String?): RoutineInputs.Companion.TechTypes? {
+        return if (techtype.isNullOrEmpty()) null else RoutineInputs.Companion.TechTypes.from(techtype)
     }
 }

@@ -1,15 +1,15 @@
 package sheridan.climense.scales_app2.ui.practice
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.*
 import sheridan.climense.scales_app2.model.PracticeCycler
 import sheridan.climense.scales_app2.model.RoutineGenerator
-import sheridan.climense.scales_app2.util.DateConverters
+import sheridan.climense.scales_app2.model.RoutineInputs
 import java.time.LocalDate
 import java.util.*
+
 
 class PracticePageViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -79,14 +79,14 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     }
 
     private fun getCount(){
-            when(item.value!!.tech){
-                "Scale" -> scaleCount += 1
-                "Arp" -> arpCount += 1
-                "Solid" -> solidCount += 1
-                "Broken" -> brokenCount += 1
-                "Oct" -> octCount += 1
-                "C.M." -> cmCount += 1
-            }
+        when(item.value!!.tech){
+            RoutineInputs.Companion.TechTypes.Scale -> scaleCount += 1
+            RoutineInputs.Companion.TechTypes.Arp -> arpCount += 1
+            RoutineInputs.Companion.TechTypes.Solid -> solidCount += 1
+            RoutineInputs.Companion.TechTypes.Broken -> brokenCount += 1
+            RoutineInputs.Companion.TechTypes.Oct -> octCount += 1
+            RoutineInputs.Companion.TechTypes.CM -> cmCount += 1
+        }
     }
 
     fun getCurrentDateTime(): LocalDate {
@@ -136,7 +136,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
             val key =item.value!!.root+item.value!!.scale+item.value!!.tech
             val fav = practiceDao.selectFavourite(key)
             if(fav != key){
-                practiceDao.insert(Favourites(key, item.value!!.root,item.value!!.scale,item.value!!.tech, true))
+                practiceDao.insert(Favourites(key, item.value!!.root,item.value!!.scale,item.value!!.tech.strName, true))
                 _isFav.value = true
             }
             else{
