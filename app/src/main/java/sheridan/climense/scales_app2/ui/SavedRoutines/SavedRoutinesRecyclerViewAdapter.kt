@@ -7,8 +7,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import sheridan.climense.scales_app2.database.SavedRoutine
 import sheridan.climense.scales_app2.databinding.SavedroutineitemBinding
-import sheridan.climense.scales_app2.model.PracticePackage
-import sheridan.climense.scales_app2.model.RoutineGenerator
+import sheridan.climense.scales_app2.models.PracticePackage
+import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
+import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.scales_app2.models.PracticeSave
 
 class SavedRoutinesRecyclerViewAdapter(private val viewModel: SavedRoutinesViewModel) : RecyclerView.Adapter<SavedRoutinesRecyclerViewAdapter.ViewHolder>() {
 
@@ -45,20 +47,22 @@ class SavedRoutinesRecyclerViewAdapter(private val viewModel: SavedRoutinesViewM
             binding.routines = routine
             binding.root.setOnClickListener{
 
-                    val routineToSend : Array<RoutineGenerator.Companion.practice>
+                    val routineToSend : Array<PracticeSave>
 
                     if(routine.inProgress != null && routine.inProgress.isNotEmpty()){
                         routineToSend = routine.inProgress
                     }else{
                         routineToSend = routine.routine
                     }
-                    val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage(
+                    val action = SavedRoutinesPageDirections.savedRoutineToPractice(
+                        PracticePackage(
                             routine.title,
                             routineToSend,
                             true,
                             routine.key,
                             routine.total,
-                            routine.date ))
+                            routine.date )
+                    )
                     it.findNavController().navigate(action)
             }
         }

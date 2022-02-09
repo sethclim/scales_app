@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.SavedroutinespageBinding
-import sheridan.climense.scales_app2.model.PracticePackage
+import sheridan.climense.scales_app2.models.PracticePackage
 import sheridan.climense.scales_app2.util.SwipeToDeleteCallback
 
 class SavedRoutinesPage : Fragment() {
@@ -40,7 +40,9 @@ class SavedRoutinesPage : Fragment() {
                 viewModel.favourites.observe(viewLifecycleOwner){
                     if(!it.isNullOrEmpty()){
                         binding.beginErrorTv.text = ""
-                        val action = SavedRoutinesPageDirections.savedRoutineToPractice(PracticePackage("favourites", it, true, total = it.size ))
+                        val action = SavedRoutinesPageDirections.savedRoutineToPractice(
+                            PracticePackage("favourites", it, true, total = it.size )
+                        )
                         findNavController().navigate(action)   
                     }
                     else{

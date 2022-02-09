@@ -1,20 +1,17 @@
-package sheridan.climense.scales_app2.model
+package sheridan.climense.kmmsharedmodule.domain
 
-import androidx.room.ColumnInfo
+
+import sheridan.climense.kmmsharedmodule.model.*
 
 class RoutineGenerator {
     companion object{
 
-        data class practice (@ColumnInfo(name = "Root") val root : String, @ColumnInfo(name = "Scale") val scale : String, @ColumnInfo(name = "Tech") val tech : RoutineInputs.Companion.TechTypes)
 
-        var favourites : Array<practice> = arrayOf()
-        var routine : MutableList<practice> = mutableListOf()
+        var favourites : Array<Practice> = arrayOf()
+        var routine : MutableList<Practice> = mutableListOf()
 
-        var roots = RoutineInputs.RootOptions
-        val scales = RoutineInputs.scaleOptions
-        val techs = RoutineInputs.techOptions
 
-        fun generate() : Array<practice>{
+        fun generate(roots : Array<Roots>, scales : Array<Scale>, techs : Array<Tech>) : Array<Practice>{
 
             for(root in roots){
 
@@ -23,7 +20,7 @@ class RoutineGenerator {
                         if(scale.isUsed  && scale.isFour){
                             for(tech in techs){
                                 if(tech.isUsed){
-                                    val temp = practice(root.scale, scale.scale, tech.scale)
+                                    val temp = Practice(root.scale, scale.scale, tech.scale)
                                     routine.add(temp)
                                 }
 
@@ -32,7 +29,7 @@ class RoutineGenerator {
                         else if(scale.isUsed ){
                             for(tech in techs){
                                 if(tech.isUsed){
-                                    val temp = practice(root.scale, scale.scale, tech.scale)
+                                    val temp = Practice(root.scale, scale.scale, tech.scale)
                                     routine.add(temp)
                                 }
                             }

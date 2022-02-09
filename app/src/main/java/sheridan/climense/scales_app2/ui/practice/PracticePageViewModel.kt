@@ -4,17 +4,20 @@ import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.*
-import sheridan.climense.scales_app2.model.PracticeCycler
-import sheridan.climense.scales_app2.model.RoutineGenerator
-import sheridan.climense.scales_app2.model.RoutineInputs
+import sheridan.climense.kmmsharedmodule.domain.PracticeCycler
+import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
+import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.kmmsharedmodule.model.TechTypes
+import sheridan.climense.scales_app2.models.PracticeSave
+import sheridan.climense.scales_app2.models.RoutineInputs
 import java.time.LocalDate
 import java.util.*
 
 
 class PracticePageViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _item = MutableLiveData<RoutineGenerator.Companion.practice>()
-    var item: LiveData<RoutineGenerator.Companion.practice> = _item
+    private val _item = MutableLiveData<Practice>()
+    var item: LiveData<Practice> = _item
 
     var _isEnd = MutableLiveData(false)
     var isEnd : LiveData<Boolean> = _isEnd
@@ -53,7 +56,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     fun next(){
         PracticeCycler.nextScale()
-        _item.value = PracticeCycler.currentScale
+        PracticeCycler.currentScale.let {  _item.value =  PracticeCycler.currentScale!! }
 
         viewModelScope.launch{
             val key = item.value!!.root+item.value!!.scale+item.value!!.tech
@@ -67,8 +70,8 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun getProgress(oLength : Int) {
-        val cSize = PracticeCycler.practiceArray.size
-        _progress.value = oLength -  cSize
+        val cSize =  PracticeCycler.practiceArray.size
+        _progress.value = oLength - cSize as Int
         _pMax.value = oLength
 
         if(cSize == 0){
@@ -80,12 +83,12 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     private fun getCount(){
         when(item.value!!.tech){
-            RoutineInputs.Companion.TechTypes.Scale -> scaleCount += 1
-            RoutineInputs.Companion.TechTypes.Arp -> arpCount += 1
-            RoutineInputs.Companion.TechTypes.Solid -> solidCount += 1
-            RoutineInputs.Companion.TechTypes.Broken -> brokenCount += 1
-            RoutineInputs.Companion.TechTypes.Oct -> octCount += 1
-            RoutineInputs.Companion.TechTypes.CM -> cmCount += 1
+            TechTypes.Scale -> scaleCount += 1
+            TechTypes.Arp -> arpCount += 1
+            TechTypes.Solid -> solidCount += 1
+            TechTypes.Broken -> brokenCount += 1
+            TechTypes.Oct -> octCount += 1
+            TechTypes.CM -> cmCount += 1
         }
     }
 
@@ -122,7 +125,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
-    fun updatedSavedProgress(key : Long, title : String, routine: Array<RoutineGenerator.Companion.practice>,inProgress: Array<RoutineGenerator.Companion.practice>, total : Int,date : Date ) {
+    fun updatedSavedProgress(key : Long, title : String, routine: Array<PracticeSave>, inProgress: Array<PracticeSave>, total : Int, date : Date ) {
         viewModelScope.launch {
             val num = progress.value
             if(num != null){

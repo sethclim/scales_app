@@ -1,16 +1,15 @@
 package sheridan.climense.scales_app2.ui.routine
 
 import android.app.Application
-import android.util.Log
-import androidx.databinding.BaseObservable
 import androidx.lifecycle.*
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.PracticeDao
 import sheridan.climense.scales_app2.database.PracticeDatabase
 import sheridan.climense.scales_app2.database.SavedRoutine
-import sheridan.climense.scales_app2.model.RoutineGenerator
-import sheridan.climense.scales_app2.model.RoutineInputs
+import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
+import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.scales_app2.models.PracticeSave
+import sheridan.climense.scales_app2.models.RoutineInputs
 import java.util.*
 
 class RoutineCreatorViewModel(application: Application) : AndroidViewModel(application) {
@@ -18,16 +17,17 @@ class RoutineCreatorViewModel(application: Application) : AndroidViewModel(appli
     private val _mutableInputs : MutableLiveData<RoutineInputs> = MutableLiveData<RoutineInputs>()
     var mutableInputs : LiveData<RoutineInputs> = _mutableInputs
 
-    var routine : Array<RoutineGenerator.Companion.practice> = arrayOf()
+    var routine : Array<PracticeSave> = arrayOf()
 
     private val practiceDao: PracticeDao =
             PracticeDatabase.getInstance(application).practiceDao
 
     fun generateRoutine() : Boolean{
         viewModelScope.launch {
-            RoutineGenerator.favourites =  practiceDao.getNLFavourites()
+            val pr = practiceDao.getNLFavourites()
+            //RoutineGenerator.favourites =  Practice(pr.root, pr.scale, pr.tech)
         }
-        routine =  RoutineGenerator.generate()
+       // routine =  RoutineGenerator.generate()
 
         return routine.isNotEmpty()
     }

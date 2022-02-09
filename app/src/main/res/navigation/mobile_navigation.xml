@@ -29,7 +29,7 @@
             app:destination="@id/practiceHistoryPage" />
         <argument
             android:name="practicePackage"
-            app:argType="sheridan.climense.scales_app2.model.PracticePackage" />
+            app:argType="sheridan.climense.scales_app2.models.PracticePackage" />
     </fragment>
     <fragment
         android:id="@+id/practiceHistoryPage"

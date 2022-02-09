@@ -2,9 +2,9 @@ package sheridan.climense.scales_app2.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import sheridan.climense.scales_app2.model.RoutineGenerator
+import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.scales_app2.models.PracticeSave
 import java.time.LocalDate
-import java.util.*
 
 @Dao
 interface PracticeDao {
@@ -64,10 +64,10 @@ interface PracticeDao {
     suspend fun deleteSavedRoutine(ID : Long)
 
     @Query("SELECT Root, Scale, Tech, Fav, `Key` FROM  Favourites")
-    fun getFavourites() : LiveData<Array<RoutineGenerator.Companion.practice>>
+    fun getFavourites() : LiveData<Array<PracticeSave>>
 
     @Query("SELECT Root, Scale, Tech, Fav, `Key` FROM  Favourites")
-    suspend fun getNLFavourites() : Array<RoutineGenerator.Companion.practice>
+    suspend fun getNLFavourites() : Array<PracticeSave>
 
 
 }

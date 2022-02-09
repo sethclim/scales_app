@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -24,7 +23,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
-import sheridan.climense.scales_app2.model.PracticeCycler
+import sheridan.climense.kmmsharedmodule.domain.PracticeCycler
+import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.scales_app2.models.PracticeSave
 
 class PracticePage : Fragment() {
 
@@ -89,7 +90,7 @@ class PracticePage : Fragment() {
         binding.practiceViewModel = viewModel
         binding.lifecycleOwner = this
 
-        val practiceArray = safeArgs.practicePackage.practice_array
+        val practiceArray = safeArgs.practicePackage.practice_array as Array<Practice>
 
 
         PracticeCycler.practiceArray = practiceArray.toMutableList()
@@ -206,7 +207,7 @@ class PracticePage : Fragment() {
                     safeArgs.practicePackage.key,
                     safeArgs.practicePackage.routine_name,
                     safeArgs.practicePackage.practice_array,
-                    PracticeCycler.practiceArray.toTypedArray(),
+                    PracticeCycler.practiceArray.toTypedArray() as Array<PracticeSave>,
                     safeArgs.practicePackage.total,
                     safeArgs.practicePackage.date
             )

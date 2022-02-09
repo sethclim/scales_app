@@ -1,11 +1,12 @@
-package sheridan.climense.scales_app2.model
+package sheridan.climense.scales_app2.models
 
+import sheridan.climense.kmmsharedmodule.model.Practice
 import java.io.Serializable
 import java.util.*
 
 data class PracticePackage (
         val routine_name : String,
-        val practice_array : Array<RoutineGenerator.Companion.practice>,
+        val practice_array : Array<PracticeSave>,
         val savedPractice : Boolean,
         val key : Long = -1,
         val total : Int = 0,

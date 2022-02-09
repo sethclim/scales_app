@@ -9,9 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import sheridan.climense.scales_app2.databinding.DialogRootoptionsBinding
-import sheridan.climense.scales_app2.model.RoutineInputs
+import sheridan.climense.scales_app2.models.RoutineInputs
 import sheridan.climense.scales_app2.ui.routine.RoutineCreatorViewModel
-import java.lang.IllegalStateException
 
 class RootOptionDialog : DialogFragment() {
 

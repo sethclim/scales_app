@@ -8,7 +8,9 @@ import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.PracticeDao
 import sheridan.climense.scales_app2.database.PracticeDatabase
 import sheridan.climense.scales_app2.database.SavedRoutine
-import sheridan.climense.scales_app2.model.RoutineGenerator
+import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
+import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.scales_app2.models.PracticeSave
 
 class SavedRoutinesViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -16,7 +18,7 @@ class SavedRoutinesViewModel(application: Application) : AndroidViewModel(applic
 
     val savedRoutines : LiveData<List<SavedRoutine>> = practiceDao.getSaved()
 
-    val favourites : LiveData<Array<RoutineGenerator.Companion.practice>> = practiceDao.getFavourites()
+    val favourites : LiveData<Array<PracticeSave>> = practiceDao.getFavourites()
 
     fun removeSavedroutine(key : Long){
         viewModelScope.launch{

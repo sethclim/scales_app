@@ -3,7 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout-land/linegraph.xml" value="0.294973544973545" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout-land/practice_page_fragment.xml" value="0.294973544973545" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout-land/routine_creator_fragment.xml" value="0.2566137566137566" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout-land/settings_fragment.xml" value="0.294973544973545" />
         <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/dialog_rootoptions.xml" value="0.21197916666666666" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/dialogconfirmation.xml" value="0.259963768115942" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/dialogsave.xml" value="0.259963768115942" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/linegraph.xml" value="0.259963768115942" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/practice_page_fragment.xml" value="0.2980072463768116" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/routine_creator_fragment.xml" value="0.259963768115942" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/savedroutineitem.xml" value="0.259963768115942" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/savedroutinespage.xml" value="0.259963768115942" />
+        <entry key="../../../coding/Android/ScalesApp2/app/src/main/res/layout/settings_fragment.xml" value="0.259963768115942" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.2462962962962963" />
         <entry key="app/src/main/res/layout-land/practice_page_fragment.xml" value="0.28125" />
         <entry key="app/src/main/res/layout-land/routine_creator_fragment.xml" value="0.28125" />
