@@ -1,7 +1,27 @@
-CREATE TABLE practice (
-  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  first_name TEXT NOT NULL
+CREATE TABLE PracticeRecord (
+  date INTEGER NOT NULL PRIMARY KEY UNIQUE,
+  scales INTEGER NOT NULL,
+  arps INTEGER NOT NULL,
+  oct INTEGER NOT NULL,
+  solid INTEGER NOT NULL,
+  broken INTEGER NOT NULL,
+  conMotion INTEGER NOT NULL
 );
 
-selectAllPractice:
-SELECT * FROM practice;
+insertPracticeSession:
+INSERT INTO PracticeRecord(date, scales, arps, oct, solid, broken, conMotion) VALUES (?,?,?,?,?,?,?);
+
+updatePracticeSession:
+UPDATE PracticeRecord SET scales = :scales, arps = :arps, oct = :oct, solid = :solid, broken = :broken, conMotion = :conMotion WHERE date = :date;
+
+getAllPracticeSessions:
+SELECT * FROM PracticeRecord;
+
+-- getPracticeSessionsByDate:
+-- SELECT * FROM PracticeRecord WHERE date = date;
+
+getPracticeSeesionRange:
+SELECT * FROM PracticeRecord WHERE date BETWEEN :startDate AND :endDate ORDER BY date ASC;
+
+deletePracticeSession:
+DELETE FROM PracticeRecord WHERE date = :date;

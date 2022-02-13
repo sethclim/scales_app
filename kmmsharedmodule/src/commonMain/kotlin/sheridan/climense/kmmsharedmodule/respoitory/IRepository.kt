@@ -1,6 +1,7 @@
 package sheridan.climense.kmmsharedmodule.respoitory
 
 import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.kmmsharedmodule.model.PracticeSession
 
 /**
  *scales_app2
@@ -9,10 +10,9 @@ studentID:991599894
  *on2022-02-12
  */
 interface IRepository {
-    fun getPractice(): List<Practice>
-//    fun getCharactersFavorites(): Flow<List<Character>>
-//    fun getCharacter(id: Int): Flow<Character>
-//    fun addCharacterToFavorites(character: Character): Flow<Unit>
-//    fun removeCharacterFromFavorite(idCharacter: Int): Flow<Unit>
-//    fun isCharacterFavorite(idCharacter: Int): Flow<Boolean>
+    fun insertPracticeSession(practiceSession: PracticeSession)
+    fun updatePracticeSession(practiceSession: PracticeSession)
+    fun getAllPracticeSessions(): List<PracticeSession>
+    fun getPracticeSessionRange(startDate : Long, endDate : Long): List<PracticeSession>
+    fun deletePracticeSession(date: Long)
 }

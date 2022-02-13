@@ -19,6 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 import sheridan.climense.kmmsharedmodule.Greeting
 import sheridan.climense.kmmsharedmodule.database.DatabaseDriverFactory
 import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.kmmsharedmodule.model.PracticeSession
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,9 +66,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val data : List<Practice> = Greeting().getData(DatabaseDriverFactory(this))
+        Greeting().insert(DatabaseDriverFactory(this), PracticeSession(2,10,2,2,2,2,10))
 
-        Log.d("TEst Data", data[0].root)
+        val data : List<PracticeSession> = Greeting().getData(DatabaseDriverFactory(this))
+
+        Log.d("TEst Data", data[0].scale.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
