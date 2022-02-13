@@ -3,6 +3,8 @@ package sheridan.climense.scales_app2
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Debug
+import android.util.Log
 
 import android.view.Menu
 import android.view.MenuItem
@@ -14,6 +16,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import sheridan.climense.kmmsharedmodule.Greeting
+import sheridan.climense.kmmsharedmodule.database.DatabaseDriverFactory
+import sheridan.climense.kmmsharedmodule.model.Practice
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,6 +64,10 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        val data : List<Practice> = Greeting().getData(DatabaseDriverFactory(this))
+
+        Log.d("TEst Data", data[0].root)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -1,0 +1,7 @@
+CREATE TABLE practice (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  first_name TEXT NOT NULL
+);
+
+selectAllPractice:
+SELECT * FROM practice;

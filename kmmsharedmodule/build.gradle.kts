@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 
@@ -22,7 +23,7 @@ kotlin {
     sourceSets {
         val commonMain by getting{
             dependencies{
-
+                implementation("com.squareup.sqldelight:runtime:1.5.3")
             }
         }
         val commonTest by getting {
@@ -33,7 +34,7 @@ kotlin {
         }
         val androidMain by getting{
             dependencies{
-
+                implementation("com.squareup.sqldelight:android-driver:1.5.3")
             }
         }
         val androidTest by getting {
@@ -50,6 +51,10 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             //iosSimulatorArm64Main.dependsOn(this)
+            dependencies{
+                implementation("com.squareup.sqldelight:native-driver:1.5.3")
+            }
+
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -63,6 +68,7 @@ kotlin {
     }
 }
 
+
 android {
     compileSdk = 31
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -72,3 +78,8 @@ android {
     }
 }
 
+sqldelight {
+    database("AppDatabase"){ // This will be the name of the generated database class.
+        packageName = "sheridan.climense.kmmsharedmodule.database"
+    }
+}
