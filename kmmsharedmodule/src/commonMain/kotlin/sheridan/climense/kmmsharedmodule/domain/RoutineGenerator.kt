@@ -20,7 +20,7 @@ class RoutineGenerator {
                         if(scale.isUsed  && scale.isFour){
                             for(tech in techs){
                                 if(tech.isUsed){
-                                    val temp = Practice(root.scale, scale.scale, tech.scale)
+                                    val temp = Practice(0L,root.scale, scale.scale, tech.scale)
                                     routine.add(temp)
                                 }
 
@@ -29,7 +29,7 @@ class RoutineGenerator {
                         else if(scale.isUsed ){
                             for(tech in techs){
                                 if(tech.isUsed){
-                                    val temp = Practice(root.scale, scale.scale, tech.scale)
+                                    val temp = Practice(0L, root.scale, scale.scale, tech.scale)
                                     routine.add(temp)
                                 }
                             }

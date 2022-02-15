@@ -1,3 +1,5 @@
+import sheridan.climense.kmmsharedmodule.model.TechTypes;
+
 CREATE TABLE PracticeRecord (
   date INTEGER NOT NULL PRIMARY KEY UNIQUE,
   scales INTEGER NOT NULL,
@@ -8,6 +10,28 @@ CREATE TABLE PracticeRecord (
   conMotion INTEGER NOT NULL
 );
 
+CREATE TABLE Favourites (
+  key INTEGER NOT NULL PRIMARY KEY UNIQUE,
+  root TEXT NOT NULL,
+  scale TEXT NOT NULL,
+  tech TEXT AS TechTypes NOT NULL
+);
+
+CREATE TABLE Routines(
+    id INTEGER NOT NULL PRIMARY KEY UNIQUE,
+    title TEXT NOT NULL,
+    date INTEGER NOT NULL,
+    FOREIGN KEY(id) REFERENCES InProgress(id)
+);
+
+CREATE TABLE InProgress(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    practice TEXT NOT NULL
+);
+
+----------------------------------
+--|| Practice Session Queries ||--
+----------------------------------
 insertPracticeSession:
 INSERT INTO PracticeRecord(date, scales, arps, oct, solid, broken, conMotion) VALUES (?,?,?,?,?,?,?);
 
@@ -25,3 +49,28 @@ SELECT * FROM PracticeRecord WHERE date BETWEEN :startDate AND :endDate ORDER BY
 
 deletePracticeSession:
 DELETE FROM PracticeRecord WHERE date = :date;
+
+
+----------------------------------
+--|| Favourites Queries ||--
+----------------------------------
+insertFavourite:
+INSERT INTO Favourites(key, root, scale, tech) VALUES (?,?,?,?);
+
+getAllFavourites:
+SELECT * FROM Favourites;
+
+deleteFavourites:
+DELETE FROM Favourites WHERE key = :key;
+
+----------------------------------
+--|| Favourites Queries ||--
+----------------------------------
+insertRoutine:
+INSERT INTO Routines(id, title, date) VALUES (?,?,?);
+
+getAllRoutines:
+SELECT * FROM Routines;
+
+deleteRoutine:
+DELETE FROM Routines WHERE id = :id;
