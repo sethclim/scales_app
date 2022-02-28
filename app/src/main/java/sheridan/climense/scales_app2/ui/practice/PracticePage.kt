@@ -29,7 +29,7 @@ import sheridan.climense.scales_app2.models.PracticeSave
 
 class PracticePage : Fragment() {
 
-    private val safeArgs: PracticePageArgs by navArgs()
+    //private val safeArgs: PracticePageArgs by navArgs()
     private val viewModel: PracticePageViewModel by viewModels()
     private lateinit var binding : PracticePageFragmentBinding
 
@@ -39,7 +39,7 @@ class PracticePage : Fragment() {
     ): View {
         binding = PracticePageFragmentBinding.inflate(inflater, container, false)
 
-        val totalLength = safeArgs.practicePackage.total
+        //val totalLength = safeArgs.practicePackage.total
         binding.composeView?.setContent {
              val Purple = Color(0xFF6805F2)
              val white = Color(0xffffffff)
@@ -68,7 +68,8 @@ class PracticePage : Fragment() {
                                 backgroundColor = MaterialTheme.colors.primary,
                                 contentColor = MaterialTheme.colors.secondary
                             ),
-                            onClick = { next(totalLength) },
+                            //was total length at 10
+                            onClick = { next(10) },
                             elevation = ButtonDefaults.elevation(
                                 defaultElevation = 6.dp,
                                 pressedElevation = 8.dp,
@@ -90,10 +91,10 @@ class PracticePage : Fragment() {
         binding.practiceViewModel = viewModel
         binding.lifecycleOwner = this
 
-        val practiceArray = safeArgs.practicePackage.practice_array as Array<Practice>
+        //val practiceArray = safeArgs.practicePackage.practice_array as Array<Practice>
 
 
-        PracticeCycler.practiceArray = practiceArray.toMutableList()
+        //PracticeCycler.practiceArray = practiceArray.toMutableList()
 
         viewModel._msg.value = "Click Next to Begin"
 
@@ -202,16 +203,16 @@ class PracticePage : Fragment() {
         super.onPause()
         viewModel.saveRecord()
 
-        if(safeArgs.practicePackage.savedPractice){
-            viewModel.updatedSavedProgress(
-                    safeArgs.practicePackage.key,
-                    safeArgs.practicePackage.routine_name,
-                    safeArgs.practicePackage.practice_array,
-                    PracticeCycler.practiceArray.toTypedArray() as Array<PracticeSave>,
-                    safeArgs.practicePackage.total,
-                    safeArgs.practicePackage.date
-            )
-        }
+//        if(safeArgs.practicePackage.savedPractice){
+//            viewModel.updatedSavedProgress(
+//                    safeArgs.practicePackage.key,
+//                    safeArgs.practicePackage.routine_name,
+//                    safeArgs.practicePackage.practice_array,
+//                    PracticeCycler.practiceArray.toTypedArray() as Array<PracticeSave>,
+//                    safeArgs.practicePackage.total,
+//                    safeArgs.practicePackage.date
+//            )
+//        }
     }
 
     override fun onResume() {

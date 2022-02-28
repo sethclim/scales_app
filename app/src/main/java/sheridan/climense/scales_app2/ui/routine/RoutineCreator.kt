@@ -18,10 +18,10 @@ import sheridan.climense.scales_app2.ui.dialog.SavedDialog
 
 class RoutineCreator : Fragment() {
 
-    private val viewModel: RoutineCreatorViewModel by viewModels()
+    //private val viewModel: RoutineCreatorViewModel by viewModels()
     private lateinit var binding : RoutineCreatorFragmentBinding
 
-    //private val routineCreaterVM: sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel by inject()
+    private val routineCreaterVM: sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,20 +39,20 @@ class RoutineCreator : Fragment() {
                 //RoutineGenerator.roots = RoutineInputs.RootOptions
             }
         }
-        binding.routineViewModel = viewModel
+        //binding.routineViewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
     }
 
     private fun practice(){
         getInputs()
-        viewModel.generateRoutine()
-        val routine =  viewModel.routine
-        val practicepackage = PracticePackage("MyPractice",routine, false, total=routine.size)
-        if(routine.size != 0){
-            val action = RoutineCreatorDirections.actionRoutineToPractice(practicepackage)
+        val success = routineCreaterVM.generateRoutine(RoutineInputs.RootOptions, RoutineInputs.scaleOptions, RoutineInputs.techOptions)
+        //val routine =  routineCreaterVM.routine
+        //val practicepackage = PracticePackage("MyPractice",routine, false, total=routine.size)
+        if(success){
+            //val action = RoutineCreatorDirections.actionRoutineToPractice(practicepackage)
             RoutineGenerator.routine.clear()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_routine_to_practice)
             binding.practiceErrorTv.text = ""
         }
         else{
@@ -86,7 +86,7 @@ class RoutineCreator : Fragment() {
 
     private fun openSaveDialog() {
         getInputs()
-        val proceed = viewModel.generateRoutine()
+        val proceed = routineCreaterVM.generateRoutine(RoutineInputs.RootOptions, RoutineInputs.scaleOptions, RoutineInputs.techOptions)
         if(proceed){
             val SavedDialog = SavedDialog()
             SavedDialog.show(childFragmentManager, "dialogTerm" )

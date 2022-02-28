@@ -1,6 +1,7 @@
 package sheridan.climense.kmmsharedmodule.di
 
 import org.koin.core.context.startKoin
+import org.koin.core.qualifier.named
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import sheridan.climense.kmmsharedmodule.database.CacheDataImp
@@ -18,6 +19,6 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     }
 
 val repositoryModule = module {
-    single<IRepository> { RepositoryImp(get()) }
+    single<IRepository>(named("repo")) { RepositoryImp(get()) }
     single<ICacheData> { CacheDataImp(get()) }
 }

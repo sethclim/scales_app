@@ -40,10 +40,10 @@ class SavedRoutinesPage : Fragment() {
                 viewModel.favourites.observe(viewLifecycleOwner){
                     if(!it.isNullOrEmpty()){
                         binding.beginErrorTv.text = ""
-                        val action = SavedRoutinesPageDirections.savedRoutineToPractice(
-                            PracticePackage("favourites", it, true, total = it.size )
-                        )
-                        findNavController().navigate(action)   
+//                        val action = SavedRoutinesPageDirections.savedRoutineToPractice(
+//                            PracticePackage("favourites", it, true, total = it.size )
+//                        )
+//                        findNavController().navigate(action)
                     }
                     else{
                         binding.beginErrorTv.text = getString(R.string.no_favs_error)

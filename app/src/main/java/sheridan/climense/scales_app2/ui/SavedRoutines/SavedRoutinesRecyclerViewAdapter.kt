@@ -54,16 +54,16 @@ class SavedRoutinesRecyclerViewAdapter(private val viewModel: SavedRoutinesViewM
                     }else{
                         routineToSend = routine.routine
                     }
-                    val action = SavedRoutinesPageDirections.savedRoutineToPractice(
-                        PracticePackage(
-                            routine.title,
-                            routineToSend,
-                            true,
-                            routine.key,
-                            routine.total,
-                            routine.date )
-                    )
-                    it.findNavController().navigate(action)
+//                    val action = SavedRoutinesPageDirections.savedRoutineToPractice(
+//                        PracticePackage(
+//                            routine.title,
+//                            routineToSend,
+//                            true,
+//                            routine.key,
+//                            routine.total,
+//                            routine.date )
+//                    )
+//                    it.findNavController().navigate(action)
             }
         }
 

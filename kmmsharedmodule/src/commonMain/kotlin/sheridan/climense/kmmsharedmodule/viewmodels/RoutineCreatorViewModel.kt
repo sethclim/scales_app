@@ -1,11 +1,16 @@
 package sheridan.climense.kmmsharedmodule.viewmodels
+import org.koin.core.component.KoinComponent
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.kmmsharedmodule.model.*
 import sheridan.climense.kmmsharedmodule.respoitory.RepositoryImp
 import java.util.*
+import org.koin.core.component.inject
+import org.koin.core.qualifier.named
+import sheridan.climense.kmmsharedmodule.respoitory.IRepository
 
+class RoutineCreatorViewModel(): KoinComponent {
 
-class RoutineCreatorViewModel(private val repository: RepositoryImp) {
+    private val repository: IRepository by inject(named("repo"))
 
     var routine : Array<Practice> = arrayOf()
 
@@ -31,5 +36,4 @@ class RoutineCreatorViewModel(private val repository: RepositoryImp) {
             //val savedRoutine = Routine(0L, name, routine,null, 0,routine.size, date)
             //repository.insertSavedRoutine(savedRoutine)
     }
-
 }

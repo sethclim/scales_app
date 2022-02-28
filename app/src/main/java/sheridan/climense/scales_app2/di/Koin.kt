@@ -10,5 +10,5 @@ studentID:991599894
  *on2022-02-28
  */
 val viewModelModule = module {
-    single { RoutineCreatorViewModel(get()) }
+    single { RoutineCreatorViewModel() }
 }
