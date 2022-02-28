@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import org.koin.android.ext.android.inject
 import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.RoutineCreatorFragmentBinding
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
@@ -19,6 +20,8 @@ class RoutineCreator : Fragment() {
 
     private val viewModel: RoutineCreatorViewModel by viewModels()
     private lateinit var binding : RoutineCreatorFragmentBinding
+
+    //private val routineCreaterVM: sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

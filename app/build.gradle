@@ -96,7 +96,7 @@ dependencies {
 
     //Shared KMM Module
     implementation project(':kmmsharedmodule')
-
-
+    //Koin
+    implementation "io.insert-koin:koin-android:3.1.5"
 
 }

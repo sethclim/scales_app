@@ -4,9 +4,6 @@ plugins {
     id("com.squareup.sqldelight")
 }
 
-
-
-
 kotlin {
     android()
     
@@ -24,6 +21,8 @@ kotlin {
         val commonMain by getting{
             dependencies{
                 implementation("com.squareup.sqldelight:runtime:1.5.3")
+                // Koin for Kotlin apps
+                implementation( "io.insert-koin:koin-core:3.1.5")
             }
         }
         val commonTest by getting {

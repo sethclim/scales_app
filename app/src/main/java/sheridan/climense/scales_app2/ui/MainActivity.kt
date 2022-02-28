@@ -1,9 +1,8 @@
-package sheridan.climense.scales_app2
+package sheridan.climense.scales_app2.ui
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Debug
 import android.util.Log
 
 import android.view.Menu
@@ -16,12 +15,16 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import org.koin.android.ext.android.inject
+
 import sheridan.climense.kmmsharedmodule.Greeting
 import sheridan.climense.kmmsharedmodule.database.DatabaseDriverFactory
-import sheridan.climense.kmmsharedmodule.model.Practice
 import sheridan.climense.kmmsharedmodule.model.PracticeSession
+import sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel
+import sheridan.climense.scales_app2.R
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,12 +68,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
-        Greeting().insert(DatabaseDriverFactory(this), PracticeSession(2,10,2,2,2,2,10))
-
-        val data : List<PracticeSession> = Greeting().getData(DatabaseDriverFactory(this))
-
-        Log.d("TEst Data", data[0].scale.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -6,10 +6,8 @@ import sheridan.climense.kmmsharedmodule.model.*
 class RoutineGenerator {
     companion object{
 
-
         var favourites : Array<Practice> = arrayOf()
         var routine : MutableList<Practice> = mutableListOf()
-
 
         fun generate(roots : Array<Roots>, scales : Array<Scale>, techs : Array<Tech>) : Array<Practice>{
 
