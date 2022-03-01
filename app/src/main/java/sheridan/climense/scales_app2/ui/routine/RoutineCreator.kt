@@ -5,23 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import org.koin.android.ext.android.inject
 import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.RoutineCreatorFragmentBinding
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
+import sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel
 import sheridan.climense.scales_app2.models.RoutineInputs
-import sheridan.climense.scales_app2.models.PracticePackage
 import sheridan.climense.scales_app2.ui.dialog.RootOptionDialog
 import sheridan.climense.scales_app2.ui.dialog.SavedDialog
 
 class RoutineCreator : Fragment() {
 
-    //private val viewModel: RoutineCreatorViewModel by viewModels()
+
     private lateinit var binding : RoutineCreatorFragmentBinding
 
-    private val routineCreaterVM: sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel by inject()
+    private val routineCreatorVM: RoutineCreatorViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,12 +45,12 @@ class RoutineCreator : Fragment() {
 
     private fun practice(){
         getInputs()
-        val success = routineCreaterVM.generateRoutine(RoutineInputs.RootOptions, RoutineInputs.scaleOptions, RoutineInputs.techOptions)
+        val success = routineCreatorVM.generateRoutine(RoutineInputs.RootOptions, RoutineInputs.scaleOptions, RoutineInputs.techOptions)
         //val routine =  routineCreaterVM.routine
         //val practicepackage = PracticePackage("MyPractice",routine, false, total=routine.size)
         if(success){
             //val action = RoutineCreatorDirections.actionRoutineToPractice(practicepackage)
-            RoutineGenerator.routine.clear()
+            //RoutineGenerator.routine.clear()
             findNavController().navigate(R.id.action_routine_to_practice)
             binding.practiceErrorTv.text = ""
         }
@@ -86,7 +85,7 @@ class RoutineCreator : Fragment() {
 
     private fun openSaveDialog() {
         getInputs()
-        val proceed = routineCreaterVM.generateRoutine(RoutineInputs.RootOptions, RoutineInputs.scaleOptions, RoutineInputs.techOptions)
+        val proceed = routineCreatorVM.generateRoutine(RoutineInputs.RootOptions, RoutineInputs.scaleOptions, RoutineInputs.techOptions)
         if(proceed){
             val SavedDialog = SavedDialog()
             SavedDialog.show(childFragmentManager, "dialogTerm" )

@@ -5,6 +5,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import sheridan.climense.kmmsharedmodule.database.CacheDataImp
+import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.kmmsharedmodule.respoitory.ICacheData
 import sheridan.climense.kmmsharedmodule.respoitory.IRepository
 import sheridan.climense.kmmsharedmodule.respoitory.RepositoryImp
@@ -14,6 +15,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
         appDeclaration()
         modules(
             repositoryModule,
+            domainModule,
             platformModule()
         )
     }
@@ -21,4 +23,8 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
 val repositoryModule = module {
     single<IRepository>(named("repo")) { RepositoryImp(get()) }
     single<ICacheData> { CacheDataImp(get()) }
+}
+
+val domainModule = module {
+    single(named("generator")) { RoutineGenerator() }
 }

@@ -1,6 +1,7 @@
 package sheridan.climense.scales_app2.di
 
 import org.koin.dsl.module
+import sheridan.climense.kmmsharedmodule.viewmodels.PracticeViewModel
 import sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel
 
 /**
@@ -11,4 +12,5 @@ studentID:991599894
  */
 val viewModelModule = module {
     single { RoutineCreatorViewModel() }
+    single { PracticeViewModel() }
 }

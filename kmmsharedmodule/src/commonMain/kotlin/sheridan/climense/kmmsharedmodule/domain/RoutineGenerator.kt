@@ -4,8 +4,6 @@ package sheridan.climense.kmmsharedmodule.domain
 import sheridan.climense.kmmsharedmodule.model.*
 
 class RoutineGenerator {
-    companion object{
-
         var favourites : Array<Practice> = arrayOf()
         var routine : MutableList<Practice> = mutableListOf()
 
@@ -37,5 +35,4 @@ class RoutineGenerator {
             }
             return routine.toTypedArray()
         }
-    }
 }

@@ -8,15 +8,16 @@ import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import sheridan.climense.kmmsharedmodule.respoitory.IRepository
 
-class RoutineCreatorViewModel(): KoinComponent {
+class RoutineCreatorViewModel: KoinComponent {
 
     private val repository: IRepository by inject(named("repo"))
+    private val generator: RoutineGenerator by inject(named("generator"))
 
     var routine : Array<Practice> = arrayOf()
 
     fun generateRoutine(roots : Array<Roots>, scales : Array<Scale>, techs : Array<Tech>) : Boolean{
 
-        routine =  RoutineGenerator.generate(roots, scales, techs)
+        routine =  generator.generate(roots, scales, techs)
 
         return routine.isNotEmpty()
     }

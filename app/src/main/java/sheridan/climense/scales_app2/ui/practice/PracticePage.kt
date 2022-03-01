@@ -2,6 +2,7 @@ package sheridan.climense.scales_app2.ui.practice
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
+import org.koin.android.ext.android.inject
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
-import sheridan.climense.kmmsharedmodule.domain.PracticeCycler
-import sheridan.climense.kmmsharedmodule.model.Practice
-import sheridan.climense.scales_app2.models.PracticeSave
+import sheridan.climense.kmmsharedmodule.viewmodels.PracticeViewModel
 
 class PracticePage : Fragment() {
 
@@ -33,31 +32,38 @@ class PracticePage : Fragment() {
     private val viewModel: PracticePageViewModel by viewModels()
     private lateinit var binding : PracticePageFragmentBinding
 
+    private val practiceVM: PracticeViewModel by inject()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = PracticePageFragmentBinding.inflate(inflater, container, false)
 
-        //val totalLength = safeArgs.practicePackage.total
-        binding.composeView?.setContent {
-             val Purple = Color(0xFF6805F2)
-             val white = Color(0xffffffff)
-             val Blue = Color(0xff0F47F2)
+        // Important to call first
+        val len = practiceVM.setPracticeArray()
 
-             val DarkColors = darkColors(
-                primary = Purple,
+        Log.d("Len", len.toString())
+
+        binding.composeView?.setContent {
+             val purple = Color(0xFF6805F2)
+             val white = Color(0xffffffff)
+             val blue = Color(0xff0F47F2)
+
+             val darkColors = darkColors(
+                primary = purple,
                 secondary = white,
             )
-             val LightColors = lightColors(
-                primary = Blue,
+             val lightColors = lightColors(
+                primary = blue,
                 secondary = white,
             )
             @Composable
             fun myButton(
                 darkTheme: Boolean = isSystemInDarkTheme(),
             ){
-                MaterialTheme(colors = if (darkTheme) DarkColors else LightColors) {
+                MaterialTheme(colors = if (darkTheme) darkColors else lightColors) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
@@ -68,8 +74,7 @@ class PracticePage : Fragment() {
                                 backgroundColor = MaterialTheme.colors.primary,
                                 contentColor = MaterialTheme.colors.secondary
                             ),
-                            //was total length at 10
-                            onClick = { next(10) },
+                            onClick = { next() },
                             elevation = ButtonDefaults.elevation(
                                 defaultElevation = 6.dp,
                                 pressedElevation = 8.dp,
@@ -91,14 +96,14 @@ class PracticePage : Fragment() {
         binding.practiceViewModel = viewModel
         binding.lifecycleOwner = this
 
-        //val practiceArray = safeArgs.practicePackage.practice_array as Array<Practice>
+//        val practiceArray =  practiceVM.practiceArray
 
 
         //PracticeCycler.practiceArray = practiceArray.toMutableList()
 
         viewModel._msg.value = "Click Next to Begin"
 
-        viewModel.isFav.observe(viewLifecycleOwner, {
+        viewModel.isFav.observe(viewLifecycleOwner) {
 
             binding.starBtn?.setContent {
 
@@ -150,7 +155,7 @@ class PracticePage : Fragment() {
                 )
 
                 @Composable
-                fun star(darkTheme: Boolean = isSystemInDarkTheme(), toggled: Boolean ){
+                fun star(darkTheme: Boolean = isSystemInDarkTheme(), toggled: Boolean) {
                     MaterialTheme(colors = if (darkTheme) DarkColors else LightColors) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
@@ -159,7 +164,7 @@ class PracticePage : Fragment() {
                         ) {
                             Button(
                                 colors = ButtonDefaults.buttonColors(
-                                    backgroundColor = if(!toggled) MaterialTheme.colors.secondary else MaterialTheme.colors.primary,
+                                    backgroundColor = if (!toggled) MaterialTheme.colors.secondary else MaterialTheme.colors.primary,
                                     contentColor = MaterialTheme.colors.secondary
                                 ),
                                 onClick = { viewModel.handleFav() },
@@ -182,7 +187,7 @@ class PracticePage : Fragment() {
                 star(toggled = it)
             }
 
-        })
+        }
 
         viewModel.isEnd.observe(viewLifecycleOwner, {
             if(it == false){binding.starBtn?.visibility = View.GONE}else{binding.starBtn?.visibility = View.VISIBLE}
@@ -192,16 +197,17 @@ class PracticePage : Fragment() {
     }
 
 
-    private fun next(size : Int){
-        viewModel.next()
-        viewModel.getProgress(size)
-        if(viewModel.done){binding.composeView?.isVisible = false}
+    private fun next(){
+        //viewModel.next()
+        practiceVM.nextScale()
+        //viewModel.getProgress(size)
+        if(practiceVM.done){binding.composeView?.isVisible = false}
 
     }
 
     override fun onPause() {
         super.onPause()
-        viewModel.saveRecord()
+        //viewModel.saveRecord()
 
 //        if(safeArgs.practicePackage.savedPractice){
 //            viewModel.updatedSavedProgress(
@@ -217,6 +223,6 @@ class PracticePage : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadRecord()
+        //viewModel.loadRecord()
     }
 }
