@@ -23,6 +23,8 @@ kotlin {
                 implementation("com.squareup.sqldelight:runtime:1.5.3")
                 // Koin for Kotlin apps
                 implementation( "io.insert-koin:koin-core:3.1.5")
+                //Coroutines
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
             }
         }
         val commonTest by getting {

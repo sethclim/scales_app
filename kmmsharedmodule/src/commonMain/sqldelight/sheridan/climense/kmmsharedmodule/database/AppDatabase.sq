@@ -64,7 +64,7 @@ deleteFavourites:
 DELETE FROM Favourites WHERE key = :key;
 
 ----------------------------------
---|| Favourites Queries ||--
+--|| Routines Queries ||--
 ----------------------------------
 insertRoutine:
 INSERT INTO Routines(id, title, date) VALUES (?,?,?);

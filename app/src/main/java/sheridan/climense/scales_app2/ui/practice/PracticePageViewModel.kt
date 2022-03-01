@@ -112,7 +112,6 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
                 practiceDao.insertOrUpdate(PracticeRecord(scale,arp,oct,solid,broke, cm, getCurrentDateTime()))
 
             }else{
-
                 practiceDao.insertOrUpdate(PracticeRecord(scaleCount,arpCount,octCount,solidCount,brokenCount, cmCount, getCurrentDateTime()))
             }
 

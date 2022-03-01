@@ -6,6 +6,7 @@ import sheridan.climense.kmmsharedmodule.model.TechTypes
 import kotlin.random.Random
 
 
+//probably don't need anymore
 class PracticeCycler {
     companion object{
         var practiceArray : MutableList<Practice> = mutableListOf()

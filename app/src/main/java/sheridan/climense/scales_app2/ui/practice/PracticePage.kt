@@ -209,6 +209,8 @@ class PracticePage : Fragment() {
         super.onPause()
         //viewModel.saveRecord()
 
+        practiceVM.savePracticeSession()
+
 //        if(safeArgs.practicePackage.savedPractice){
 //            viewModel.updatedSavedProgress(
 //                    safeArgs.practicePackage.key,
