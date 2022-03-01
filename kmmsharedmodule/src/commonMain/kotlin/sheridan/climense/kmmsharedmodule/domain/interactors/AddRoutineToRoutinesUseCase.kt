@@ -3,6 +3,7 @@ package sheridan.climense.kmmsharedmodule.domain.interactors
 import kotlinx.coroutines.flow.Flow
 import sheridan.climense.kmmsharedmodule.domain.interactors.type.UseCaseIn
 import sheridan.climense.kmmsharedmodule.model.PracticeSession
+import sheridan.climense.kmmsharedmodule.model.Routine
 import sheridan.climense.kmmsharedmodule.respoitory.IRepository
 
 /**
@@ -13,7 +14,7 @@ studentID:991599894
  */
 
 class AddRoutineToRoutinesUseCase(private val repository : IRepository):
-//    UseCaseIn<PracticeSession> {
-//    override fun execute(param: PracticeSession): Flow<Unit> =
-//        repository.insertPracticeSession(param)
+    UseCaseIn<Routine> {
+    override fun execute(param: Routine): Flow<Unit> =
+        repository.insertRoutine(param)
 }

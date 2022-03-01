@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import org.koin.android.ext.android.inject
 import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.DialogsaveBinding
 import sheridan.climense.scales_app2.ui.routine.RoutineCreator
@@ -16,8 +17,10 @@ import sheridan.climense.scales_app2.util.DateConverters
 import java.util.*
 
 class SavedDialog : DialogFragment() {
-    private val routineCreatorViewModel: RoutineCreatorViewModel by viewModels()
+    //private val routineCreatorViewModel: RoutineCreatorViewModel by viewModels()
     private lateinit var binding: DialogsaveBinding
+
+    private val routineCreatorVM: sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
@@ -29,7 +32,9 @@ class SavedDialog : DialogFragment() {
 
             if(name.isNotEmpty()){
                 val date = getCurrentDateTime()
-                routineCreatorViewModel.saveRoutine(name.toString(),date)
+                //routineCreatorViewModel.saveRoutine(name.toString(),date)
+                //Should be date
+                routineCreatorVM.saveRoutine(name.toString(), 0L)
                 binding.saveDialogErrorTv.text = ""
                 dismiss()
             }

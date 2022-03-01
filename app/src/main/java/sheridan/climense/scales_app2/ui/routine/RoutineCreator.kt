@@ -19,7 +19,6 @@ class RoutineCreator : Fragment() {
 
 
     private lateinit var binding : RoutineCreatorFragmentBinding
-
     private val routineCreatorVM: RoutineCreatorViewModel by inject()
 
     override fun onCreateView(
@@ -87,8 +86,8 @@ class RoutineCreator : Fragment() {
         getInputs()
         val proceed = routineCreatorVM.generateRoutine(RoutineInputs.RootOptions, RoutineInputs.scaleOptions, RoutineInputs.techOptions)
         if(proceed){
-            val SavedDialog = SavedDialog()
-            SavedDialog.show(childFragmentManager, "dialogTerm" )
+            val savedDialog = SavedDialog()
+            savedDialog.show(childFragmentManager, "dialogTerm" )
             binding.saveErrorTv.text = ""
         }
         else{

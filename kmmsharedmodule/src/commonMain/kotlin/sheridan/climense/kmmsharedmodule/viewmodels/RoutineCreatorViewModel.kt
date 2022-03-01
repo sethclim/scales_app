@@ -6,12 +6,13 @@ import sheridan.climense.kmmsharedmodule.respoitory.RepositoryImp
 import java.util.*
 import org.koin.core.component.inject
 import org.koin.core.qualifier.named
+import sheridan.climense.kmmsharedmodule.domain.interactors.AddRoutineToRoutinesUseCase
 import sheridan.climense.kmmsharedmodule.respoitory.IRepository
 
 class RoutineCreatorViewModel: KoinComponent {
 
-    private val repository: IRepository by inject(named("repo"))
-    private val generator: RoutineGenerator by inject(named("generator"))
+    private val addRoutineToRoutinesUseCase: AddRoutineToRoutinesUseCase by inject()
+    private val generator: RoutineGenerator by inject()
 
     var routine : Array<Practice> = arrayOf()
 
@@ -32,9 +33,10 @@ class RoutineCreatorViewModel: KoinComponent {
 //        return routine.isNotEmpty()
 //    }
 
-    fun saveRoutine(name : String, date : Date){
+    fun saveRoutine(name : String, date : Long){
         //generateRoutine()
-            //val savedRoutine = Routine(0L, name, routine,null, 0,routine.size, date)
-            //repository.insertSavedRoutine(savedRoutine)
+        //val savedRoutine = Routine(0L, name, routine,null, 0,routine.size, date)
+        val savedRoutine = Routine(0L, name, date)
+        addRoutineToRoutinesUseCase.execute(savedRoutine)
     }
 }
