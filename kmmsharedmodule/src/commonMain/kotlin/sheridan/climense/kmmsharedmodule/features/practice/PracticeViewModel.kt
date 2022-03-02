@@ -1,12 +1,9 @@
 package sheridan.climense.kmmsharedmodule.features.practice
 
 import co.touchlab.kermit.Logger
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import sheridan.climense.kmmsharedmodule.base.mvi.BaseViewModel
 import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
@@ -15,7 +12,6 @@ import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddPracticeSessionToPracticeRecordUseCase
 import sheridan.climense.kmmsharedmodule.model.Practice
-import sheridan.climense.kmmsharedmodule.model.PracticeSession
 import kotlin.random.Random
 
 /**
@@ -30,11 +26,7 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
     private val addPracticeSessionToPracticeRecordUseCase: AddPracticeSessionToPracticeRecordUseCase by inject()
 
     var practiceArray : MutableList<Practice> = mutableListOf()
-    var currentScale : Flow<String> = flow{"hello"}
-
-    var progress : Int = 0
     private var startLength : Int? = null
-    var done = false
 
     var scaleCount = 0L
     var arpCount = 0L
@@ -46,39 +38,37 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
     init {
         practiceArray = generator.routine
         startLength = practiceArray.size
+
+        setState{copy(pMax = practiceArray.size)}
     }
 
     override fun createInitialState(): PracticeContract.State =
         PracticeContract.State(
             practice = BasicUiState.Idle,
+            progress = 0,
+            pMax = 0,
+            done = false
         )
-
 
     override fun handleEvent(event: PracticeContract.Event) {
         when (event) {
-            PracticeContract.Event.onGetScale -> nextScale()
+            PracticeContract.Event.OnGetScale -> nextScale()
         }
     }
 
-    suspend fun get() = coroutineScope  {
-        Logger.i{"MSG Running GET"}
-        currentScale.collect{value -> Logger.i{"Value $value" }}
-    }
-
-    fun nextScale(){
+    private fun nextScale(){
         if(practiceArray.size > 0)
         {
             val index = Random.nextInt(0, practiceArray.size)
             val item = practiceArray[index]
             practiceArray.removeAt(index)
 
-            Logger.i { "item$item" }
+            setState{copy(practice = BasicUiState.Success(item))}
+            setState{copy(progress = startLength!! - practiceArray.size)}
 
-            setState{copy(practice = BasicUiState.Success(item.root))}
-//
-//            progress = startLength!! - practiceArray.size
-//
-//            if(practiceArray.size == 0) { done = true }
+            if(practiceArray.size == 0){
+                setState{copy(done = true)}
+            }
         }
     }
 

@@ -13,10 +13,13 @@ studentID:991599894
  */
 interface PracticeContract {
     sealed class Event : UiEvent {
-        object onGetScale : Event()
+        object OnGetScale : Event()
     }
 
     data class State(
-        val practice: BasicUiState<String>
+        val practice: BasicUiState<Practice>,
+        val progress: Int,
+        val pMax: Int,
+        val done: Boolean
     ) : UiState
 }

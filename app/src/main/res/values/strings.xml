@@ -42,6 +42,7 @@
     <!--Practice Page-->
     <string name="next">Next</string>
     <string name="fav_button">Fav Button</string>
+    <string name="practice_present"> %1$s %2$s %3$s</string>
 
     <!--Saved History Page-->
     <string name="favourites">Favourites</string>

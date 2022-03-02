@@ -28,6 +28,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import sheridan.climense.kmmsharedmodule.features.practice.PracticeContract
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
 import sheridan.climense.kmmsharedmodule.features.practice.PracticeViewModel
 
@@ -46,17 +47,17 @@ class PracticePage : Fragment() {
         binding = PracticePageFragmentBinding.inflate(inflater, container, false)
 
 
-        lifecycleScope.launch {
-           viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-               Log.d("MSG", "Coroutine Started...")
-                practiceVM.currentScale.catch { err ->
-                    Log.d("MSG", err.toString())
-                }.collect { msg ->
-                   Log.d("MSG", msg)
-                }
-
-            }
-        }
+//        lifecycleScope.launch {
+//           viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//               Log.d("MSG", "Coroutine Started...")
+//                practiceVM.currentScale.catch { err ->
+//                    Log.d("MSG", err.toString())
+//                }.collect { msg ->
+//                   Log.d("MSG", msg)
+//                }
+//
+//            }
+//        }
 
         binding.composeView?.setContent {
              val purple = Color(0xFF6805F2)
@@ -87,7 +88,7 @@ class PracticePage : Fragment() {
                                 backgroundColor = MaterialTheme.colors.primary,
                                 contentColor = MaterialTheme.colors.secondary
                             ),
-                            onClick = { next() },
+                            onClick = { practiceVM.setEvent(PracticeContract.Event.OnGetScale) },
                             elevation = ButtonDefaults.elevation(
                                 defaultElevation = 6.dp,
                                 pressedElevation = 8.dp,
@@ -211,15 +212,6 @@ class PracticePage : Fragment() {
         }
 
         return binding.root
-    }
-
-
-    private fun next(){
-        //viewModel.next()
-        practiceVM.nextScale()
-        //viewModel.getProgress(size)
-//        if(practiceVM.done){binding.composeView?.isVisible = false}
-
     }
 
     override fun onPause() {
