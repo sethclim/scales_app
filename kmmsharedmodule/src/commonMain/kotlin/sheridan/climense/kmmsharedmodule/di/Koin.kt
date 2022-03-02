@@ -1,5 +1,6 @@
 package sheridan.climense.kmmsharedmodule.di
 
+import kotlinx.coroutines.Dispatchers
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
@@ -19,6 +20,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
             repositoryModule,
             domainModule,
             useCasesModule,
+            dispatcherModule,
             platformModule()
         )
     }
@@ -29,9 +31,13 @@ val repositoryModule = module {
 }
 
 val domainModule = module {
-    single(named("generator")) { RoutineGenerator() }
+    single { RoutineGenerator() }
 }
 
 val useCasesModule: Module = module {
     factory { AddPracticeSessionToPracticeRecordUseCase(get()) }
+}
+
+val dispatcherModule = module {
+    factory { Dispatchers.Default }
 }

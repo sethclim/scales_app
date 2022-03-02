@@ -3,7 +3,6 @@ package sheridan.climense.scales_app2.ui
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 
 import android.view.Menu
 import android.view.MenuItem
@@ -15,12 +14,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import org.koin.android.ext.android.inject
 
 import sheridan.climense.kmmsharedmodule.Greeting
-import sheridan.climense.kmmsharedmodule.database.DatabaseDriverFactory
-import sheridan.climense.kmmsharedmodule.model.PracticeSession
-import sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel
 import sheridan.climense.scales_app2.R
 
 class MainActivity : AppCompatActivity() {
@@ -47,6 +42,8 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         toolbar.setupWithNavController(navController, appBarConfiguration)
+
+        Greeting().greeting()
 
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="practiceViewModel"
-            type="sheridan.climense.scales_app2.ui.practice.PracticePageViewModel" />
+            type="sheridan.climense.kmmsharedmodule.features.practice.PracticeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="88dp"
             android:fontFamily="@font/interv"
-            android:text="@{practiceViewModel.isEnd ? practiceViewModel.practiceString : practiceViewModel.msg}"
+            android:text="@{practiceViewModel.uiState.practice.accessData()}"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textSize="46sp"
@@ -64,7 +64,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="232dp"
-            android:max="@{practiceViewModel.PMax}"
+
             android:min="0"
             android:progress="@{practiceViewModel.progress}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,3 +74,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+<!--add back to progress bar-->
+<!--    android:max="@{practiceViewModel.PMax}"-->

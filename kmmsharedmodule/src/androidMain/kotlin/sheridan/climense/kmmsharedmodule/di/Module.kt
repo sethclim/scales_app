@@ -3,6 +3,7 @@ package sheridan.climense.kmmsharedmodule.di
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import sheridan.climense.kmmsharedmodule.database.DatabaseDriverFactory
+import sheridan.climense.kmmsharedmodule.domain.MainDispatcher
 
 /**
  *scales_app2
@@ -12,6 +13,6 @@ studentID:991599894
  */
 actual fun platformModule(): Module = module {
     single { DatabaseDriverFactory(get()) }
-//    single { MainDispatcher() }
+    single { MainDispatcher() }
 }
 

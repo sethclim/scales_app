@@ -25,6 +25,8 @@ kotlin {
                 implementation( "io.insert-koin:koin-core:3.1.5")
                 //Coroutines
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+                //logging
+                implementation("co.touchlab:kermit:1.0.0")
             }
         }
         val commonTest by getting {

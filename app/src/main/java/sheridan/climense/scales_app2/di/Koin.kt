@@ -1,8 +1,8 @@
 package sheridan.climense.scales_app2.di
 
 import org.koin.dsl.module
-import sheridan.climense.kmmsharedmodule.viewmodels.PracticeViewModel
-import sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel
+import sheridan.climense.kmmsharedmodule.features.practice.PracticeViewModel
+import sheridan.climense.kmmsharedmodule.features.RoutineCreatorViewModel
 
 /**
  *scales_app2

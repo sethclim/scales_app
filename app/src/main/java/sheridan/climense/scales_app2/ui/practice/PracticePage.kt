@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -20,11 +21,15 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
-import sheridan.climense.kmmsharedmodule.viewmodels.PracticeViewModel
+import sheridan.climense.kmmsharedmodule.features.practice.PracticeViewModel
 
 class PracticePage : Fragment() {
 
@@ -34,17 +39,24 @@ class PracticePage : Fragment() {
 
     private val practiceVM: PracticeViewModel by inject()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = PracticePageFragmentBinding.inflate(inflater, container, false)
 
-        // Important to call first
-        val len = practiceVM.setPracticeArray()
 
-        Log.d("Len", len.toString())
+        lifecycleScope.launch {
+           viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+               Log.d("MSG", "Coroutine Started...")
+                practiceVM.currentScale.catch { err ->
+                    Log.d("MSG", err.toString())
+                }.collect { msg ->
+                   Log.d("MSG", msg)
+                }
+
+            }
+        }
 
         binding.composeView?.setContent {
              val purple = Color(0xFF6805F2)
@@ -63,6 +75,7 @@ class PracticePage : Fragment() {
             fun myButton(
                 darkTheme: Boolean = isSystemInDarkTheme(),
             ){
+
                 MaterialTheme(colors = if (darkTheme) darkColors else lightColors) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -93,7 +106,7 @@ class PracticePage : Fragment() {
             myButton()
         }
 
-        binding.practiceViewModel = viewModel
+        binding.practiceViewModel = practiceVM
         binding.lifecycleOwner = this
 
 //        val practiceArray =  practiceVM.practiceArray
@@ -189,9 +202,13 @@ class PracticePage : Fragment() {
 
         }
 
-        viewModel.isEnd.observe(viewLifecycleOwner, {
-            if(it == false){binding.starBtn?.visibility = View.GONE}else{binding.starBtn?.visibility = View.VISIBLE}
-        })
+        viewModel.isEnd.observe(viewLifecycleOwner) {
+            if (it == false) {
+                binding.starBtn?.visibility = View.GONE
+            } else {
+                binding.starBtn?.visibility = View.VISIBLE
+            }
+        }
 
         return binding.root
     }
@@ -201,7 +218,7 @@ class PracticePage : Fragment() {
         //viewModel.next()
         practiceVM.nextScale()
         //viewModel.getProgress(size)
-        if(practiceVM.done){binding.composeView?.isVisible = false}
+//        if(practiceVM.done){binding.composeView?.isVisible = false}
 
     }
 
@@ -209,7 +226,7 @@ class PracticePage : Fragment() {
         super.onPause()
         //viewModel.saveRecord()
 
-        practiceVM.savePracticeSession()
+//        practiceVM.savePracticeSession()
 
 //        if(safeArgs.practicePackage.savedPractice){
 //            viewModel.updatedSavedProgress(

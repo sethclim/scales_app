@@ -1,13 +1,9 @@
-package sheridan.climense.kmmsharedmodule.viewmodels
+package sheridan.climense.kmmsharedmodule.features
 import org.koin.core.component.KoinComponent
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.kmmsharedmodule.model.*
-import sheridan.climense.kmmsharedmodule.respoitory.RepositoryImp
-import java.util.*
 import org.koin.core.component.inject
-import org.koin.core.qualifier.named
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddRoutineToRoutinesUseCase
-import sheridan.climense.kmmsharedmodule.respoitory.IRepository
 
 class RoutineCreatorViewModel: KoinComponent {
 

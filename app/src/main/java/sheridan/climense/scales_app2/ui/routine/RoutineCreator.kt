@@ -9,8 +9,7 @@ import androidx.navigation.fragment.findNavController
 import org.koin.android.ext.android.inject
 import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.RoutineCreatorFragmentBinding
-import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
-import sheridan.climense.kmmsharedmodule.viewmodels.RoutineCreatorViewModel
+import sheridan.climense.kmmsharedmodule.features.RoutineCreatorViewModel
 import sheridan.climense.scales_app2.models.RoutineInputs
 import sheridan.climense.scales_app2.ui.dialog.RootOptionDialog
 import sheridan.climense.scales_app2.ui.dialog.SavedDialog

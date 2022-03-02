@@ -2,6 +2,7 @@ package sheridan.climense.scales_app2.ui.binding
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.util.DateConverters
 import java.util.*
