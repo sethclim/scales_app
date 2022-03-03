@@ -1,8 +1,6 @@
 package sheridan.climense.scales_app2.util
 
 import androidx.room.TypeConverter
-import sheridan.climense.kmmsharedmodule.model.TechTypes
-import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*

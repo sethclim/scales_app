@@ -2,8 +2,7 @@ package sheridan.climense.kmmsharedmodule.domain.interactors
 
 import kotlinx.coroutines.flow.Flow
 import sheridan.climense.kmmsharedmodule.domain.interactors.type.UseCaseIn
-import sheridan.climense.kmmsharedmodule.model.PracticeSession
-import sheridan.climense.kmmsharedmodule.model.Routine
+import sheridan.climense.kmmsharedmodule.domain.model.Routine
 import sheridan.climense.kmmsharedmodule.respoitory.IRepository
 
 /**

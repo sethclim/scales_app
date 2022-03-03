@@ -6,8 +6,6 @@ import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.PracticeDao
 import sheridan.climense.scales_app2.database.PracticeDatabase
 import sheridan.climense.scales_app2.database.SavedRoutine
-import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
-import sheridan.climense.kmmsharedmodule.model.Practice
 import sheridan.climense.scales_app2.models.PracticeSave
 import sheridan.climense.scales_app2.models.RoutineInputs
 import java.util.*

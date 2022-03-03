@@ -1,13 +1,11 @@
 package sheridan.climense.kmmsharedmodule.database
 
 import com.squareup.sqldelight.ColumnAdapter
-import sheridan.climense.kmmsharedmodule.model.Practice
-import sheridan.climense.kmmsharedmodule.model.PracticeSession
-import sheridan.climense.kmmsharedmodule.model.Routine
-import sheridan.climense.kmmsharedmodule.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.Practice
+import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
+import sheridan.climense.kmmsharedmodule.domain.model.Routine
+import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
 import sheridan.climense.kmmsharedmodule.respoitory.ICacheData
-import sheridan.climense.kmmsharedmodule.database.Favourites
-
 
 
 /**

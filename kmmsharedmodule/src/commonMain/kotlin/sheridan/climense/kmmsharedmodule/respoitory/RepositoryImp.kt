@@ -2,10 +2,9 @@ package sheridan.climense.kmmsharedmodule.respoitory
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import sheridan.climense.kmmsharedmodule.database.Favourites
-import sheridan.climense.kmmsharedmodule.model.Practice
-import sheridan.climense.kmmsharedmodule.model.PracticeSession
-import sheridan.climense.kmmsharedmodule.model.Routine
+import sheridan.climense.kmmsharedmodule.domain.model.Practice
+import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
+import sheridan.climense.kmmsharedmodule.domain.model.Routine
 
 /**
  *scales_app2

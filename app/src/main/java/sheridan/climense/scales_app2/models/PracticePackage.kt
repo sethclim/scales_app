@@ -1,6 +1,5 @@
 package sheridan.climense.scales_app2.models
 
-import sheridan.climense.kmmsharedmodule.model.Practice
 import java.io.Serializable
 import java.util.*
 

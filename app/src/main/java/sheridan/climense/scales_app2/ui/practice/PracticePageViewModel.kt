@@ -5,11 +5,9 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.*
 import sheridan.climense.kmmsharedmodule.domain.PracticeCycler
-import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
-import sheridan.climense.kmmsharedmodule.model.Practice
-import sheridan.climense.kmmsharedmodule.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.Practice
+import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
 import sheridan.climense.scales_app2.models.PracticeSave
-import sheridan.climense.scales_app2.models.RoutineInputs
 import java.time.LocalDate
 import java.util.*
 

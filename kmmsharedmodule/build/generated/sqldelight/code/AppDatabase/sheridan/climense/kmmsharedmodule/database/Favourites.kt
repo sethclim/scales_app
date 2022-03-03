@@ -3,7 +3,7 @@ package sheridan.climense.kmmsharedmodule.database
 import com.squareup.sqldelight.ColumnAdapter
 import kotlin.Long
 import kotlin.String
-import sheridan.climense.kmmsharedmodule.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
 
 public data class Favourites(
   public val key: Long,

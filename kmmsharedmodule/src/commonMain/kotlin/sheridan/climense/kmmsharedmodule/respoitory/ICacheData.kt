@@ -1,8 +1,8 @@
 package sheridan.climense.kmmsharedmodule.respoitory
 
-import sheridan.climense.kmmsharedmodule.model.Practice
-import sheridan.climense.kmmsharedmodule.model.PracticeSession
-import sheridan.climense.kmmsharedmodule.model.Routine
+import sheridan.climense.kmmsharedmodule.domain.model.Practice
+import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
+import sheridan.climense.kmmsharedmodule.domain.model.Routine
 
 /**
  *scales_app2

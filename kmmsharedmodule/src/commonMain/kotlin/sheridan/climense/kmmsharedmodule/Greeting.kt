@@ -4,8 +4,7 @@ import co.touchlab.kermit.Logger
 import sheridan.climense.kmmsharedmodule.respoitory.RepositoryImp
 import sheridan.climense.kmmsharedmodule.database.CacheDataImp
 import sheridan.climense.kmmsharedmodule.database.DatabaseDriverFactory
-import sheridan.climense.kmmsharedmodule.model.Practice
-import sheridan.climense.kmmsharedmodule.model.PracticeSession
+import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
 
 
 

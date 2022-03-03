@@ -1,8 +1,7 @@
 package sheridan.climense.scales_app2.models
 
 import androidx.room.ColumnInfo
-import sheridan.climense.kmmsharedmodule.model.TechTypes
-import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
 
 /**
  *scales_app2

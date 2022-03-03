@@ -4,16 +4,16 @@ import org.koin.core.component.inject
 import sheridan.climense.kmmsharedmodule.base.mvi.BaseViewModel
 import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
-import co.touchlab.kermit.Logger
 
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddFavouriteToFavouritesUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddPracticeSessionToPracticeRecordUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.GetAllFavouritesUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.RemoveFavouriteFromFavouritesUseCase
-import sheridan.climense.kmmsharedmodule.model.Practice
-import sheridan.climense.kmmsharedmodule.model.PracticeSession
-import sheridan.climense.kmmsharedmodule.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.Practice
+import sheridan.climense.kmmsharedmodule.domain.model.PracticeContainer
+import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
+import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
 import kotlin.random.Random
 
 /**
@@ -22,8 +22,6 @@ import kotlin.random.Random
     studentID:991599894
     on2022-02-28
  */
-
-data class PracticeContainer(val id : Long, val root : String, val scale : String, val tech : TechTypes, val isFav : Boolean)
 
 class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract.State, UiEffect>() {
 
@@ -113,8 +111,7 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
         return PracticeSession(0L, scaleCount,arpCount,solidCount,brokenCount,octCount,cmCount)
     }
 
-    private fun checkForFavourites(list : List<Practice>, favs : List<Practice>) : MutableList<PracticeContainer>
-    {
+    private fun checkForFavourites(list : List<Practice>, favs : List<Practice>) : MutableList<PracticeContainer>{
         val conList : MutableList<PracticeContainer> = mutableListOf()
 
         for(item in list){

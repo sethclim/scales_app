@@ -1,10 +1,10 @@
 package sheridan.climense.scales_app2.models
 
 import androidx.databinding.BaseObservable
-import sheridan.climense.kmmsharedmodule.model.Roots
-import sheridan.climense.kmmsharedmodule.model.Scale
-import sheridan.climense.kmmsharedmodule.model.Tech
-import sheridan.climense.kmmsharedmodule.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.Roots
+import sheridan.climense.kmmsharedmodule.domain.model.Scale
+import sheridan.climense.kmmsharedmodule.domain.model.Tech
+import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
 
 class RoutineInputs : BaseObservable() {
 

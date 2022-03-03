@@ -4,7 +4,8 @@ import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEvent
 import sheridan.climense.kmmsharedmodule.base.mvi.UiState
-import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.kmmsharedmodule.domain.model.Practice
+import sheridan.climense.kmmsharedmodule.domain.model.PracticeContainer
 
 /**
  *scales_app2

@@ -1,7 +1,7 @@
 package sheridan.climense.kmmsharedmodule.domain
 
 
-import sheridan.climense.kmmsharedmodule.model.*
+import sheridan.climense.kmmsharedmodule.domain.model.*
 
 class RoutineGenerator {
         var favourites : Array<Practice> = arrayOf()

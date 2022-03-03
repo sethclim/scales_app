@@ -2,8 +2,7 @@ package sheridan.climense.scales_app2.ui.binding
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import sheridan.climense.kmmsharedmodule.features.practice.PracticeContainer
-import sheridan.climense.kmmsharedmodule.model.Practice
+import sheridan.climense.kmmsharedmodule.domain.model.PracticeContainer
 import sheridan.climense.scales_app2.R
 
 /**

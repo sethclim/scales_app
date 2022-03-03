@@ -1,8 +1,6 @@
 package sheridan.climense.kmmsharedmodule.domain
 
-import sheridan.climense.kmmsharedmodule.model.Practice
-import sheridan.climense.kmmsharedmodule.model.Scale
-import sheridan.climense.kmmsharedmodule.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.Practice
 import kotlin.random.Random
 
 

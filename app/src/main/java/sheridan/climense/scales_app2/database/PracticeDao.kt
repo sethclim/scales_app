@@ -2,7 +2,6 @@ package sheridan.climense.scales_app2.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import sheridan.climense.kmmsharedmodule.model.Practice
 import sheridan.climense.scales_app2.models.PracticeSave
 import java.time.LocalDate
 

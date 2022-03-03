@@ -4,15 +4,13 @@ import android.util.Log
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
-import sheridan.climense.kmmsharedmodule.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
 import sheridan.climense.scales_app2.models.PracticeSave
 import java.lang.reflect.Type
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
-import sheridan.climense.scales_app2.models.RoutineInputs
 
 
 class Converters {
