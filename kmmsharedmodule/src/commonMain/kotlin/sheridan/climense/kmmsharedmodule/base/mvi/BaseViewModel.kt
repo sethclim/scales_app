@@ -1,9 +1,7 @@
 package sheridan.climense.kmmsharedmodule.base.mvi
 
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import sheridan.climense.kmmsharedmodule.base.executor.MainIoExecutor
 
@@ -26,6 +24,9 @@ abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiEffect
 
     private val _event: MutableSharedFlow<Event> = MutableSharedFlow()
     val event = _event.asSharedFlow()
+
+    private val _effect: Channel<Effect> = Channel()
+    val effect = _effect.receiveAsFlow()
 
     init {
         subscribeEvents()
@@ -61,6 +62,14 @@ abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiEffect
     protected fun setState(reduce: State.() -> State) {
         val newState = currentState.reduce()
         _uiState.value = newState
+    }
+
+    /**
+     * Set new Effect
+     */
+    protected fun setEffect(builder: () -> Effect) {
+        val effectValue = builder()
+        launch { _effect.send(effectValue) }
     }
 
 }

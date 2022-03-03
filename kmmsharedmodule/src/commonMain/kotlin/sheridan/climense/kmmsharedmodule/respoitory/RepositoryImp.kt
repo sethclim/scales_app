@@ -2,6 +2,8 @@ package sheridan.climense.kmmsharedmodule.respoitory
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import sheridan.climense.kmmsharedmodule.database.Favourites
+import sheridan.climense.kmmsharedmodule.model.Practice
 import sheridan.climense.kmmsharedmodule.model.PracticeSession
 import sheridan.climense.kmmsharedmodule.model.Routine
 
@@ -12,6 +14,7 @@ studentID:991599894
  *on2022-02-12
  */
 class RepositoryImp(private val cacheData: ICacheData,) : IRepository {
+
     //Session
     override fun insertPracticeSession(practiceSession: PracticeSession) : Flow<Unit> = flow {
         cacheData.insertPracticeSession(practiceSession)
@@ -27,4 +30,16 @@ class RepositoryImp(private val cacheData: ICacheData,) : IRepository {
         cacheData.insertRoutine(routine)
         emit(Unit)
     }
+
+    //Favourites
+    override fun insertFavourites(practice: Practice) : Flow<Unit> = flow{
+        cacheData.insertFavourite(practice)
+    }
+    override fun removeFavourites(id : Long) : Flow<Unit> = flow{
+        cacheData.deleteFavourite(id)
+    }
+    override fun getAllFavourites():Flow<List<Practice>> = flow{
+        cacheData.getAllFavourites()
+    }
+
 }

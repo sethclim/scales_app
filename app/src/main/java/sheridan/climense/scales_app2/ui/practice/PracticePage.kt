@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -34,8 +35,7 @@ import sheridan.climense.kmmsharedmodule.features.practice.PracticeViewModel
 
 class PracticePage : Fragment() {
 
-    //private val safeArgs: PracticePageArgs by navArgs()
-    private val viewModel: PracticePageViewModel by viewModels()
+    //private val viewModel: PracticePageViewModel by viewModels()
     private lateinit var binding : PracticePageFragmentBinding
 
     private val practiceVM: PracticeViewModel by inject()
@@ -46,18 +46,6 @@ class PracticePage : Fragment() {
     ): View {
         binding = PracticePageFragmentBinding.inflate(inflater, container, false)
 
-
-//        lifecycleScope.launch {
-//           viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-//               Log.d("MSG", "Coroutine Started...")
-//                practiceVM.currentScale.catch { err ->
-//                    Log.d("MSG", err.toString())
-//                }.collect { msg ->
-//                   Log.d("MSG", msg)
-//                }
-//
-//            }
-//        }
 
         binding.composeView?.setContent {
              val purple = Color(0xFF6805F2)
@@ -108,16 +96,10 @@ class PracticePage : Fragment() {
         }
 
         binding.practiceViewModel = practiceVM
-        binding.lifecycleOwner = this
-
-//        val practiceArray =  practiceVM.practiceArray
+        binding.lifecycleOwner = viewLifecycleOwner
 
 
-        //PracticeCycler.practiceArray = practiceArray.toMutableList()
-
-        viewModel._msg.value = "Click Next to Begin"
-
-        viewModel.isFav.observe(viewLifecycleOwner) {
+//        viewModel.isFav.observe(viewLifecycleOwner) {
 
             binding.starBtn?.setContent {
 
@@ -159,18 +141,20 @@ class PracticePage : Fragment() {
                 val Blue = Color(0xff0F47F2)
                 val white = Color(0xFF868686)
 
-                val DarkColors = darkColors(
+                val darkColors = darkColors(
                     primary = Purple,
                     secondary = white,
                 )
-                val LightColors = lightColors(
+                val lightColors = lightColors(
                     primary = Blue,
                     secondary = white,
                 )
 
                 @Composable
-                fun star(darkTheme: Boolean = isSystemInDarkTheme(), toggled: Boolean) {
-                    MaterialTheme(colors = if (darkTheme) DarkColors else LightColors) {
+                fun star(darkTheme: Boolean = isSystemInDarkTheme()) {
+                    val state by practiceVM.uiState.collectAsState()
+
+                    MaterialTheme(colors = if (darkTheme) darkColors else lightColors) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
@@ -178,16 +162,24 @@ class PracticePage : Fragment() {
                         ) {
                             Button(
                                 colors = ButtonDefaults.buttonColors(
-                                    backgroundColor = if (!toggled) MaterialTheme.colors.secondary else MaterialTheme.colors.primary,
+                                    backgroundColor = if (
+                                        state.practice.accessData() != null
+                                        &&!state.practice.accessData()?.isFav!!) MaterialTheme.colors.secondary else MaterialTheme.colors.primary,
                                     contentColor = MaterialTheme.colors.secondary
                                 ),
-                                onClick = { viewModel.handleFav() },
+                                onClick = {
+                                    if(state.practice.accessData()?.isFav!!){
+                                        practiceVM.setEvent(PracticeContract.Event.RemoveFavourite)
+                                    }
+                                    else{
+                                        practiceVM.setEvent(PracticeContract.Event.AddFavourite)
+                                    }
+                                },
                                 elevation = ButtonDefaults.elevation(
                                     defaultElevation = 6.dp,
                                     pressedElevation = 8.dp,
                                     disabledElevation = 0.dp
                                 ),
-
                                 modifier = Modifier
                                     .width(100.dp)
                                     .height(100.dp),
@@ -198,27 +190,18 @@ class PracticePage : Fragment() {
                         }
                     }
                 }
-                star(toggled = it)
+                star()
             }
 
-        }
-
-        viewModel.isEnd.observe(viewLifecycleOwner) {
-            if (it == false) {
-                binding.starBtn?.visibility = View.GONE
-            } else {
-                binding.starBtn?.visibility = View.VISIBLE
-            }
-        }
+//        }
 
         return binding.root
     }
 
     override fun onPause() {
         super.onPause()
-        //viewModel.saveRecord()
 
-//        practiceVM.savePracticeSession()
+        practiceVM.setEvent(PracticeContract.Event.SavePracticeSession)
 
 //        if(safeArgs.practicePackage.savedPractice){
 //            viewModel.updatedSavedProgress(

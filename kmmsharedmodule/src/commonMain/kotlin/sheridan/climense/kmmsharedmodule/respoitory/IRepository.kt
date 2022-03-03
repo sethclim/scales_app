@@ -1,6 +1,7 @@
 package sheridan.climense.kmmsharedmodule.respoitory
 
 import kotlinx.coroutines.flow.Flow
+import sheridan.climense.kmmsharedmodule.database.Favourites
 import sheridan.climense.kmmsharedmodule.model.Practice
 import sheridan.climense.kmmsharedmodule.model.PracticeSession
 import sheridan.climense.kmmsharedmodule.model.Routine
@@ -19,8 +20,11 @@ interface IRepository {
     fun getPracticeSessionRange(startDate : Long, endDate : Long): List<PracticeSession>
     fun deletePracticeSession(date: Long)
 
-
     //Routines
     fun insertRoutine(routine: Routine) : Flow<Unit>
 
+    //Favourites
+    fun insertFavourites(practice: Practice) : Flow<Unit>
+    fun removeFavourites(id : Long) : Flow<Unit>
+    fun getAllFavourites():Flow<List<Practice>>
 }

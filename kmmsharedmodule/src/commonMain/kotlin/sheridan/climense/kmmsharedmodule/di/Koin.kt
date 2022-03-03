@@ -8,7 +8,10 @@ import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import sheridan.climense.kmmsharedmodule.database.CacheDataImp
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
+import sheridan.climense.kmmsharedmodule.domain.interactors.AddFavouriteToFavouritesUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddPracticeSessionToPracticeRecordUseCase
+import sheridan.climense.kmmsharedmodule.domain.interactors.GetAllFavouritesUseCase
+import sheridan.climense.kmmsharedmodule.domain.interactors.RemoveFavouriteFromFavouritesUseCase
 import sheridan.climense.kmmsharedmodule.respoitory.ICacheData
 import sheridan.climense.kmmsharedmodule.respoitory.IRepository
 import sheridan.climense.kmmsharedmodule.respoitory.RepositoryImp
@@ -26,7 +29,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     }
 
 val repositoryModule = module {
-    single<IRepository>(named("repo")) { RepositoryImp(get()) }
+    single<IRepository>{ RepositoryImp(get()) }
     single<ICacheData> { CacheDataImp(get()) }
 }
 
@@ -36,6 +39,9 @@ val domainModule = module {
 
 val useCasesModule: Module = module {
     factory { AddPracticeSessionToPracticeRecordUseCase(get()) }
+    factory { AddFavouriteToFavouritesUseCase(get()) }
+    factory { RemoveFavouriteFromFavouritesUseCase(get()) }
+    factory { GetAllFavouritesUseCase(get()) }
 }
 
 val dispatcherModule = module {

@@ -2,6 +2,7 @@ package sheridan.climense.scales_app2.ui.binding
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import sheridan.climense.kmmsharedmodule.features.practice.PracticeContainer
 import sheridan.climense.kmmsharedmodule.model.Practice
 import sheridan.climense.scales_app2.R
 
@@ -13,7 +14,7 @@ import sheridan.climense.scales_app2.R
  **/
 
 @BindingAdapter("practice")
-fun PracticeAdaptor(textView: TextView, practice: Practice?) {
+fun PracticeContainerAdaptor(textView: TextView, practice: PracticeContainer?) {
     if (practice != null) {
         textView.text = String.format(
             textView.resources.getString(R.string.practice_present),

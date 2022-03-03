@@ -1,6 +1,7 @@
 package sheridan.climense.kmmsharedmodule.features.practice
 
 import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
+import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEvent
 import sheridan.climense.kmmsharedmodule.base.mvi.UiState
 import sheridan.climense.kmmsharedmodule.model.Practice
@@ -14,12 +15,22 @@ studentID:991599894
 interface PracticeContract {
     sealed class Event : UiEvent {
         object OnGetScale : Event()
+        object SavePracticeSession : Event()
+        object AddFavourite : Event()
+        object RemoveFavourite : Event()
     }
 
     data class State(
-        val practice: BasicUiState<Practice>,
+        val practice: BasicUiState<PracticeContainer>,
         val progress: Int,
         val pMax: Int,
-        val done: Boolean
+        val done: Boolean,
+        val favourites : List<Practice>
     ) : UiState
+
+    sealed class Effect : UiEffect {
+        object SessionSaved : Effect()
+        object FavAdded : Effect()
+        object FavRemoved : Effect()
+    }
 }
