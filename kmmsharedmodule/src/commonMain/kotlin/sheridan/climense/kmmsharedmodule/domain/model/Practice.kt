@@ -6,4 +6,4 @@ createdbyseth*
 studentID:991599894
  *on2022-02-07
  */
-data class Practice (val id : Long,  val root : String, val scale : String, val tech : TechTypes)
+data class Practice (val id : Long, val root : RootType, val scale : String, val tech : TechType)

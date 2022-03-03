@@ -1,10 +1,8 @@
 package sheridan.climense.kmmsharedmodule.database
 
 import com.squareup.sqldelight.ColumnAdapter
-import sheridan.climense.kmmsharedmodule.domain.model.Practice
-import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
+import sheridan.climense.kmmsharedmodule.domain.model.*
 import sheridan.climense.kmmsharedmodule.domain.model.Routine
-import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
 import sheridan.climense.kmmsharedmodule.respoitory.ICacheData
 
 
@@ -16,24 +14,57 @@ studentID:991599894
  */
 class CacheDataImp(databaseDriverFactory: DatabaseDriverFactory) : ICacheData {
 
-    private val techAdapter = object : ColumnAdapter<TechTypes, String> {
-        override fun decode(databaseValue: String): TechTypes = when (databaseValue) {
-            "scale" -> TechTypes.Scale
-            "arp" -> TechTypes.Arp
-            "broken" -> TechTypes.Broken
-            "cm" -> TechTypes.CM
-            "oct" -> TechTypes.Oct
-            "solid" -> TechTypes.Solid
-            else -> TechTypes.Scale
+    private val techAdapter = object : ColumnAdapter<TechType, String> {
+        override fun decode(databaseValue: String): TechType = when (databaseValue) {
+            "scale" -> TechType.Scale
+            "arp" -> TechType.Arp
+            "broken" -> TechType.Broken
+            "cm" -> TechType.CM
+            "oct" -> TechType.Oct
+            "solid" -> TechType.Solid
+            else -> TechType.Scale
         }
 
-        override fun encode(value: TechTypes): String = when (value) {
-            TechTypes.Scale -> "scale"
-            TechTypes.Arp -> "arp"
-            TechTypes.Broken-> "broken"
-            TechTypes.CM -> "cm"
-            TechTypes.Oct -> "oct"
-            TechTypes.Solid -> "solid"
+        override fun encode(value: TechType): String = when (value) {
+            TechType.Scale -> "scale"
+            TechType.Arp -> "arp"
+            TechType.Broken-> "broken"
+            TechType.CM -> "cm"
+            TechType.Oct -> "oct"
+            TechType.Solid -> "solid"
+        }
+    }
+
+    private val rootAdapter = object : ColumnAdapter<RootType, String> {
+        override fun decode(databaseValue: String): RootType = when (databaseValue) {
+            "C" -> RootType.C
+            "C#" -> RootType.Cs
+            "D" -> RootType.D
+            "D#" -> RootType.Ds
+            "E" -> RootType.E
+            "F" -> RootType.F
+            "F#" -> RootType.Fs
+            "G" -> RootType.G
+            "G#" -> RootType.Gs
+            "A" -> RootType.A
+            "A#" -> RootType.As
+            "B" -> RootType.B
+            else -> RootType.C
+        }
+
+        override fun encode(value: RootType): String = when (value) {
+            RootType.C -> "C"
+            RootType.Cs -> "C#"
+            RootType.D -> "D"
+            RootType.Ds -> "D#"
+            RootType.E ->  "E"
+            RootType.F -> "F"
+            RootType.Fs -> "F#"
+            RootType.G ->  "G"
+            RootType.Gs -> "G#"
+            RootType.A -> "A"
+            RootType.As -> "A#"
+            RootType.B -> "B"
         }
     }
 
@@ -41,7 +72,8 @@ class CacheDataImp(databaseDriverFactory: DatabaseDriverFactory) : ICacheData {
        AppDatabase.invoke(
             databaseDriverFactory.createDriver(),
             FavouritesAdapter = Favourites.Adapter(
-                techAdapter = techAdapter
+                techAdapter = techAdapter,
+                rootAdapter = rootAdapter
             )
         )
     private val dbQuery = database.appDatabaseQueries

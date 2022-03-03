@@ -3,13 +3,14 @@ package sheridan.climense.kmmsharedmodule.database
 import com.squareup.sqldelight.ColumnAdapter
 import kotlin.Long
 import kotlin.String
-import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.RootType
+import sheridan.climense.kmmsharedmodule.domain.model.TechType
 
 public data class Favourites(
   public val key: Long,
-  public val root: String,
+  public val root: RootType,
   public val scale: String,
-  public val tech: TechTypes
+  public val tech: TechType
 ) {
   public override fun toString(): String = """
   |Favourites [
@@ -21,6 +22,7 @@ public data class Favourites(
   """.trimMargin()
 
   public class Adapter(
-    public val techAdapter: ColumnAdapter<TechTypes, String>
+    public val rootAdapter: ColumnAdapter<RootType, String>,
+    public val techAdapter: ColumnAdapter<TechType, String>
   )
 }

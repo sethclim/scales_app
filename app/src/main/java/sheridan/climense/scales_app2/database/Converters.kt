@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.TechType
 import sheridan.climense.scales_app2.models.PracticeSave
 import java.lang.reflect.Type
 import java.time.LocalDate
@@ -69,11 +69,11 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromTechTypeToString(techtype: TechTypes?): String? {
+    fun fromTechTypeToString(techtype: TechType?): String? {
         return techtype?.strName
     }
     @TypeConverter
-    fun fromStringToTechType(techtype: String?): TechTypes? {
-        return if (techtype.isNullOrEmpty()) null else TechTypes.from(techtype)
+    fun fromStringToTechType(techtype: String?): TechType? {
+        return if (techtype.isNullOrEmpty()) null else TechType.from(techtype)
     }
 }

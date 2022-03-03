@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.*
 import sheridan.climense.kmmsharedmodule.domain.PracticeCycler
 import sheridan.climense.kmmsharedmodule.domain.model.Practice
-import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.TechType
 import sheridan.climense.scales_app2.models.PracticeSave
 import java.time.LocalDate
 import java.util.*
@@ -57,7 +57,7 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
         PracticeCycler.currentScale.let {  _item.value =  PracticeCycler.currentScale!! }
 
         viewModelScope.launch{
-            val key = item.value!!.root+item.value!!.scale+item.value!!.tech
+            val key = item.value!!.root.strName+item.value!!.scale+item.value!!.tech
             val fav = practiceDao.selectFavourite(key)
 
             _isFav.value = fav == key
@@ -81,12 +81,12 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     private fun getCount(){
         when(item.value!!.tech){
-            TechTypes.Scale -> scaleCount += 1
-            TechTypes.Arp -> arpCount += 1
-            TechTypes.Solid -> solidCount += 1
-            TechTypes.Broken -> brokenCount += 1
-            TechTypes.Oct -> octCount += 1
-            TechTypes.CM -> cmCount += 1
+            TechType.Scale -> scaleCount += 1
+            TechType.Arp -> arpCount += 1
+            TechType.Solid -> solidCount += 1
+            TechType.Broken -> brokenCount += 1
+            TechType.Oct -> octCount += 1
+            TechType.CM -> cmCount += 1
         }
     }
 
@@ -133,10 +133,10 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
 
     fun handleFav(){
         viewModelScope.launch {
-            val key =item.value!!.root+item.value!!.scale+item.value!!.tech
+            val key =item.value!!.root.strName+item.value!!.scale+item.value!!.tech
             val fav = practiceDao.selectFavourite(key)
             if(fav != key){
-                practiceDao.insert(Favourites(key, item.value!!.root,item.value!!.scale,item.value!!.tech.strName, true))
+                practiceDao.insert(Favourites(key, item.value!!.root.strName,item.value!!.scale,item.value!!.tech.strName, true))
                 _isFav.value = true
             }
             else{

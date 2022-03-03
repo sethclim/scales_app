@@ -7,4 +7,4 @@ studentID:991599894
  *on2022-02-02
  */
 
-data class Scale(val scale : String, val isFour : Boolean)
+data class Scale(val name : String, val isFour : Boolean)

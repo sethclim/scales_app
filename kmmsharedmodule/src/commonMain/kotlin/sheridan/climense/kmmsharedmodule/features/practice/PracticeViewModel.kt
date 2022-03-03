@@ -13,7 +13,7 @@ import sheridan.climense.kmmsharedmodule.domain.interactors.RemoveFavouriteFromF
 import sheridan.climense.kmmsharedmodule.domain.model.Practice
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeContainer
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
-import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.TechType
 import kotlin.random.Random
 
 /**
@@ -91,7 +91,7 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
         }
     }
 
-    private fun updateSession(item : TechTypes) : PracticeSession{
+    private fun updateSession(item : TechType) : PracticeSession{
         var scaleCount : Long = practiceSession.scale
         var arpCount : Long = practiceSession.arps
         var solidCount : Long = practiceSession.solid
@@ -100,12 +100,12 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
         var cmCount : Long = practiceSession.conMotion
 
         when(item){
-            TechTypes.Scale -> scaleCount += 1
-            TechTypes.Arp -> arpCount += 1
-            TechTypes.Solid -> solidCount += 1
-            TechTypes.Broken -> brokenCount += 1
-            TechTypes.Oct -> octCount += 1
-            TechTypes.CM -> cmCount += 1
+            TechType.Scale -> scaleCount += 1
+            TechType.Arp -> arpCount += 1
+            TechType.Solid -> solidCount += 1
+            TechType.Broken -> brokenCount += 1
+            TechType.Oct -> octCount += 1
+            TechType.CM -> cmCount += 1
         }
 
         return PracticeSession(0L, scaleCount,arpCount,solidCount,brokenCount,octCount,cmCount)

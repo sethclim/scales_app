@@ -4,7 +4,9 @@ import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEvent
 import sheridan.climense.kmmsharedmodule.base.mvi.UiState
+import sheridan.climense.kmmsharedmodule.domain.model.RootType
 import sheridan.climense.kmmsharedmodule.domain.model.ScaleType
+import sheridan.climense.kmmsharedmodule.domain.model.TechType
 
 /**
  *scales_app2
@@ -31,10 +33,24 @@ interface CreatorContract {
         object AddAug : Event()
         object RemoveAug: Event()
 
+        object AddScales: Event()
+        object AddArp: Event()
+        object AddSolid: Event()
+        object AddBroken: Event()
+        object AddOct: Event()
+        object AddConMotion: Event()
+        object RemoveScales: Event()
+        object RemoveArp: Event()
+        object RemoveSolid: Event()
+        object RemoveBroken: Event()
+        object RemoveOct: Event()
+        object RemoveConMotion: Event()
     }
 
     data class State(
         val scalesCheckBoxes: BasicUiState<MutableMap<ScaleType, Boolean>>,
+        val techCheckBoxes: BasicUiState<MutableMap<TechType, Boolean>>,
+        val rootCheckBoxes: BasicUiState<MutableMap<RootType, Boolean>>,
     ) : UiState
 
     sealed class Effect : UiEffect {

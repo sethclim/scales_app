@@ -17,9 +17,9 @@ fun PracticeContainerAdaptor(textView: TextView, practice: PracticeContainer?) {
     if (practice != null) {
         textView.text = String.format(
             textView.resources.getString(R.string.practice_present),
-            practice.root,
+            practice.root.strName,
             practice.scale,
-            practice.tech
+            practice.tech.strName
         )
     }
 }

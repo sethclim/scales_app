@@ -6,4 +6,4 @@ createdbyseth*
 studentID:991599894
  *on2022-03-03
  */
-data class PracticeContainer(val id : Long, val root : String, val scale : String, val tech : TechTypes, val isFav : Boolean)
+data class PracticeContainer(val id : Long, val root : RootType, val scale : String, val tech : TechType, val isFav : Boolean)

@@ -1,4 +1,5 @@
-import sheridan.climense.kmmsharedmodule.domain.model.TechTypes;
+import sheridan.climense.kmmsharedmodule.domain.model.TechType;
+import sheridan.climense.kmmsharedmodule.domain.model.RootType;
 
 CREATE TABLE PracticeRecord (
   date INTEGER NOT NULL PRIMARY KEY UNIQUE,
@@ -12,9 +13,9 @@ CREATE TABLE PracticeRecord (
 
 CREATE TABLE Favourites (
   key INTEGER NOT NULL PRIMARY KEY UNIQUE,
-  root TEXT NOT NULL,
+  root TEXT AS RootType NOT NULL,
   scale TEXT NOT NULL,
-  tech TEXT AS TechTypes NOT NULL
+  tech TEXT AS TechType NOT NULL
 );
 
 CREATE TABLE Routines(

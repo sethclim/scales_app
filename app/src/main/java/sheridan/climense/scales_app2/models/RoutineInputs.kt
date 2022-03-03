@@ -4,7 +4,7 @@ import androidx.databinding.BaseObservable
 import sheridan.climense.kmmsharedmodule.domain.model.Roots
 import sheridan.climense.kmmsharedmodule.domain.model.Scale
 import sheridan.climense.kmmsharedmodule.domain.model.Tech
-import sheridan.climense.kmmsharedmodule.domain.model.TechTypes
+import sheridan.climense.kmmsharedmodule.domain.model.TechType
 
 class RoutineInputs : BaseObservable() {
 
@@ -15,14 +15,14 @@ class RoutineInputs : BaseObservable() {
     companion object{
 
          val scaleOptions = arrayOf(
-             Scale("Major", false, true),
-             Scale("Har. minor", false, true),
-             Scale("Mel. minor", false, true),
-             Scale("Dim", false, true),
-             Scale("Maj7", false, false),
-             Scale("min7", false, false),
-             Scale("Dom7", false, false),
-             Scale("Aug", false, true)
+             Scale("Major",  true),
+             Scale("Har. minor",  true),
+             Scale("Mel. minor",  true),
+             Scale("Dim", true),
+             Scale("Maj7", false),
+             Scale("min7",  false),
+             Scale("Dom7",  false),
+             Scale("Aug",  true)
         )
 
          val RootOptions = arrayOf(
@@ -58,12 +58,12 @@ class RoutineInputs : BaseObservable() {
 
 
          val techOptions = arrayOf(
-             Tech(TechTypes.Scale, false),
-             Tech(TechTypes.Arp, false),
-             Tech(TechTypes.Solid, false),
-             Tech(TechTypes.Broken, false),
-             Tech(TechTypes.Oct, false),
-             Tech(TechTypes.CM, false),
+             Tech(TechType.Scale, false),
+             Tech(TechType.Arp, false),
+             Tech(TechType.Solid, false),
+             Tech(TechType.Broken, false),
+             Tech(TechType.Oct, false),
+             Tech(TechType.CM, false),
         )
     }
 }

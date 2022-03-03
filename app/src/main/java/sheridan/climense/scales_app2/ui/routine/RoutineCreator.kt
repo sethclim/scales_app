@@ -69,6 +69,26 @@ class RoutineCreator : Fragment() {
             if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddAug) else creatorVM.setEvent(CreatorContract.Event.RemoveAug)
         }
 
+        binding.scalesCb.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddScales) else creatorVM.setEvent(CreatorContract.Event.RemoveScales)
+        }
+
+        binding.arpCb.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddArp) else creatorVM.setEvent(CreatorContract.Event.RemoveArp)
+        }
+
+        binding.solidchCb.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddSolid) else creatorVM.setEvent(CreatorContract.Event.RemoveSolid)
+        }
+
+        binding.brchCb.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddBroken) else creatorVM.setEvent(CreatorContract.Event.RemoveBroken)
+        }
+
+        binding.octCb.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddOct) else creatorVM.setEvent(CreatorContract.Event.RemoveOct)
+        }
+
         //binding.routineViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
@@ -76,7 +96,7 @@ class RoutineCreator : Fragment() {
 
     private fun practice(){
         //getInputs()
-        val success = creatorVM.generateRoutine(RoutineInputs.RootOptions, RoutineInputs.scaleOptions, RoutineInputs.techOptions)
+        val success = creatorVM.generateRoutine()
         //val routine =  routineCreaterVM.routine
         //val practicepackage = PracticePackage("MyPractice",routine, false, total=routine.size)
         if(success){
@@ -116,7 +136,7 @@ class RoutineCreator : Fragment() {
 
     private fun openSaveDialog() {
         //getInputs()
-        val proceed = creatorVM.generateRoutine(RoutineInputs.RootOptions, RoutineInputs.scaleOptions, RoutineInputs.techOptions)
+        val proceed = creatorVM.generateRoutine()
         if(proceed){
             val savedDialog = SavedDialog()
             savedDialog.show(childFragmentManager, "dialogTerm" )

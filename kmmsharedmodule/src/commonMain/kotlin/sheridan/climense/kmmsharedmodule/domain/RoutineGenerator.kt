@@ -7,28 +7,20 @@ class RoutineGenerator {
         var favourites : Array<Practice> = arrayOf()
         var routine : MutableList<Practice> = mutableListOf()
 
-        fun generate(roots : Array<Roots>, scales : Array<Scale>, techs : Array<Tech>) : Array<Practice>{
+        fun generate(roots : Array<RootType>, scales : Array<Scale>, techs : Array<TechType>) : Array<Practice>{
 
             for(root in roots){
-
-                if(root.isUsed){
-                    for(scale in scales){
-                        if(scale.isUsed  && scale.isFour){
-                            for(tech in techs){
-                                if(tech.isUsed){
-                                    val temp = Practice(0L,root.scale, scale.scale, tech.scale)
-                                    routine.add(temp)
-                                }
-
-                            }
+                for(scale in scales){
+                    if(scale.isFour){
+                        for(tech in techs){
+                            val temp = Practice(0L,root, scale.name, tech)
+                            routine.add(temp)
                         }
-                        else if(scale.isUsed ){
-                            for(tech in techs){
-                                if(tech.isUsed){
-                                    val temp = Practice(0L, root.scale, scale.scale, tech.scale)
-                                    routine.add(temp)
-                                }
-                            }
+                    }
+                    else{
+                        for(tech in techs){
+                            val temp = Practice(0L, root, scale.name, tech)
+                            routine.add(temp)
                         }
                     }
                 }
