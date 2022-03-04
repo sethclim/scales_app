@@ -4,9 +4,9 @@ import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEvent
 import sheridan.climense.kmmsharedmodule.base.mvi.UiState
-import sheridan.climense.kmmsharedmodule.domain.model.RootType
-import sheridan.climense.kmmsharedmodule.domain.model.ScaleType
-import sheridan.climense.kmmsharedmodule.domain.model.TechType
+import sheridan.climense.kmmsharedmodule.domain.model.types.RootType
+import sheridan.climense.kmmsharedmodule.domain.model.types.ScaleType
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
 
 /**
  *scales_app2

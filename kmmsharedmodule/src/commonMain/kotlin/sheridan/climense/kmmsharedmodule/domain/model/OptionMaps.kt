@@ -1,5 +1,7 @@
 package sheridan.climense.kmmsharedmodule.domain.model
 
+import sheridan.climense.kmmsharedmodule.domain.model.types.ScaleType
+
 /**
  *scales_app2
 createdbyseth*

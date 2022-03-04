@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 import sheridan.climense.scales_app2.database.*
 import sheridan.climense.kmmsharedmodule.domain.PracticeCycler
 import sheridan.climense.kmmsharedmodule.domain.model.Practice
-import sheridan.climense.kmmsharedmodule.domain.model.TechType
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
 import sheridan.climense.scales_app2.models.PracticeSave
 import java.time.LocalDate
 import java.util.*

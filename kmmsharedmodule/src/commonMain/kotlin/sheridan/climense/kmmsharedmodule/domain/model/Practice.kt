@@ -1,5 +1,8 @@
 package sheridan.climense.kmmsharedmodule.domain.model
 
+import sheridan.climense.kmmsharedmodule.domain.model.types.RootType
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
+
 /**
  *scales_app2
 createdbyseth*

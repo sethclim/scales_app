@@ -13,7 +13,7 @@ import sheridan.climense.kmmsharedmodule.domain.interactors.RemoveFavouriteFromF
 import sheridan.climense.kmmsharedmodule.domain.model.Practice
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeContainer
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
-import sheridan.climense.kmmsharedmodule.domain.model.TechType
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
 import kotlin.random.Random
 
 /**

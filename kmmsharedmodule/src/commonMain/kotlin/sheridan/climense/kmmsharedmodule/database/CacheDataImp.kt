@@ -3,6 +3,8 @@ package sheridan.climense.kmmsharedmodule.database
 import com.squareup.sqldelight.ColumnAdapter
 import sheridan.climense.kmmsharedmodule.domain.model.*
 import sheridan.climense.kmmsharedmodule.domain.model.Routine
+import sheridan.climense.kmmsharedmodule.domain.model.types.RootType
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
 import sheridan.climense.kmmsharedmodule.respoitory.ICacheData
 
 

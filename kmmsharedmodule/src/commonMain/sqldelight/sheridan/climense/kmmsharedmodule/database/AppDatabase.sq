@@ -1,5 +1,5 @@
-import sheridan.climense.kmmsharedmodule.domain.model.TechType;
-import sheridan.climense.kmmsharedmodule.domain.model.RootType;
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType;
+import sheridan.climense.kmmsharedmodule.domain.model.types.RootType;
 
 CREATE TABLE PracticeRecord (
   date INTEGER NOT NULL PRIMARY KEY UNIQUE,

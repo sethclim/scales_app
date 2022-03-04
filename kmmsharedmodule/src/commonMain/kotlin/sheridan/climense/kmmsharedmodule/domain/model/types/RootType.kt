@@ -1,4 +1,4 @@
-package sheridan.climense.kmmsharedmodule.domain.model
+package sheridan.climense.kmmsharedmodule.domain.model.types
 
 /**
  *scales_app2

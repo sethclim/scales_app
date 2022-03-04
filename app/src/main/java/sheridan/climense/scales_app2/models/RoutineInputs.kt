@@ -4,7 +4,7 @@ import androidx.databinding.BaseObservable
 import sheridan.climense.kmmsharedmodule.domain.model.Roots
 import sheridan.climense.kmmsharedmodule.domain.model.Scale
 import sheridan.climense.kmmsharedmodule.domain.model.Tech
-import sheridan.climense.kmmsharedmodule.domain.model.TechType
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
 
 class RoutineInputs : BaseObservable() {
 

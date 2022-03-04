@@ -7,14 +7,14 @@ import sheridan.climense.kmmsharedmodule.base.mvi.BaseViewModel
 import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddRoutineToRoutinesUseCase
+import sheridan.climense.kmmsharedmodule.domain.model.types.RootType
+import sheridan.climense.kmmsharedmodule.domain.model.types.ScaleType
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
 
 class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.State, UiEffect>() {
 
     private val addRoutineToRoutinesUseCase: AddRoutineToRoutinesUseCase by inject()
     private val generator: RoutineGenerator by inject()
-
-    var routine : Array<Practice> = arrayOf()
-
 
     override fun createInitialState(): CreatorContract.State =
         CreatorContract.State(
@@ -73,6 +73,7 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
 
     fun generateRoutine() : Boolean{
 
+        var routine : Array<Practice> = emptyArray()
         val scales : MutableList<Scale> = mutableListOf()
 
         val scaleCbMap = uiState.value.scalesCheckBoxes.accessData()
@@ -110,7 +111,7 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
 //    }
 
     fun saveRoutine(name : String, date : Long){
-        //generateRoutine()
+        generateRoutine()
         //val savedRoutine = Routine(0L, name, routine,null, 0,routine.size, date)
         val savedRoutine = Routine(0L, name, date)
         addRoutineToRoutinesUseCase.execute(savedRoutine)
