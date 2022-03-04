@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import org.koin.android.ext.android.inject
+import sheridan.climense.kmmsharedmodule.features.creator.CreatorContract
 import sheridan.climense.kmmsharedmodule.features.creator.CreatorViewModel
 import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.DialogsaveBinding
@@ -31,7 +32,7 @@ class SavedDialog : DialogFragment() {
                 val date = getCurrentDateTime()
                 //routineCreatorViewModel.saveRoutine(name.toString(),date)
                 //Should be date
-                creatorVM.saveRoutine(name.toString(), 0L)
+                creatorVM.setEvent(CreatorContract.Event.SaveRoutine(name.toString()))
                 binding.saveDialogErrorTv.text = ""
                 dismiss()
             }

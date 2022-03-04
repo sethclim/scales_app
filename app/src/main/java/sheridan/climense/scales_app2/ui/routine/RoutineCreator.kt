@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import org.koin.android.ext.android.inject
+import sheridan.climense.kmmsharedmodule.domain.model.types.ScaleType
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
 import sheridan.climense.kmmsharedmodule.features.creator.CreatorContract
 import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.RoutineCreatorFragmentBinding
@@ -29,64 +31,65 @@ class RoutineCreator : Fragment() {
         binding.practiceBt.setOnClickListener { practice() }
         binding.setCustRootsBt.setOnClickListener { openDialog() }
         binding.saveBt.setOnClickListener { openSaveDialog() }
+
         binding.enableCustRootsSw.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-               // RoutineGenerator.roots = RoutineInputs.CustRootOptions
-            } else {
-                //RoutineGenerator.roots = RoutineInputs.RootOptions
-            }
+            creatorVM.setEvent(CreatorContract.Event.ToggleCustomRoots(isChecked))
         }
 
         binding.majCb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddMaj) else creatorVM.setEvent(CreatorContract.Event.RemoveMaj)
+           creatorVM.setEvent(CreatorContract.Event.SetScaleEvent(ScaleType.Maj, isChecked))
         }
 
         binding.minCb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddMin) else creatorVM.setEvent(CreatorContract.Event.RemoveMin)
+            creatorVM.setEvent(CreatorContract.Event.SetScaleEvent(ScaleType.Min, isChecked))
         }
 
         binding.minMCb2.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddMelMin) else creatorVM.setEvent(CreatorContract.Event.RemoveMelMin)
+            creatorVM.setEvent(CreatorContract.Event.SetScaleEvent(ScaleType.MelMin, isChecked))
         }
 
         binding.dimCb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddDim) else creatorVM.setEvent(CreatorContract.Event.RemoveDim)
+            creatorVM.setEvent(CreatorContract.Event.SetScaleEvent(ScaleType.Dim, isChecked))
         }
 
         binding.maj7Cb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddMaj7) else creatorVM.setEvent(CreatorContract.Event.RemoveMaj7)
+            creatorVM.setEvent(CreatorContract.Event.SetScaleEvent(ScaleType.Maj7, isChecked))
         }
 
         binding.min7Cb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddMin7) else creatorVM.setEvent(CreatorContract.Event.RemoveMin7)
+            creatorVM.setEvent(CreatorContract.Event.SetScaleEvent(ScaleType.Min7, isChecked))
         }
 
         binding.dom7Cb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddDom7) else creatorVM.setEvent(CreatorContract.Event.RemoveDom7)
+            creatorVM.setEvent(CreatorContract.Event.SetScaleEvent(ScaleType.Dom7, isChecked))
         }
 
         binding.augCb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddAug) else creatorVM.setEvent(CreatorContract.Event.RemoveAug)
+            creatorVM.setEvent(CreatorContract.Event.SetScaleEvent(ScaleType.Aug, isChecked))
         }
 
         binding.scalesCb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddScales) else creatorVM.setEvent(CreatorContract.Event.RemoveScales)
+            creatorVM.setEvent(CreatorContract.Event.SetTechEvent(TechType.Scale, isChecked))
         }
 
         binding.arpCb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddArp) else creatorVM.setEvent(CreatorContract.Event.RemoveArp)
+            creatorVM.setEvent(CreatorContract.Event.SetTechEvent(TechType.Arp, isChecked))
         }
 
         binding.solidchCb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddSolid) else creatorVM.setEvent(CreatorContract.Event.RemoveSolid)
+            creatorVM.setEvent(CreatorContract.Event.SetTechEvent(TechType.Solid, isChecked))
         }
 
         binding.brchCb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddBroken) else creatorVM.setEvent(CreatorContract.Event.RemoveBroken)
+            creatorVM.setEvent(CreatorContract.Event.SetTechEvent(TechType.Broken, isChecked))
         }
 
         binding.octCb.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) creatorVM.setEvent(CreatorContract.Event.AddOct) else creatorVM.setEvent(CreatorContract.Event.RemoveOct)
+            creatorVM.setEvent(CreatorContract.Event.SetTechEvent(TechType.Oct, isChecked))
+        }
+
+        binding.conMCb.setOnCheckedChangeListener { _, isChecked ->
+            creatorVM.setEvent(CreatorContract.Event.SetTechEvent(TechType.CM, isChecked))
         }
 
         //binding.routineViewModel = viewModel

@@ -46,7 +46,6 @@ class PracticePage : Fragment() {
     ): View {
         binding = PracticePageFragmentBinding.inflate(inflater, container, false)
 
-
         binding.composeView?.setContent {
              val purple = Color(0xFF6805F2)
              val white = Color(0xffffffff)

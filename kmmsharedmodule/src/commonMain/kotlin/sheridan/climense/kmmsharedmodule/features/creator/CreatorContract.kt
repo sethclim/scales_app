@@ -14,43 +14,24 @@ createdbyseth*
 studentID:991599894
  *on2022-03-03
  */
-interface CreatorContract {
-    sealed class Event : UiEvent {
-        object AddMaj : Event()
-        object RemoveMaj : Event()
-        object AddMin : Event()
-        object RemoveMin: Event()
-        object AddMelMin : Event()
-        object RemoveMelMin: Event()
-        object AddDim : Event()
-        object RemoveDim: Event()
-        object AddMaj7 : Event()
-        object RemoveMaj7: Event()
-        object AddMin7 : Event()
-        object RemoveMin7: Event()
-        object AddDom7 : Event()
-        object RemoveDom7: Event()
-        object AddAug : Event()
-        object RemoveAug: Event()
 
-        object AddScales: Event()
-        object AddArp: Event()
-        object AddSolid: Event()
-        object AddBroken: Event()
-        object AddOct: Event()
-        object AddConMotion: Event()
-        object RemoveScales: Event()
-        object RemoveArp: Event()
-        object RemoveSolid: Event()
-        object RemoveBroken: Event()
-        object RemoveOct: Event()
-        object RemoveConMotion: Event()
+interface CreatorContract {
+
+    sealed class Event : UiEvent {
+        data class SetScaleEvent(val scaleType: ScaleType,val addRemove : Boolean) : Event()
+        data class SetTechEvent(val techType: TechType,val addRemove : Boolean) : Event()
+
+        data class SaveRoutine(val name : String) : Event()
+        data class SetRootsEvent(val rootType: RootType,val addRemove : Boolean) : Event()
+        object ConfirmRootsEvent : Event()
+        data class ToggleCustomRoots(val onOff : Boolean) : Event()
     }
 
     data class State(
         val scalesCheckBoxes: BasicUiState<MutableMap<ScaleType, Boolean>>,
         val techCheckBoxes: BasicUiState<MutableMap<TechType, Boolean>>,
         val rootCheckBoxes: BasicUiState<MutableMap<RootType, Boolean>>,
+        val customRootState: BasicUiState<Boolean>
     ) : UiState
 
     sealed class Effect : UiEffect {

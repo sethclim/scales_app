@@ -16,57 +16,52 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
     private val addRoutineToRoutinesUseCase: AddRoutineToRoutinesUseCase by inject()
     private val generator: RoutineGenerator by inject()
 
+    private var roots = mutableMapOf(
+        RootType.C to true,
+        RootType.Cs to true,
+        RootType.D to true,
+        RootType.Ds to true,
+        RootType.E to true,
+        RootType.F to true,
+        RootType.Fs to true,
+        RootType.G to true,
+        RootType.Gs to true,
+        RootType.A to true,
+        RootType.As to true,
+        RootType.B to true
+    )
+
     override fun createInitialState(): CreatorContract.State =
         CreatorContract.State(
             scalesCheckBoxes = BasicUiState.Success(mutableMapOf()),
             techCheckBoxes =  BasicUiState.Success(mutableMapOf()),
             rootCheckBoxes = BasicUiState.Success(mutableMapOf(
-                RootType.C to true,
-                RootType.Cs to true,
-                RootType.D to true,
-                RootType.Ds to true,
-                RootType.E to true,
-                RootType.F to true,
-                RootType.Fs to true,
-                RootType.G to true,
-                RootType.Gs to true,
-                RootType.A to true,
-                RootType.As to true,
-                RootType.B to true
-            ))
+                RootType.C to false,
+                RootType.Cs to false,
+                RootType.D to false,
+                RootType.Ds to false,
+                RootType.E to false,
+                RootType.F to false,
+                RootType.Fs to false,
+                RootType.G to false,
+                RootType.Gs to false,
+                RootType.A to false,
+                RootType.As to false,
+                RootType.B to false
+            )),
+            customRootState = BasicUiState.Success(data = false)
         )
 
     override fun handleEvent(event: CreatorContract.Event) {
         when (event) {
-            CreatorContract.Event.AddMaj -> manageScaleTypes(addRemove = true, ScaleType.Maj)
-            CreatorContract.Event.RemoveMaj -> manageScaleTypes(addRemove = false, ScaleType.Maj)
-            CreatorContract.Event.AddMin -> manageScaleTypes(addRemove = true, ScaleType.Min)
-            CreatorContract.Event.RemoveMin -> manageScaleTypes(addRemove = false, ScaleType.Maj)
-            CreatorContract.Event.AddMelMin -> manageScaleTypes(addRemove = true, ScaleType.MelMin)
-            CreatorContract.Event.RemoveMelMin -> manageScaleTypes(addRemove = false, ScaleType.MelMin)
-            CreatorContract.Event.AddDim -> manageScaleTypes(addRemove = true, ScaleType.Dim)
-            CreatorContract.Event.RemoveDim -> manageScaleTypes(addRemove = false, ScaleType.Dim)
-            CreatorContract.Event.AddMaj7 -> manageScaleTypes(addRemove = true, ScaleType.Maj7)
-            CreatorContract.Event.RemoveMaj7 -> manageScaleTypes(addRemove = false, ScaleType.Maj7)
-            CreatorContract.Event.AddMin7 -> manageScaleTypes(addRemove = true, ScaleType.Min7)
-            CreatorContract.Event.RemoveMin7 -> manageScaleTypes(addRemove = false, ScaleType.Min7)
-            CreatorContract.Event.AddDom7 -> manageScaleTypes(addRemove = true, ScaleType.Dom7)
-            CreatorContract.Event.RemoveDom7 -> manageScaleTypes(addRemove = false, ScaleType.Dom7)
-            CreatorContract.Event.AddAug -> manageScaleTypes(addRemove = true, ScaleType.Aug)
-            CreatorContract.Event.RemoveAug -> manageScaleTypes(addRemove = false, ScaleType.Aug)
+            is CreatorContract.Event.SetScaleEvent -> manageScaleTypes(event.scaleType, event.addRemove)
+            is CreatorContract.Event.SetTechEvent -> manageTechTypes(event.techType, event.addRemove)
 
-            CreatorContract.Event.AddScales -> manageTechTypes(addRemove = true, TechType.Scale)
-            CreatorContract.Event.AddArp -> manageTechTypes(addRemove = true, TechType.Arp)
-            CreatorContract.Event.AddSolid -> manageTechTypes(addRemove = true, TechType.Solid)
-            CreatorContract.Event.AddBroken -> manageTechTypes(addRemove = true, TechType.Broken)
-            CreatorContract.Event.AddOct -> manageTechTypes(addRemove = true, TechType.Oct)
-            CreatorContract.Event.AddConMotion -> manageTechTypes(addRemove = true, TechType.CM)
-            CreatorContract.Event.RemoveScales -> manageTechTypes(addRemove = false, TechType.Scale)
-            CreatorContract.Event.RemoveArp -> manageTechTypes(addRemove = false, TechType.Arp)
-            CreatorContract.Event.RemoveSolid -> manageTechTypes(addRemove = false, TechType.Solid)
-            CreatorContract.Event.RemoveBroken -> manageTechTypes(addRemove = false, TechType.Broken)
-            CreatorContract.Event.RemoveOct -> manageTechTypes(addRemove = false, TechType.Oct)
-            CreatorContract.Event.RemoveConMotion -> manageTechTypes(addRemove = false, TechType.CM)
+            is CreatorContract.Event.SaveRoutine -> saveRoutine(event.name, 0L)
+            is CreatorContract.Event.SetRootsEvent -> updateRoots(event.rootType, event.addRemove)
+
+            CreatorContract.Event.ConfirmRootsEvent -> setRoots(onOff = true)
+            is CreatorContract.Event.ToggleCustomRoots -> setRoots(event.onOff)
         }
     }
 
@@ -78,13 +73,13 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
 
         val scaleCbMap = uiState.value.scalesCheckBoxes.accessData()
         val techCbMap = uiState.value.techCheckBoxes.accessData()
-        val rootCbMap = uiState.value.rootCheckBoxes.accessData()
+
 
         scaleCbMap?.entries?.filter { cb -> cb.value }
         techCbMap?.entries?.filter { cb -> cb.value }
-        rootCbMap?.entries?.filter { cb -> cb.value }
+        roots.entries.filter { cb -> cb.value }
 
-        Logger.i{"Sizes: ${scaleCbMap?.size} ${techCbMap?.size} ${rootCbMap?.size}"}
+        Logger.i{"Sizes: ${scaleCbMap?.size} ${techCbMap?.size} ${roots?.size}"}
 
         if (scaleCbMap != null) {
             for (entry in scaleCbMap)
@@ -93,8 +88,8 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
             }
         }
 
-        if (techCbMap != null && rootCbMap != null) {
-                routine =  generator.generate(rootCbMap.keys.toTypedArray(), scales.toTypedArray(), techCbMap.keys.toTypedArray())
+        if (techCbMap != null) {
+                routine =  generator.generate(roots.keys.toTypedArray(), scales.toTypedArray(), techCbMap.keys.toTypedArray())
         }
 
         return routine.isNotEmpty()
@@ -110,14 +105,14 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
 //        return routine.isNotEmpty()
 //    }
 
-    fun saveRoutine(name : String, date : Long){
+    private fun saveRoutine(name : String, date : Long){
         generateRoutine()
         //val savedRoutine = Routine(0L, name, routine,null, 0,routine.size, date)
         val savedRoutine = Routine(0L, name, date)
         addRoutineToRoutinesUseCase.execute(savedRoutine)
     }
 
-    private fun manageScaleTypes(addRemove : Boolean, scaleType : ScaleType){
+    private fun manageScaleTypes(scaleType : ScaleType, addRemove : Boolean){
 
         val scaleCbMap = uiState.value.scalesCheckBoxes.accessData()
 
@@ -130,7 +125,7 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
         }
     }
 
-    private fun manageTechTypes(addRemove : Boolean, techType: TechType){
+    private fun manageTechTypes(techType: TechType, addRemove: Boolean){
 
         val techCbMap = uiState.value.techCheckBoxes.accessData()
 
@@ -138,5 +133,37 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
             techCbMap[techType] = addRemove
             setState { copy(techCheckBoxes = BasicUiState.Success(techCbMap)) }
         }
+    }
+
+    private fun updateRoots(rootType: RootType, addRemove: Boolean){
+        val rootCbMap = uiState.value.rootCheckBoxes.accessData()
+
+        if(rootCbMap != null){
+            rootCbMap[rootType] = addRemove
+            setState { copy(rootCheckBoxes = BasicUiState.Success(rootCbMap)) }
+        }
+    }
+
+    private fun setRoots(onOff : Boolean){
+        if(onOff){
+            roots = uiState.value.rootCheckBoxes.accessData()!!
+        }
+        else{
+            roots = mutableMapOf(
+                RootType.C to true,
+                RootType.Cs to true,
+                RootType.D to true,
+                RootType.Ds to true,
+                RootType.E to true,
+                RootType.F to true,
+                RootType.Fs to true,
+                RootType.G to true,
+                RootType.Gs to true,
+                RootType.A to true,
+                RootType.As to true,
+                RootType.B to true
+            )
+        }
+        setState { copy(customRootState = BasicUiState.Success(onOff)) }
     }
 }
