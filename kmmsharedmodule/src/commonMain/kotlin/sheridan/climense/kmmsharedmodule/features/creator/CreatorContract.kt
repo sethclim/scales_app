@@ -35,8 +35,6 @@ interface CreatorContract {
     ) : UiState
 
     sealed class Effect : UiEffect {
-        object SessionSaved : Effect()
-        object FavAdded : Effect()
-        object FavRemoved : Effect()
+        object RoutineSaved : Effect()
     }
 }

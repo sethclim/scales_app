@@ -1,5 +1,7 @@
 package sheridan.climense.kmmsharedmodule.features.creator
+
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.launch
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.kmmsharedmodule.domain.model.*
 import org.koin.core.component.inject
@@ -10,6 +12,7 @@ import sheridan.climense.kmmsharedmodule.domain.interactors.AddRoutineToRoutines
 import sheridan.climense.kmmsharedmodule.domain.model.types.RootType
 import sheridan.climense.kmmsharedmodule.domain.model.types.ScaleType
 import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
+import sheridan.climense.kmmsharedmodule.features.practice.PracticeContract
 
 class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.State, UiEffect>() {
 
@@ -57,14 +60,13 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
             is CreatorContract.Event.SetScaleEvent -> manageScaleTypes(event.scaleType, event.addRemove)
             is CreatorContract.Event.SetTechEvent -> manageTechTypes(event.techType, event.addRemove)
 
-            is CreatorContract.Event.SaveRoutine -> saveRoutine(event.name, 0L)
+            is CreatorContract.Event.SaveRoutine -> saveRoutine(event.name, 10L)
             is CreatorContract.Event.SetRootsEvent -> updateRoots(event.rootType, event.addRemove)
 
             CreatorContract.Event.ConfirmRootsEvent -> setRoots(onOff = true)
             is CreatorContract.Event.ToggleCustomRoots -> setRoots(event.onOff)
         }
     }
-
 
     fun generateRoutine() : Boolean{
 
@@ -79,7 +81,7 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
         techCbMap?.entries?.filter { cb -> cb.value }
         roots.entries.filter { cb -> cb.value }
 
-        Logger.i{"Sizes: ${scaleCbMap?.size} ${techCbMap?.size} ${roots?.size}"}
+        Logger.i{"Sizes: ${scaleCbMap?.size} ${techCbMap?.size} ${roots.size}"}
 
         if (scaleCbMap != null) {
             for (entry in scaleCbMap)
@@ -107,9 +109,11 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
 
     private fun saveRoutine(name : String, date : Long){
         generateRoutine()
-        //val savedRoutine = Routine(0L, name, routine,null, 0,routine.size, date)
-        val savedRoutine = Routine(0L, name, date)
-        addRoutineToRoutinesUseCase.execute(savedRoutine)
+        val savedRoutine = Routine(id=0L, name, date, generator.routine, emptyList())
+
+        launch(addRoutineToRoutinesUseCase.execute(savedRoutine),{
+            setEffect { CreatorContract.Effect.RoutineSaved }
+        })
     }
 
     private fun manageScaleTypes(scaleType : ScaleType, addRemove : Boolean){
@@ -145,6 +149,9 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
     }
 
     private fun setRoots(onOff : Boolean){
+
+        Logger.i {"Set Roots Called"}
+
         if(onOff){
             roots = uiState.value.rootCheckBoxes.accessData()!!
         }

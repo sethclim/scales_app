@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.scales_app2.models.PracticeSave
 import java.util.*
 

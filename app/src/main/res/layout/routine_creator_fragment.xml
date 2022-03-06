@@ -3,14 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>-->
-<!--        <variable-->
-<!--            name="RoutineViewModel"-->
-<!--            type="sheridan.climense.scales_app2.ui.routine.RoutineCreatorViewModel" />-->
-<!--        <variable-->
-<!--            name="inputs"-->
-<!--            type="sheridan.climense.scales_app2.models.RoutineInputs" />-->
-<!--    </data>-->
+    <data>
+        <variable
+            name="CreatorVM"
+            type="sheridan.climense.kmmsharedmodule.features.creator.CreatorViewModel" />
+    </data>
 
     <LinearLayout
         style="@style/Theme.Scales_app2.background"
@@ -269,6 +266,7 @@
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/enable_custRoots_sw"
                     style="@style/Theme.Scales_app2.switch"
+                    android:checked="@{CreatorVM.uiState.customRootState.accessData()}"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp" />
@@ -332,6 +330,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/practice_bt"
                 app:layout_constraintStart_toStartOf="@+id/practice_bt"
                 tools:text="No Routine to Practice" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Space

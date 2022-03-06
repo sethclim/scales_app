@@ -10,12 +10,12 @@ studentID:991599894
  */
 
 val scaleOptions : Map<ScaleType, Scale> = mapOf(
-    ScaleType.Maj to Scale("Major", isFour = true),
-    ScaleType.Min to Scale("Har. minor",  isFour = true),
-    ScaleType.MelMin to Scale("Mel. minor", isFour = true),
-    ScaleType.Dim to Scale("Dim",  isFour = true),
-    ScaleType.Maj7 to Scale("Maj7",  isFour =false),
-    ScaleType.Min7 to Scale("min7",  isFour = false),
-    ScaleType.Dom7 to Scale("Dom7", isFour = false),
-    ScaleType.Aug to Scale("Aug", isFour = true)
+    ScaleType.Maj to Scale(ScaleType.Maj, isFour = true),
+    ScaleType.Min to Scale(ScaleType.Min,  isFour = true),
+    ScaleType.MelMin to Scale(ScaleType.MelMin, isFour = true),
+    ScaleType.Dim to Scale(ScaleType.Dim,  isFour = true),
+    ScaleType.Maj7 to Scale(ScaleType.Maj7,  isFour =false),
+    ScaleType.Min7 to Scale(ScaleType.Min7,  isFour = false),
+    ScaleType.Dom7 to Scale(ScaleType.Dom7, isFour = false),
+    ScaleType.Aug to Scale(ScaleType.Aug, isFour = true)
 )

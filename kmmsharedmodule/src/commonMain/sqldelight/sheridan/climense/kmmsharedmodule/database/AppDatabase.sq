@@ -1,5 +1,6 @@
-import sheridan.climense.kmmsharedmodule.domain.model.types.TechType;
 import sheridan.climense.kmmsharedmodule.domain.model.types.RootType;
+import sheridan.climense.kmmsharedmodule.domain.model.types.ScaleType;
+import sheridan.climense.kmmsharedmodule.domain.model.types.TechType;
 
 CREATE TABLE PracticeRecord (
   date INTEGER NOT NULL PRIMARY KEY UNIQUE,
@@ -14,26 +15,32 @@ CREATE TABLE PracticeRecord (
 CREATE TABLE Favourites (
   key INTEGER NOT NULL PRIMARY KEY UNIQUE,
   root TEXT AS RootType NOT NULL,
-  scale TEXT NOT NULL,
+  scale TEXT AS ScaleType NOT NULL,
   tech TEXT AS TechType NOT NULL
 );
 
 CREATE TABLE Routines(
-    id INTEGER NOT NULL PRIMARY KEY UNIQUE,
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     title TEXT NOT NULL,
-    date INTEGER NOT NULL,
-    FOREIGN KEY(id) REFERENCES InProgress(id),
-    FOREIGN KEY(id) REFERENCES Routine(id)
+    date INTEGER NOT NULL
 );
 
-CREATE TABLE InProgress(
+CREATE TABLE InProgressItems(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    practice TEXT NOT NULL
+    routineref INTEGER NOT NULL,
+    root TEXT AS RootType NOT NULL,
+    scale TEXT AS ScaleType NOT NULL,
+    tech TEXT AS TechType NOT NULL,
+    FOREIGN KEY(routineref) REFERENCES Routines(id)
 );
 
-CREATE TABLE Routine(
+CREATE TABLE RoutineItems(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    practice TEXT NOT NULL
+    routineref INTEGER NOT NULL,
+    root TEXT AS RootType NOT NULL,
+    scale TEXT AS ScaleType NOT NULL,
+    tech TEXT AS TechType NOT NULL,
+    FOREIGN KEY(routineref) REFERENCES Routines(id)
 );
 
 ----------------------------------
@@ -79,5 +86,17 @@ INSERT INTO Routines(id, title, date) VALUES (?,?,?);
 getAllRoutines:
 SELECT * FROM Routines;
 
+lastInsertRowIdRoutines:
+SELECT id FROM Routines;
+
 deleteRoutine:
 DELETE FROM Routines WHERE id = :id;
+
+insertRoutineItem:
+INSERT INTO RoutineItems(id, routineref, root, scale, tech) VALUES (?,?,?, ?, ?);
+
+insertPracticeItem:
+INSERT INTO InProgressItems(id, routineref, root, scale, tech) VALUES (?,?,?, ?, ?);
+
+getRoutineItemsById:
+SELECT * FROM RoutineItems WHERE id = :id;

@@ -1,6 +1,8 @@
 package sheridan.climense.kmmsharedmodule.database
 
+import co.touchlab.kermit.Logger
 import com.squareup.sqldelight.ColumnAdapter
+import com.squareup.sqldelight.EnumColumnAdapter
 import sheridan.climense.kmmsharedmodule.domain.model.*
 import sheridan.climense.kmmsharedmodule.domain.model.Routine
 import sheridan.climense.kmmsharedmodule.domain.model.types.RootType
@@ -16,67 +18,24 @@ studentID:991599894
  */
 class CacheDataImp(databaseDriverFactory: DatabaseDriverFactory) : ICacheData {
 
-    private val techAdapter = object : ColumnAdapter<TechType, String> {
-        override fun decode(databaseValue: String): TechType = when (databaseValue) {
-            "scale" -> TechType.Scale
-            "arp" -> TechType.Arp
-            "broken" -> TechType.Broken
-            "cm" -> TechType.CM
-            "oct" -> TechType.Oct
-            "solid" -> TechType.Solid
-            else -> TechType.Scale
-        }
-
-        override fun encode(value: TechType): String = when (value) {
-            TechType.Scale -> "scale"
-            TechType.Arp -> "arp"
-            TechType.Broken-> "broken"
-            TechType.CM -> "cm"
-            TechType.Oct -> "oct"
-            TechType.Solid -> "solid"
-        }
-    }
-
-    private val rootAdapter = object : ColumnAdapter<RootType, String> {
-        override fun decode(databaseValue: String): RootType = when (databaseValue) {
-            "C" -> RootType.C
-            "C#" -> RootType.Cs
-            "D" -> RootType.D
-            "D#" -> RootType.Ds
-            "E" -> RootType.E
-            "F" -> RootType.F
-            "F#" -> RootType.Fs
-            "G" -> RootType.G
-            "G#" -> RootType.Gs
-            "A" -> RootType.A
-            "A#" -> RootType.As
-            "B" -> RootType.B
-            else -> RootType.C
-        }
-
-        override fun encode(value: RootType): String = when (value) {
-            RootType.C -> "C"
-            RootType.Cs -> "C#"
-            RootType.D -> "D"
-            RootType.Ds -> "D#"
-            RootType.E ->  "E"
-            RootType.F -> "F"
-            RootType.Fs -> "F#"
-            RootType.G ->  "G"
-            RootType.Gs -> "G#"
-            RootType.A -> "A"
-            RootType.As -> "A#"
-            RootType.B -> "B"
-        }
-    }
-
     private val database =
        AppDatabase.invoke(
             databaseDriverFactory.createDriver(),
             FavouritesAdapter = Favourites.Adapter(
-                techAdapter = techAdapter,
-                rootAdapter = rootAdapter
-            )
+                techAdapter = EnumColumnAdapter(),
+                rootAdapter = EnumColumnAdapter(),
+                scaleAdapter = EnumColumnAdapter()
+            ),
+           RoutineItemsAdapter = RoutineItems.Adapter(
+               techAdapter = EnumColumnAdapter(),
+               rootAdapter = EnumColumnAdapter(),
+               scaleAdapter = EnumColumnAdapter()
+           ),
+           InProgressItemsAdapter = InProgressItems.Adapter(
+               techAdapter = EnumColumnAdapter(),
+               rootAdapter = EnumColumnAdapter(),
+               scaleAdapter = EnumColumnAdapter()
+           )
         )
     private val dbQuery = database.appDatabaseQueries
 
@@ -134,19 +93,48 @@ class CacheDataImp(databaseDriverFactory: DatabaseDriverFactory) : ICacheData {
 
     //Routines
     override fun insertRoutine(routine: Routine){
+
+        Logger.i{"Insert Routine"}
+
         dbQuery.insertRoutine(
-            0,
+            id = null,
             routine.title,
             routine.date
         )
+
+        val id : Long = dbQuery.lastInsertRowIdRoutines().executeAsOne()
+
+        dbQuery.transaction {
+            routine.routineItems.forEach{ item ->
+                Logger.i{"Insert Routine Item: $item"}
+                dbQuery.insertRoutineItem(
+                    id = null,
+                    id,
+                    item.root,
+                    item.scale,
+                    item.tech
+                )
+            }
+        }
     }
 
     override fun getAllRoutines(): List<Routine>{
-        return dbQuery.getAllRoutines(::Routine).executeAsList()
+        val routines =  dbQuery.getAllRoutines().executeAsList()
+
+        val listRoutines = mutableListOf<Routine>()
+
+//        for(item in routines)
+//        {
+//            val routineItems = dbQuery.getRoutineItemsById(item.id).executeAsList()
+//            val practiceItems = dbQuery.getRoutineItemsById(item.id).executeAsList()
+//            listRoutines.add(Routine(item.id,item.title, item.date, routineItems, practiceItems))
+//        }
+
+        return listRoutines
     }
 
-    override fun deleteRoutine(id: Long){
-        dbQuery.deleteRoutine(id)
+    override fun deleteRoutine(key: Long){
+        dbQuery.deleteRoutine(key)
     }
 
 }

@@ -14,56 +14,56 @@ class RoutineInputs : BaseObservable() {
 
     companion object{
 
-         val scaleOptions = arrayOf(
-             Scale("Major",  true),
-             Scale("Har. minor",  true),
-             Scale("Mel. minor",  true),
-             Scale("Dim", true),
-             Scale("Maj7", false),
-             Scale("min7",  false),
-             Scale("Dom7",  false),
-             Scale("Aug",  true)
-        )
+//         val scaleOptions = arrayOf(
+//             Scale("Major",  true),
+//             Scale("Har. minor",  true),
+//             Scale("Mel. minor",  true),
+//             Scale("Dim", true),
+//             Scale("Maj7", false),
+//             Scale("min7",  false),
+//             Scale("Dom7",  false),
+//             Scale("Aug",  true)
+//        )
 
-         val RootOptions = arrayOf(
-             Roots("C", true),
-             Roots("C#", true),
-             Roots("D", true),
-             Roots("D#", true),
-             Roots("E", true),
-             Roots("F", true),
-             Roots("F#", true),
-             Roots("G", true),
-             Roots("G#", true),
-             Roots("A", true),
-             Roots("A#", true),
-             Roots("B", true)
-        )
+//         val RootOptions = arrayOf(
+//             Roots("C", true),
+//             Roots("C#", true),
+//             Roots("D", true),
+//             Roots("D#", true),
+//             Roots("E", true),
+//             Roots("F", true),
+//             Roots("F#", true),
+//             Roots("G", true),
+//             Roots("G#", true),
+//             Roots("A", true),
+//             Roots("A#", true),
+//             Roots("B", true)
+//        )
 
-        val CustRootOptions = arrayOf(
-            Roots("C", false),
-            Roots("C#", false),
-            Roots("D", false),
-            Roots("D#", false),
-            Roots("E", false),
-            Roots("F", false),
-            Roots("F#", false),
-            Roots("G", false),
-            Roots("G#", false),
-            Roots("A", false),
-            Roots("A#", false),
-            Roots("B", false)
-        )
+//        val CustRootOptions = arrayOf(
+//            Roots("C", false),
+//            Roots("C#", false),
+//            Roots("D", false),
+//            Roots("D#", false),
+//            Roots("E", false),
+//            Roots("F", false),
+//            Roots("F#", false),
+//            Roots("G", false),
+//            Roots("G#", false),
+//            Roots("A", false),
+//            Roots("A#", false),
+//            Roots("B", false)
+//        )
 
 
 
-         val techOptions = arrayOf(
-             Tech(TechType.Scale, false),
-             Tech(TechType.Arp, false),
-             Tech(TechType.Solid, false),
-             Tech(TechType.Broken, false),
-             Tech(TechType.Oct, false),
-             Tech(TechType.CM, false),
-        )
+//         val techOptions = arrayOf(
+//             Tech(TechType.Scale, false),
+//             Tech(TechType.Arp, false),
+//             Tech(TechType.Solid, false),
+//             Tech(TechType.Broken, false),
+//             Tech(TechType.Oct, false),
+//             Tech(TechType.CM, false),
+//        )
     }
 }

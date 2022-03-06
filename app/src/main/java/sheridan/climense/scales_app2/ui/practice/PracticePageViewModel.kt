@@ -131,18 +131,18 @@ class PracticePageViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
-    fun handleFav(){
-        viewModelScope.launch {
-            val key =item.value!!.root.strName+item.value!!.scale+item.value!!.tech
-            val fav = practiceDao.selectFavourite(key)
-            if(fav != key){
-                practiceDao.insert(Favourites(key, item.value!!.root.strName,item.value!!.scale,item.value!!.tech.strName, true))
-                _isFav.value = true
-            }
-            else{
-                practiceDao.deleteFavourite(key)
-                _isFav.value  = false
-            }
-        }
-    }
+//    fun handleFav(){
+//        viewModelScope.launch {
+//            val key =item.value!!.root.strName+item.value!!.scale+item.value!!.tech
+//            val fav = practiceDao.selectFavourite(key)
+//            if(fav != key){
+//                practiceDao.insert(Favourites(key, item.value!!.root.strName,item.value!!.scale,item.value!!.tech.strName, true))
+//                _isFav.value = true
+//            }
+//            else{
+//                practiceDao.deleteFavourite(key)
+//                _isFav.value  = false
+//            }
+//        }
+//    }
 }

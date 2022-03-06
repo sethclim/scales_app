@@ -92,7 +92,7 @@ class RoutineCreator : Fragment() {
             creatorVM.setEvent(CreatorContract.Event.SetTechEvent(TechType.CM, isChecked))
         }
 
-        //binding.routineViewModel = viewModel
+        binding.creatorVM = creatorVM
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
