@@ -6,6 +6,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import sheridan.climense.kmmsharedmodule.database.CacheDataImp
+import sheridan.climense.kmmsharedmodule.domain.PracticeMediator
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.kmmsharedmodule.domain.interactors.*
 import sheridan.climense.kmmsharedmodule.respoitory.ICacheData
@@ -30,6 +31,7 @@ val repositoryModule = module {
 }
 
 val domainModule = module {
+    single { PracticeMediator() }
     single { RoutineGenerator() }
 }
 
@@ -39,6 +41,9 @@ val useCasesModule: Module = module {
     factory { RemoveFavouriteFromFavouritesUseCase(get()) }
     factory { GetAllFavouritesUseCase(get()) }
     factory { AddRoutineToRoutinesUseCase(get()) }
+    factory { GetAllSavedRoutinesUseCase(get()) }
+    factory { RemoveSavedRoutineFromRoutinesUseCase(get()) }
+    factory { GetAllRoutineItemsUseCase(get()) }
 }
 
 val dispatcherModule = module {

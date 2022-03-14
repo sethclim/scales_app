@@ -6,6 +6,7 @@ import com.squareup.sqldelight.EnumColumnAdapter
 import sheridan.climense.kmmsharedmodule.domain.model.*
 import sheridan.climense.kmmsharedmodule.domain.model.Routine
 import sheridan.climense.kmmsharedmodule.domain.model.types.RootType
+import sheridan.climense.kmmsharedmodule.domain.model.types.ScaleType
 import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
 import sheridan.climense.kmmsharedmodule.respoitory.ICacheData
 
@@ -118,23 +119,27 @@ class CacheDataImp(databaseDriverFactory: DatabaseDriverFactory) : ICacheData {
         }
     }
 
-    override fun getAllRoutines(): List<Routine>{
-        val routines =  dbQuery.getAllRoutines().executeAsList()
-
-        val listRoutines = mutableListOf<Routine>()
-
-//        for(item in routines)
-//        {
-//            val routineItems = dbQuery.getRoutineItemsById(item.id).executeAsList()
-//            val practiceItems = dbQuery.getRoutineItemsById(item.id).executeAsList()
-//            listRoutines.add(Routine(item.id,item.title, item.date, routineItems, practiceItems))
-//        }
-
-        return listRoutines
+    override fun getAllRoutines(): List<RoutineInfo>{
+        return dbQuery.getAllRoutines(::RoutineInfo).executeAsList()
     }
+
+    override fun getAllRoutineItemsById(key : Long): List<Practice>{
+        return dbQuery.getRoutineItemsById(key, ::mapRoutineItem).executeAsList()
+    }
+
 
     override fun deleteRoutine(key: Long){
+        Logger.i{"Key $key"}
         dbQuery.deleteRoutine(key)
+        dbQuery.deleteRoutineItems(key)
     }
+
+    private fun mapRoutineItem(
+        id: Long,
+        routineRef: Long,
+        rootType: RootType,
+        scaleType: ScaleType,
+        techType: TechType
+    ): Practice = Practice(id, rootType, scaleType, techType)
 
 }

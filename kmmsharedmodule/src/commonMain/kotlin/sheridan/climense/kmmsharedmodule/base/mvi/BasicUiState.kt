@@ -9,6 +9,9 @@ studentID:991599894
 sealed class BasicUiState<out T> {
     data class Success<T>(val data: T) : BasicUiState<T>()
     object Idle : BasicUiState<Nothing>()
+    object Loading : BasicUiState<Nothing>()
+    object Empty : BasicUiState<Nothing>()
+    data class Error(val message: String? = null) : BasicUiState<Nothing>()
 
     fun accessData() : T?{
         return when (this) {

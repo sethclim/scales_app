@@ -1,8 +1,11 @@
 package sheridan.climense.kmmsharedmodule.respoitory
 
+import kotlinx.coroutines.flow.Flow
+import sheridan.climense.kmmsharedmodule.database.RoutineItems
 import sheridan.climense.kmmsharedmodule.domain.model.Practice
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
 import sheridan.climense.kmmsharedmodule.domain.model.Routine
+import sheridan.climense.kmmsharedmodule.domain.model.RoutineInfo
 
 /**
  *scales_app2
@@ -25,6 +28,7 @@ interface ICacheData {
 
     //Routines
     fun insertRoutine(routine: Routine)
-    fun getAllRoutines(): List<Routine>
+    fun getAllRoutines(): List<RoutineInfo>
     fun deleteRoutine(key: Long)
+    fun getAllRoutineItemsById(key : Long): List<Practice>
 }

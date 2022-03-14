@@ -6,7 +6,7 @@
     <data>
         <variable
             name="routines"
-            type="sheridan.climense.scales_app2.database.SavedRoutine" />
+            type="sheridan.climense.kmmsharedmodule.domain.model.RoutineInfo" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -35,34 +35,34 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Hard Scales" />
 
-            <TextView
-                android:id="@+id/routineDate_tv"
-                style="@style/Theme.Scales_app2.textWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="140dp"
-                android:fontFamily="@font/interv"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:date="@{routines.date}"
-                app:layout_constraintBottom_toBottomOf="@+id/routineTitle_tv"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/routineTitle_tv"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="15/20/2020" />
+<!--            <TextView-->
+<!--                android:id="@+id/routineDate_tv"-->
+<!--                style="@style/Theme.Scales_app2.textWhite"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="140dp"-->
+<!--                android:fontFamily="@font/interv"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+<!--                app:date="@{routines.date}"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/routineTitle_tv"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/routineTitle_tv"-->
+<!--                app:layout_constraintVertical_bias="0.0"-->
+<!--                tools:text="15/20/2020" />-->
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="@style/Theme.Scales_app2.progressbar"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="228dp"
-                android:max="@{routines.total}"
-                android:min="0"
-                app:layout_constraintBottom_toBottomOf="@+id/routineDate_tv"
-                app:layout_constraintStart_toStartOf="@+id/routineTitle_tv"
-                app:layout_constraintTop_toTopOf="@+id/routineDate_tv"
-                app:layout_constraintVertical_bias="0.333"
-                app:progress="@{routines.progress}" />
+<!--            <ProgressBar-->
+<!--                android:id="@+id/progressBar"-->
+<!--                style="@style/Theme.Scales_app2.progressbar"-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="228dp"-->
+<!--                android:max="@{routines.total}"-->
+<!--                android:min="0"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/routineDate_tv"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/routineTitle_tv"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/routineDate_tv"-->
+<!--                app:layout_constraintVertical_bias="0.333"-->
+<!--                app:progress="@{routines.progress}" />-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

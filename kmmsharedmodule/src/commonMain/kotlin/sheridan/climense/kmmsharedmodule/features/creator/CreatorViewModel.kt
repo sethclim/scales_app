@@ -8,6 +8,7 @@ import org.koin.core.component.inject
 import sheridan.climense.kmmsharedmodule.base.mvi.BaseViewModel
 import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
+import sheridan.climense.kmmsharedmodule.domain.PracticeMediator
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddRoutineToRoutinesUseCase
 import sheridan.climense.kmmsharedmodule.domain.model.types.RootType
 import sheridan.climense.kmmsharedmodule.domain.model.types.ScaleType
@@ -17,7 +18,8 @@ import sheridan.climense.kmmsharedmodule.features.practice.PracticeContract
 class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.State, UiEffect>() {
 
     private val addRoutineToRoutinesUseCase: AddRoutineToRoutinesUseCase by inject()
-    private val generator: RoutineGenerator by inject()
+    private val practiceMediator : PracticeMediator by inject()
+    private val generator : RoutineGenerator by inject()
 
     private var roots = mutableMapOf(
         RootType.C to true,
@@ -36,8 +38,24 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
 
     override fun createInitialState(): CreatorContract.State =
         CreatorContract.State(
-            scalesCheckBoxes = BasicUiState.Success(mutableMapOf()),
-            techCheckBoxes =  BasicUiState.Success(mutableMapOf()),
+            scalesCheckBoxes = BasicUiState.Success(mutableMapOf(
+                ScaleType.Maj to false,
+                ScaleType.Min to false,
+                ScaleType.Aug to false,
+                ScaleType.Dim to false,
+                ScaleType.Min7 to false,
+                ScaleType.Maj7 to false,
+                ScaleType.Dom7 to false,
+                ScaleType.MelMin to false
+            )),
+            techCheckBoxes =  BasicUiState.Success(mutableMapOf(
+                TechType.Scale to false,
+                TechType.CM to false,
+                TechType.Arp to false,
+                TechType.Solid to false,
+                TechType.Broken to false,
+                TechType.Oct to false
+            )),
             rootCheckBoxes = BasicUiState.Success(mutableMapOf(
                 RootType.C to false,
                 RootType.Cs to false,
@@ -68,32 +86,39 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
         }
     }
 
+    //TODO
+    //should be private and fired by event
     fun generateRoutine() : Boolean{
 
-        var routine : Array<Practice> = emptyArray()
+        var routine : Array<PracticeContainer> = emptyArray()
         val scales : MutableList<Scale> = mutableListOf()
 
         val scaleCbMap = uiState.value.scalesCheckBoxes.accessData()
         val techCbMap = uiState.value.techCheckBoxes.accessData()
 
 
-        scaleCbMap?.entries?.filter { cb -> cb.value }
-        techCbMap?.entries?.filter { cb -> cb.value }
-        roots.entries.filter { cb -> cb.value }
+        val filteredScales = scaleCbMap?.getKeys()
+        val filteredTech = techCbMap?.getKeys()
+        val filteredRoots = roots.getKeys()
 
-        Logger.i{"Sizes: ${scaleCbMap?.size} ${techCbMap?.size} ${roots.size}"}
+        Logger.i{"Value Maps: $filteredScales $filteredTech $filteredRoots"}
 
-        if (scaleCbMap != null) {
-            for (entry in scaleCbMap)
+        if (filteredScales != null) {
+            for (entry in filteredScales)
             {
-                scaleOptions[entry.key]?.let { scales.add(it) }
+
+                scaleOptions[entry]?.let { scales.add(it) }
             }
         }
 
-        if (techCbMap != null) {
-                routine =  generator.generate(roots.keys.toTypedArray(), scales.toTypedArray(), techCbMap.keys.toTypedArray())
-        }
+        if (filteredTech != null && filteredRoots.isNotEmpty() && scales.isNotEmpty() && filteredTech.isNotEmpty()) {
+            routine =  generator.generate(filteredRoots.toTypedArray(), scales.toTypedArray(), filteredTech.toTypedArray())
 
+            Logger.i{"Size Routine: ${routine.size}"}
+            launch {
+                practiceMediator.setPracticeList(routine = routine.toList())
+            }
+        }
         return routine.isNotEmpty()
     }
 
@@ -109,11 +134,11 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
 
     private fun saveRoutine(name : String, date : Long){
         generateRoutine()
-        val savedRoutine = Routine(id=0L, name, date, generator.routine, emptyList())
+        //val savedRoutine = Routine(id=0L, name, date, practiceMediator.getPracticeList(), emptyList())
 
-        launch(addRoutineToRoutinesUseCase.execute(savedRoutine),{
-            setEffect { CreatorContract.Effect.RoutineSaved }
-        })
+//        launch(addRoutineToRoutinesUseCase.execute(savedRoutine),{
+//            setEffect { CreatorContract.Effect.RoutineSaved }
+//        })
     }
 
     private fun manageScaleTypes(scaleType : ScaleType, addRemove : Boolean){
@@ -172,5 +197,9 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
             )
         }
         setState { copy(customRootState = BasicUiState.Success(onOff)) }
+    }
+
+    private fun <T> MutableMap<T, Boolean>.getKeys(): Set<T> {
+        return this.filter { (_, value) -> value }.keys
     }
 }

@@ -1,9 +1,16 @@
 package sheridan.climense.kmmsharedmodule.features.practice
 
+import co.touchlab.kermit.Logger
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.launch
 import org.koin.core.component.inject
 import sheridan.climense.kmmsharedmodule.base.mvi.BaseViewModel
 import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
+import sheridan.climense.kmmsharedmodule.domain.PracticeMediator
 
 import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddFavouriteToFavouritesUseCase
@@ -25,13 +32,13 @@ import kotlin.random.Random
 
 class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract.State, UiEffect>() {
 
-    private val generator: RoutineGenerator by inject()
+    private val practiceMediator : PracticeMediator by inject()
     private val addPracticeSessionToPracticeRecordUseCase: AddPracticeSessionToPracticeRecordUseCase by inject()
     private val addFavouriteToFavouritesUseCase: AddFavouriteToFavouritesUseCase by inject()
     private val removeFavouriteFromFavouritesUseCase: RemoveFavouriteFromFavouritesUseCase by inject()
     private val getAllFavouritesUseCase: GetAllFavouritesUseCase by inject()
 
-    private var practiceArray : MutableList<PracticeContainer> = mutableListOf()
+    private var currentPractice : MutableList<PracticeContainer> = mutableListOf()
     private var startLength : Int? = null
 
     private lateinit var item : PracticeContainer
@@ -48,10 +55,15 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
             }
         })
 
-        practiceArray = checkForFavourites(generator.routine, this.uiState.value.favourites)
-
-        startLength = practiceArray.size
-        setState{copy(pMax = practiceArray.size)}
+        launch {
+            practiceMediator.practiceListFlow.collect{ value ->
+                //Logger.i{"COLLECT VALUE $value"}
+                currentPractice = value.toMutableList()
+                startLength = currentPractice.size
+                setState{copy(pMax = currentPractice.size)}
+                setState{copy(done = false)}
+            }
+        }
     }
 
     override fun createInitialState(): PracticeContract.State =
@@ -73,20 +85,21 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
     }
 
     private fun nextScale(){
-        if(practiceArray.size > 0)
+        if(currentPractice.size > 0)
         {
-            val index = Random.nextInt(0, practiceArray.size)
-            item = practiceArray[index]
+            val index = Random.nextInt(0, currentPractice.size)
+            item = currentPractice[index]
 
             practiceSession = updateSession(item.tech)
 
-            practiceArray.removeAt(index)
+            currentPractice.removeAt(index)
 
             setState{copy(practice = BasicUiState.Success(item))}
-            setState{copy(progress = startLength!! - practiceArray.size)}
+            setState{copy(progress = startLength!! - currentPractice.size)}
 
-            if(practiceArray.size == 0){
+            if(currentPractice.size == 0){
                 setState{copy(done = true)}
+//                practiceMediator.clearList()
             }
         }
     }
@@ -111,15 +124,15 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
         return PracticeSession(0L, scaleCount,arpCount,solidCount,brokenCount,octCount,cmCount)
     }
 
-    private fun checkForFavourites(list : List<Practice>, favs : List<Practice>) : MutableList<PracticeContainer>{
-        val conList : MutableList<PracticeContainer> = mutableListOf()
-
-        for(item in list){
-            conList.add(PracticeContainer(item.id, item.root, item.scale, item.tech, favs.contains(item)))
-        }
-
-        return conList
-    }
+//    private fun checkForFavourites(list : List<Practice>, favs : List<Practice>) : MutableList<PracticeContainer>{
+//        val conList : MutableList<PracticeContainer> = mutableListOf()
+//
+//        for(item in list){
+//            conList.add(PracticeContainer(item.id, item.root, item.scale, item.tech, favs.contains(item)))
+//        }
+//
+//        return conList
+//    }
 
     private fun savePracticeSessionToPracticeRecord(){
         launch(addPracticeSessionToPracticeRecordUseCase.execute(practiceSession),{

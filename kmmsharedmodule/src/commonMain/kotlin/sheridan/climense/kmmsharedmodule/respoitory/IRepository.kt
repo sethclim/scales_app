@@ -1,9 +1,11 @@
 package sheridan.climense.kmmsharedmodule.respoitory
 
 import kotlinx.coroutines.flow.Flow
+import sheridan.climense.kmmsharedmodule.database.RoutineItems
 import sheridan.climense.kmmsharedmodule.domain.model.Practice
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
 import sheridan.climense.kmmsharedmodule.domain.model.Routine
+import sheridan.climense.kmmsharedmodule.domain.model.RoutineInfo
 
 /**
  *scales_app2
@@ -21,6 +23,9 @@ interface IRepository {
 
     //Routines
     fun insertRoutine(routine: Routine) : Flow<Unit>
+    fun getAllRoutinesInfo() : Flow<List<RoutineInfo>>
+    fun removeRoutine(id : Long) : Flow<Unit>
+    fun getAllRoutineItemsById(id : Long) : Flow<List<Practice>>
 
     //Favourites
     fun insertFavourites(practice: Practice) : Flow<Unit>

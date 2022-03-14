@@ -92,11 +92,18 @@ SELECT id FROM Routines;
 deleteRoutine:
 DELETE FROM Routines WHERE id = :id;
 
+----------------------------------
+--|| Routines Items Queries ||--
+----------------------------------
 insertRoutineItem:
 INSERT INTO RoutineItems(id, routineref, root, scale, tech) VALUES (?,?,?, ?, ?);
+
+getRoutineItemsById:
+SELECT * FROM RoutineItems WHERE routineref = :id;
+
+deleteRoutineItems:
+DELETE FROM RoutineItems WHERE routineref = :id;
 
 insertPracticeItem:
 INSERT INTO InProgressItems(id, routineref, root, scale, tech) VALUES (?,?,?, ?, ?);
 
-getRoutineItemsById:
-SELECT * FROM RoutineItems WHERE id = :id;
