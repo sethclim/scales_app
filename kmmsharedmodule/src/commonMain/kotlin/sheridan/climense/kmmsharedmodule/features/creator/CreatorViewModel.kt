@@ -134,11 +134,11 @@ class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.Sta
 
     private fun saveRoutine(name : String, date : Long){
         generateRoutine()
-        //val savedRoutine = Routine(id=0L, name, date, practiceMediator.getPracticeList(), emptyList())
+        val savedRoutine = Routine(id=0L, name, date, practiceMediator.list.map { it.toPractice() }, emptyList())
 
-//        launch(addRoutineToRoutinesUseCase.execute(savedRoutine),{
-//            setEffect { CreatorContract.Effect.RoutineSaved }
-//        })
+        launch(addRoutineToRoutinesUseCase.execute(savedRoutine),{
+            setEffect { CreatorContract.Effect.RoutineSaved }
+        })
     }
 
     private fun manageScaleTypes(scaleType : ScaleType, addRemove : Boolean){

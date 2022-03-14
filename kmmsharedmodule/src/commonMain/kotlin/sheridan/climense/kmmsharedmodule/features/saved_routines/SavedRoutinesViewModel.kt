@@ -1,5 +1,6 @@
 package sheridan.climense.kmmsharedmodule.features.saved_routines
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject
 import sheridan.climense.kmmsharedmodule.base.mvi.BaseViewModel
@@ -53,6 +54,7 @@ class SavedRoutinesViewModel : BaseViewModel<SavedRoutinesContract.Event, SavedR
     private fun getSavedRoutines(){
         setState { copy(savedRoutines = BasicUiState.Loading) }
         launch(getAllSavedRoutinesUseCase.execute(), { routines ->
+            Logger.i{"Routines Saved $routines"}
             setState {
                 copy(
                     savedRoutines =
@@ -93,6 +95,10 @@ class SavedRoutinesViewModel : BaseViewModel<SavedRoutinesContract.Event, SavedR
     private fun startFavouritesPractice(){
         if(favourites.isNotEmpty()){
             setEffect { SavedRoutinesContract.Effect.FavouritesExist }
+            val practiceRoutine = generator.generate(favourites)
+            launch{
+                practiceMediator.setPracticeList(practiceRoutine.toList())
+            }
         }
         else{
             setEffect { SavedRoutinesContract.Effect.FavouritesError }
