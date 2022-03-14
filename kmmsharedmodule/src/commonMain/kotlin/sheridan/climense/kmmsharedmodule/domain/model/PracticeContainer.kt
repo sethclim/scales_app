@@ -10,4 +10,8 @@ createdbyseth*
 studentID:991599894
  *on2022-03-03
  */
-data class PracticeContainer(val id : Long, val root : RootType, val scale : ScaleType, val tech : TechType, val isFav : Boolean)
+data class PracticeContainer(val id : Long, val root : RootType, val scale : ScaleType, val tech : TechType, val isFav : Boolean){
+    fun toPractice():Practice{
+        return Practice(id,root,scale,tech)
+    }
+}

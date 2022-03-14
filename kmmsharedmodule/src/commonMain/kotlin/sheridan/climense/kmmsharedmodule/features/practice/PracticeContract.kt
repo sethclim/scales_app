@@ -26,7 +26,6 @@ interface PracticeContract {
         val progress: Int,
         val pMax: Int,
         val done: Boolean,
-        val favourites : List<Practice>
     ) : UiState
 
     sealed class Effect : UiEffect {

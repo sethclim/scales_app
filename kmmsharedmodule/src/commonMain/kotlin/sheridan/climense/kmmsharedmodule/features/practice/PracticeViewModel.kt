@@ -1,10 +1,6 @@
 package sheridan.climense.kmmsharedmodule.features.practice
 
 import co.touchlab.kermit.Logger
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject
 import sheridan.climense.kmmsharedmodule.base.mvi.BaseViewModel
@@ -12,12 +8,9 @@ import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
 import sheridan.climense.kmmsharedmodule.domain.PracticeMediator
 
-import sheridan.climense.kmmsharedmodule.domain.RoutineGenerator
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddFavouriteToFavouritesUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddPracticeSessionToPracticeRecordUseCase
-import sheridan.climense.kmmsharedmodule.domain.interactors.GetAllFavouritesUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.RemoveFavouriteFromFavouritesUseCase
-import sheridan.climense.kmmsharedmodule.domain.model.Practice
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeContainer
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
 import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
@@ -36,31 +29,21 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
     private val addPracticeSessionToPracticeRecordUseCase: AddPracticeSessionToPracticeRecordUseCase by inject()
     private val addFavouriteToFavouritesUseCase: AddFavouriteToFavouritesUseCase by inject()
     private val removeFavouriteFromFavouritesUseCase: RemoveFavouriteFromFavouritesUseCase by inject()
-    private val getAllFavouritesUseCase: GetAllFavouritesUseCase by inject()
 
     private var currentPractice : MutableList<PracticeContainer> = mutableListOf()
     private var startLength : Int? = null
 
-    private lateinit var item : PracticeContainer
-
     private var practiceSession: PracticeSession = PracticeSession(0,0,0,0,0,0,0)
 
     init{
-
-        launch(getAllFavouritesUseCase.execute(), { favourites ->
-            setState {
-                copy(
-                    favourites = favourites
-                )
-            }
-        })
-
         launch {
             practiceMediator.practiceListFlow.collect{ value ->
                 //Logger.i{"COLLECT VALUE $value"}
                 currentPractice = value.toMutableList()
                 startLength = currentPractice.size
+                setState{copy(practice = BasicUiState.Idle ) }
                 setState{copy(pMax = currentPractice.size)}
+                setState{copy(progress = 0)}
                 setState{copy(done = false)}
             }
         }
@@ -71,8 +54,7 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
             practice = BasicUiState.Idle,
             progress = 0,
             pMax = 0,
-            done = false,
-            favourites = emptyList()
+            done = false
         )
 
     override fun handleEvent(event: PracticeContract.Event) {
@@ -88,7 +70,7 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
         if(currentPractice.size > 0)
         {
             val index = Random.nextInt(0, currentPractice.size)
-            item = currentPractice[index]
+            val item = currentPractice[index]
 
             practiceSession = updateSession(item.tech)
 
@@ -99,7 +81,6 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
 
             if(currentPractice.size == 0){
                 setState{copy(done = true)}
-//                practiceMediator.clearList()
             }
         }
     }
@@ -124,16 +105,6 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
         return PracticeSession(0L, scaleCount,arpCount,solidCount,brokenCount,octCount,cmCount)
     }
 
-//    private fun checkForFavourites(list : List<Practice>, favs : List<Practice>) : MutableList<PracticeContainer>{
-//        val conList : MutableList<PracticeContainer> = mutableListOf()
-//
-//        for(item in list){
-//            conList.add(PracticeContainer(item.id, item.root, item.scale, item.tech, favs.contains(item)))
-//        }
-//
-//        return conList
-//    }
-
     private fun savePracticeSessionToPracticeRecord(){
         launch(addPracticeSessionToPracticeRecordUseCase.execute(practiceSession),{
             setEffect { PracticeContract.Effect.SessionSaved }
@@ -141,14 +112,21 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
     }
 
     private fun addFavourite(){
-        launch(addFavouriteToFavouritesUseCase.execute(Practice(0L, item.root, item.scale, item.tech)),{
-            setEffect { PracticeContract.Effect.FavAdded }
-        })
+        val data = uiState.value.practice.accessData()
+        if(data !=null){
+            launch(addFavouriteToFavouritesUseCase.execute(data.toPractice()),{
+                setEffect { PracticeContract.Effect.FavAdded }
+            })
+        }
     }
 
     private fun removeFavourite(){
-        launch(removeFavouriteFromFavouritesUseCase.execute(item.id),{
-            setEffect { PracticeContract.Effect.FavRemoved }
-        })
+        val data = uiState.value.practice.accessData()
+        if(data !=null) {
+            launch(removeFavouriteFromFavouritesUseCase.execute(data.id),
+                {
+                    setEffect { PracticeContract.Effect.FavRemoved }
+                })
+        }
     }
 }
