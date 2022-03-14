@@ -42,18 +42,19 @@ class RepositoryImp(private val cacheData: ICacheData,) : IRepository {
     }
 
     override fun getAllRoutineItemsById(id : Long) : Flow<List<Practice>> = flow{
-        cacheData.getAllRoutineItemsById(key = id)
+       emit(cacheData.getAllRoutineItemsById(key = id))
     }
 
     //Favourites
     override fun insertFavourites(practice: Practice) : Flow<Unit> = flow{
         cacheData.insertFavourite(practice)
+        emit(Unit)
     }
     override fun removeFavourites(id : Long) : Flow<Unit> = flow{
         cacheData.deleteFavourite(id)
+        emit(Unit)
     }
     override fun getAllFavourites():Flow<List<Practice>> = flow{
         emit(cacheData.getAllFavourites())
     }
-
 }

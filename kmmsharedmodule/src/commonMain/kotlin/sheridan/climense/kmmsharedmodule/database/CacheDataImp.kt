@@ -79,7 +79,7 @@ class CacheDataImp(databaseDriverFactory: DatabaseDriverFactory) : ICacheData {
     //Favourites
     override fun insertFavourite(practice: Practice){
         dbQuery.insertFavourite(
-            0,
+            key= null,
             practice.root,
             practice.scale,
             practice.tech

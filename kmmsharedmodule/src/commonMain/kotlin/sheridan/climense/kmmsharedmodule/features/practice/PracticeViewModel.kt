@@ -11,6 +11,7 @@ import sheridan.climense.kmmsharedmodule.domain.PracticeMediator
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddFavouriteToFavouritesUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddPracticeSessionToPracticeRecordUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.RemoveFavouriteFromFavouritesUseCase
+import sheridan.climense.kmmsharedmodule.domain.model.Practice
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeContainer
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
 import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
@@ -73,7 +74,6 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
             val item = currentPractice[index]
 
             practiceSession = updateSession(item.tech)
-
             currentPractice.removeAt(index)
 
             setState{copy(practice = BasicUiState.Success(item))}
@@ -112,10 +112,12 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
     }
 
     private fun addFavourite(){
-        val data = uiState.value.practice.accessData()
-        if(data !=null){
-            launch(addFavouriteToFavouritesUseCase.execute(data.toPractice()),{
+        val practice = uiState.value.practice.accessData()
+
+        if(practice != null){
+            launch(addFavouriteToFavouritesUseCase.execute(practice.toPractice()), {
                 setEffect { PracticeContract.Effect.FavAdded }
+                setState { copy(practice = BasicUiState.Success(PracticeContainer(practice.id, practice.root, practice.scale, practice.tech, isFav =  true))) }
             })
         }
     }
@@ -123,10 +125,9 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
     private fun removeFavourite(){
         val data = uiState.value.practice.accessData()
         if(data !=null) {
-            launch(removeFavouriteFromFavouritesUseCase.execute(data.id),
-                {
-                    setEffect { PracticeContract.Effect.FavRemoved }
-                })
+            launch(removeFavouriteFromFavouritesUseCase.execute(data.id), {
+                setEffect { PracticeContract.Effect.FavRemoved }
+            })
         }
     }
 }

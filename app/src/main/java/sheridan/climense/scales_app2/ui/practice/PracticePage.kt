@@ -153,21 +153,26 @@ class PracticePage : Fragment() {
                 fun star(darkTheme: Boolean = isSystemInDarkTheme()) {
                     val state by practiceVM.uiState.collectAsState()
 
+                    Log.d("STATE", "$state")
+
                     MaterialTheme(colors = if (darkTheme) darkColors else lightColors) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
                                 .padding(20.dp)
                         ) {
+
+                            val practice = state.practice.accessData()
+
+                            Log.d("Fav", practice?.isFav.toString())
+
                             Button(
                                 colors = ButtonDefaults.buttonColors(
-                                    backgroundColor = if (
-                                        state.practice.accessData() != null
-                                        &&!state.practice.accessData()?.isFav!!) MaterialTheme.colors.secondary else MaterialTheme.colors.primary,
+                                    backgroundColor = if (practice != null && !practice.isFav) MaterialTheme.colors.secondary else MaterialTheme.colors.primary,
                                     contentColor = MaterialTheme.colors.secondary
                                 ),
                                 onClick = {
-                                    if(state.practice.accessData()?.isFav!!){
+                                    if(practice != null && practice.isFav){
                                         practiceVM.setEvent(PracticeContract.Event.RemoveFavourite)
                                     }
                                     else{
