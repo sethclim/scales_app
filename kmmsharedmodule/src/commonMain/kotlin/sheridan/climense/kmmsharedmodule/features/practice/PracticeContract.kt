@@ -19,6 +19,7 @@ interface PracticeContract {
         object SavePracticeSession : Event()
         object AddFavourite : Event()
         object RemoveFavourite : Event()
+        data class SetTodayDate(val date: Long) : Event()
     }
 
     data class State(

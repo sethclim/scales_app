@@ -32,6 +32,8 @@ import org.koin.android.ext.android.inject
 import sheridan.climense.kmmsharedmodule.features.practice.PracticeContract
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
 import sheridan.climense.kmmsharedmodule.features.practice.PracticeViewModel
+import java.time.LocalDate
+import java.time.ZoneId
 
 class PracticePage : Fragment() {
 
@@ -45,6 +47,12 @@ class PracticePage : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = PracticePageFragmentBinding.inflate(inflater, container, false)
+
+        val date = LocalDate.now()
+        val zoneId: ZoneId = ZoneId.systemDefault() // or: ZoneId.of("Europe/Oslo");
+        val epoch: Long = date.atStartOfDay(zoneId).toEpochSecond()
+
+        practiceVM.setEvent(PracticeContract.Event.SetTodayDate(epoch))
 
         binding.composeView?.setContent {
              val purple = Color(0xFF6805F2)

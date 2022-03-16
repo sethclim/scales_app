@@ -3,11 +3,13 @@ package sheridan.climense.scales_app2.ui.practicehistory
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
@@ -17,17 +19,24 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
+import sheridan.climense.kmmsharedmodule.features.history.HistoryContract
+import sheridan.climense.kmmsharedmodule.features.history.HistoryViewModel
 import sheridan.climense.scales_app2.R
-import sheridan.climense.scales_app2.database.PracticeRecord
 import sheridan.climense.scales_app2.databinding.LinegraphBinding
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.time.ZoneId
+import java.util.*
 
 
 class PracticeHistoryPage : Fragment(){
 
     private  lateinit var  binding : LinegraphBinding
     private val viewModel : PracticeHistoryPageViewModel by viewModels()
+
+    private val historyVM: HistoryViewModel by inject()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -36,13 +45,31 @@ class PracticeHistoryPage : Fragment(){
     ): View {
         binding = LinegraphBinding.inflate(inflater, container, false)
 
+        val date = LocalDate.now()
+        val weekAgo = date.minusWeeks(1)
+        val zoneId: ZoneId = ZoneId.systemDefault() // or: ZoneId.of("Europe/Oslo");
+        val epoch: Long = date.atStartOfDay(zoneId).toEpochSecond()
+        val epochWeekAgo: Long = weekAgo.atStartOfDay(zoneId).toEpochSecond()
+
+        historyVM.setEvent(HistoryContract.Event.SetNewRangeEvent(epochWeekAgo, epoch))
+
         val mode = context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
-        viewModel.allPractice.observe(viewLifecycleOwner, { setData(it, mode) })
+//        viewModel.allPractice.observe(viewLifecycleOwner, { setData(it, mode) })
+        viewLifecycleOwner.lifecycleScope.launch {
+            historyVM.uiState.collect{ state ->
+                val practiceHistory = state.practiceHistory.accessData()
+
+                Log.d("PH", "$practiceHistory")
+
+                if(practiceHistory != null)
+                    setData(practiceHistory, mode)
+            }
+        }
 
         return binding.root
     }
 
-    private fun setData(data: List<PracticeRecord>, mode: Int?){
+    private fun setData(data: List<PracticeSession>, mode: Int?){
         val scales : MutableList<Entry>  = mutableListOf()
         val oct : MutableList<Entry>  = mutableListOf()
         val solid : MutableList<Entry>  = mutableListOf()
@@ -50,31 +77,32 @@ class PracticeHistoryPage : Fragment(){
         val arps : MutableList<Entry>  = mutableListOf()
         val cm : MutableList<Entry>  = mutableListOf()
 
-        var max = 0
-        fun getMax(value : Int){
+        var max = 0L
+        fun getMax(value : Long){
             if(value > max ){
                 max = value
             }
         }
 
-        for ( obj in data) {
+        for ( session in data) {
             // turn your data into Entry objects
-            val temp = obj.date.dayOfWeek.value.toFloat() - 1
-            scales.add(Entry(temp, obj.scales.toFloat()));
-            getMax(obj.scales)
-            oct.add(Entry(temp, obj.oct.toFloat()));
-            getMax(obj.oct)
-            solid.add(Entry(temp, obj.solid.toFloat()));
-            getMax(obj.solid)
-            broken.add(Entry(temp, obj.broken.toFloat()));
-            getMax(obj.broken)
-            arps.add(Entry(temp, obj.arps.toFloat()));
-            getMax(obj.arps)
-            cm.add(Entry(temp, obj.conMotion.toFloat()));
-            getMax(obj.conMotion)
+
+            val temp = LocalDate.ofEpochDay(session.date).dayOfWeek.value.toFloat() - 1
+            scales.add(Entry(temp, session.scale.toFloat()));
+            getMax(session.scale)
+            oct.add(Entry(temp, session.oct.toFloat()));
+            getMax(session.oct)
+            solid.add(Entry(temp, session.solid.toFloat()));
+            getMax(session.solid)
+            broken.add(Entry(temp, session.broken.toFloat()));
+            getMax(session.broken)
+            arps.add(Entry(temp, session.arps.toFloat()));
+            getMax(session.arps)
+            cm.add(Entry(temp, session.conMotion.toFloat()));
+            getMax(session.conMotion)
         }
 
-        val quarters = arrayOf( "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun",)
+        val quarters = arrayOf("Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun")
         val formatter: ValueFormatter = object : ValueFormatter() {
             override fun getAxisLabel(value: Float, axis: AxisBase): String {
 

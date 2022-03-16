@@ -11,11 +11,12 @@ import sheridan.climense.kmmsharedmodule.domain.PracticeMediator
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddFavouriteToFavouritesUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.AddPracticeSessionToPracticeRecordUseCase
 import sheridan.climense.kmmsharedmodule.domain.interactors.RemoveFavouriteFromFavouritesUseCase
-import sheridan.climense.kmmsharedmodule.domain.model.Practice
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeContainer
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
 import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
+import java.time.LocalDateTime
 import kotlin.random.Random
+import java.time.temporal.ChronoField
 
 /**
     scales_app2
@@ -35,6 +36,8 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
     private var startLength : Int? = null
 
     private var practiceSession: PracticeSession = PracticeSession(0,0,0,0,0,0,0)
+
+    private var todayDate : Long = 0L
 
     init{
         launch {
@@ -64,6 +67,7 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
             PracticeContract.Event.SavePracticeSession -> savePracticeSessionToPracticeRecord()
             PracticeContract.Event.AddFavourite -> addFavourite()
             PracticeContract.Event.RemoveFavourite -> removeFavourite()
+            is PracticeContract.Event.SetTodayDate -> updateDate(event.date)
         }
     }
 
@@ -74,6 +78,8 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
             val item = currentPractice[index]
 
             practiceSession = updateSession(item.tech)
+            practiceSession.date = todayDate
+
             currentPractice.removeAt(index)
 
             setState{copy(practice = BasicUiState.Success(item))}
@@ -102,6 +108,7 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
             TechType.CM -> cmCount += 1
         }
 
+
         return PracticeSession(0L, scaleCount,arpCount,solidCount,brokenCount,octCount,cmCount)
     }
 
@@ -129,5 +136,9 @@ class PracticeViewModel : BaseViewModel<PracticeContract.Event, PracticeContract
                 setEffect { PracticeContract.Effect.FavRemoved }
             })
         }
+    }
+
+    private fun updateDate(date : Long){
+        todayDate = date
     }
 }

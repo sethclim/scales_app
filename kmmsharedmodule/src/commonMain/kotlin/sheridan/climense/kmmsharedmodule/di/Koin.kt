@@ -44,6 +44,7 @@ val useCasesModule: Module = module {
     factory { GetAllSavedRoutinesUseCase(get()) }
     factory { RemoveSavedRoutineFromRoutinesUseCase(get()) }
     factory { GetAllRoutineItemsUseCase(get()) }
+    factory { GetPracticeSessionsForDateRange(get()) }
 }
 
 val dispatcherModule = module {

@@ -18,7 +18,7 @@ interface IRepository {
     fun insertPracticeSession(practiceSession: PracticeSession) : Flow<Unit>
     fun updatePracticeSession(practiceSession: PracticeSession)
     fun getAllPracticeSessions(): List<PracticeSession>
-    fun getPracticeSessionRange(startDate : Long, endDate : Long): List<PracticeSession>
+    fun getPracticeSessionRange(startDate : Long, endDate : Long): Flow<List<PracticeSession>>
     fun deletePracticeSession(date: Long)
 
     //Routines

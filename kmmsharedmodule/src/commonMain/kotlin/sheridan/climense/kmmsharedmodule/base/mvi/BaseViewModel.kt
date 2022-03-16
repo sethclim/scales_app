@@ -11,6 +11,7 @@ createdbyseth*
 studentID:991599894
  *on2022-03-02
  */
+
 abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiEffect> : MainIoExecutor(){
 
     private val initialState: State by lazy { createInitialState() }
