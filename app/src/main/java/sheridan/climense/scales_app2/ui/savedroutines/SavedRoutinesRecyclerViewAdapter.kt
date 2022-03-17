@@ -1,16 +1,13 @@
-package sheridan.climense.scales_app2.ui.SavedRoutines
+package sheridan.climense.scales_app2.ui.savedroutines
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.koin.android.ext.android.inject
 import sheridan.climense.kmmsharedmodule.domain.model.RoutineInfo
 import sheridan.climense.kmmsharedmodule.features.saved_routines.SavedRoutinesContract
 import sheridan.climense.kmmsharedmodule.features.saved_routines.SavedRoutinesViewModel
-import sheridan.climense.scales_app2.database.SavedRoutine
 import sheridan.climense.scales_app2.databinding.SavedroutineitemBinding
-import sheridan.climense.scales_app2.models.PracticeSave
 
 class SavedRoutinesRecyclerViewAdapter(private val savedRoutineVM: SavedRoutinesViewModel) : RecyclerView.Adapter<SavedRoutinesRecyclerViewAdapter.ViewHolder>() {
 

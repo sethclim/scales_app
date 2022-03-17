@@ -22,12 +22,6 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import sheridan.climense.kmmsharedmodule.features.practice.PracticeContract
 import sheridan.climense.scales_app2.databinding.PracticePageFragmentBinding
@@ -37,7 +31,6 @@ import java.time.ZoneId
 
 class PracticePage : Fragment() {
 
-    //private val viewModel: PracticePageViewModel by viewModels()
     private lateinit var binding : PracticePageFragmentBinding
 
     private val practiceVM: PracticeViewModel by inject()
@@ -105,9 +98,6 @@ class PracticePage : Fragment() {
         binding.practiceViewModel = practiceVM
         binding.lifecycleOwner = viewLifecycleOwner
 
-
-//        viewModel.isFav.observe(viewLifecycleOwner) {
-
             binding.starBtn?.setContent {
 
                 class CustomShape : Shape {
@@ -119,24 +109,22 @@ class PracticePage : Fragment() {
 
                         var mid = (size.width / 2)
                         val min = Math.min(size.width, size.height)
-                        val fat = min / 17
                         val half = min / 2
-                        val rad = half - fat
                         mid -= half
 
                         val path = Path().apply {
                             // top left
-                            moveTo(mid + half * 0.5f, half * 0.84f);
+                            moveTo(mid + half * 0.5f, half * 0.84f)
                             // top right
-                            lineTo(mid + half * 1.5f, half * 0.84f);
+                            lineTo(mid + half * 1.5f, half * 0.84f)
                             // bottom left
-                            lineTo(mid + half * 0.68f, half * 1.45f);
+                            lineTo(mid + half * 0.68f, half * 1.45f)
                             // top tip
-                            lineTo(mid + half * 1.0f, half * 0.5f);
+                            lineTo(mid + half * 1.0f, half * 0.5f)
                             // bottom right
-                            lineTo(mid + half * 1.32f, half * 1.45f);
+                            lineTo(mid + half * 1.32f, half * 1.45f)
                             // top left
-                            lineTo(mid + half * 0.5f, half * 0.84f);
+                            lineTo(mid + half * 0.5f, half * 0.84f)
 
                             close()
                         }
@@ -205,8 +193,6 @@ class PracticePage : Fragment() {
                 star()
             }
 
-//        }
-
         return binding.root
     }
 
@@ -214,17 +200,6 @@ class PracticePage : Fragment() {
         super.onPause()
 
         practiceVM.setEvent(PracticeContract.Event.SavePracticeSession)
-
-//        if(safeArgs.practicePackage.savedPractice){
-//            viewModel.updatedSavedProgress(
-//                    safeArgs.practicePackage.key,
-//                    safeArgs.practicePackage.routine_name,
-//                    safeArgs.practicePackage.practice_array,
-//                    PracticeCycler.practiceArray.toTypedArray() as Array<PracticeSave>,
-//                    safeArgs.practicePackage.total,
-//                    safeArgs.practicePackage.date
-//            )
-//        }
     }
 
     override fun onResume() {

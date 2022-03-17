@@ -34,7 +34,7 @@
         android:label="Practice History" />
     <fragment
         android:id="@+id/savedRoutinesPage"
-        android:name="sheridan.climense.scales_app2.ui.SavedRoutines.SavedRoutinesPage"
+        android:name="sheridan.climense.scales_app2.ui.savedroutines.SavedRoutinesPage"
         android:label="Saved Routines">
         <action
             android:id="@+id/savedRoutine_to_practice"

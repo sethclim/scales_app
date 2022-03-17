@@ -1,4 +1,4 @@
-package sheridan.climense.scales_app2.ui.SavedRoutines
+package sheridan.climense.scales_app2.ui.savedroutines
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
