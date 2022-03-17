@@ -20,15 +20,18 @@ interface ICacheData {
     fun getAllPracticeSessions(): List<PracticeSession>
     fun getPracticeSessionRange(startDate : Long, endDate : Long): List<PracticeSession>
     fun deletePracticeSession(date: Long)
+    fun deleteAllPracticeSessions()
 
     //Favourites
     fun insertFavourite(practice: Practice)
     fun getAllFavourites(): List<Practice>
     fun deleteFavourite(key: Long)
+    fun deleteAllFavourites()
 
     //Routines
     fun insertRoutine(routine: Routine)
     fun getAllRoutines(): List<RoutineInfo>
     fun deleteRoutine(key: Long)
     fun getAllRoutineItemsById(key : Long): List<Practice>
+    fun deleteAllRoutines()
 }

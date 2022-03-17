@@ -67,13 +67,16 @@ class CacheDataImp(databaseDriverFactory: DatabaseDriverFactory) : ICacheData {
         return dbQuery.getAllPracticeSessions(::PracticeSession).executeAsList()
     }
 
-
     override fun getPracticeSessionRange(startDate : Long, endDate : Long): List<PracticeSession> {
         return dbQuery.getPracticeSeesionRange(startDate,endDate,::PracticeSession).executeAsList()
     }
 
     override fun deletePracticeSession(date: Long) {
         dbQuery.deletePracticeSession(date)
+    }
+
+    override fun deleteAllPracticeSessions() {
+        dbQuery.deleteAllPracticeSessions()
     }
 
     //Favourites
@@ -91,6 +94,10 @@ class CacheDataImp(databaseDriverFactory: DatabaseDriverFactory) : ICacheData {
     }
 
     override fun deleteFavourite(key: Long){}
+
+    override fun deleteAllFavourites() {
+        dbQuery.deleteAllFavourites()
+    }
 
     //Routines
     override fun insertRoutine(routine: Routine){
@@ -127,11 +134,15 @@ class CacheDataImp(databaseDriverFactory: DatabaseDriverFactory) : ICacheData {
         return dbQuery.getRoutineItemsById(key, ::mapRoutineItem).executeAsList()
     }
 
-
     override fun deleteRoutine(key: Long){
         Logger.i{"Key $key"}
         dbQuery.deleteRoutine(key)
         dbQuery.deleteRoutineItems(key)
+    }
+
+    override fun deleteAllRoutines() {
+        dbQuery.deleteAllRoutineInfo()
+        dbQuery.deleteAllRoutineItems()
     }
 
     private fun mapRoutineItem(

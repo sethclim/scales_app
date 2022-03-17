@@ -15,9 +15,8 @@ import sheridan.climense.scales_app2.databinding.DialogsaveBinding
 import java.util.*
 
 class SavedDialog : DialogFragment() {
-    //private val routineCreatorViewModel: RoutineCreatorViewModel by viewModels()
-    private lateinit var binding: DialogsaveBinding
 
+    private lateinit var binding: DialogsaveBinding
     private val creatorVM: CreatorViewModel by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -30,7 +29,7 @@ class SavedDialog : DialogFragment() {
 
             if(name.isNotEmpty()){
                 val date = getCurrentDateTime()
-                //routineCreatorViewModel.saveRoutine(name.toString(),date)
+                //TODO
                 //Should be date
                 creatorVM.setEvent(CreatorContract.Event.SaveRoutine(name.toString()))
                 binding.saveDialogErrorTv.text = ""

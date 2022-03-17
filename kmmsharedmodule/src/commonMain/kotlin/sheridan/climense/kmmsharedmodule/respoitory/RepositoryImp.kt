@@ -21,12 +21,26 @@ class RepositoryImp(private val cacheData: ICacheData,) : IRepository {
         cacheData.insertPracticeSession(practiceSession)
         emit(Unit)
     }
-    override fun updatePracticeSession(practiceSession: PracticeSession){ cacheData.updatePracticeSession(practiceSession) }
-    override fun getAllPracticeSessions(): List<PracticeSession> { return cacheData.getAllPracticeSessions() }
+    override fun updatePracticeSession(practiceSession: PracticeSession) = flow{
+        emit(cacheData.updatePracticeSession(practiceSession))
+    }
+    //TODO
+    override fun getAllPracticeSessions(): List<PracticeSession> {
+        return cacheData.getAllPracticeSessions()
+    }
     override fun getPracticeSessionRange(startDate : Long, endDate : Long): Flow<List<PracticeSession>> = flow{
         emit(cacheData.getPracticeSessionRange(startDate, endDate))
     }
-    override fun deletePracticeSession(date: Long) { cacheData.deletePracticeSession(date) }
+    //TODO
+    override fun deletePracticeSession(date: Long) {
+        cacheData.deletePracticeSession(date)
+    }
+
+    override fun removeAllPracticeSessions(): Flow<Unit> {
+        TODO("Not yet implemented")
+    }
+
+
 
     //Routine
     override fun insertRoutine(routine: Routine) : Flow<Unit> = flow{
@@ -47,6 +61,10 @@ class RepositoryImp(private val cacheData: ICacheData,) : IRepository {
        emit(cacheData.getAllRoutineItemsById(key = id))
     }
 
+    override fun removeAllSavedRoutines(): Flow<Unit> {
+        TODO("Not yet implemented")
+    }
+
     //Favourites
     override fun insertFavourites(practice: Practice) : Flow<Unit> = flow{
         cacheData.insertFavourite(practice)
@@ -58,5 +76,9 @@ class RepositoryImp(private val cacheData: ICacheData,) : IRepository {
     }
     override fun getAllFavourites():Flow<List<Practice>> = flow{
         emit(cacheData.getAllFavourites())
+    }
+
+    override fun removeAllFavourites(): Flow<Unit> {
+        TODO("Not yet implemented")
     }
 }

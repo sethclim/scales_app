@@ -64,7 +64,8 @@ SELECT * FROM PracticeRecord WHERE date BETWEEN :startDate AND :endDate ORDER BY
 deletePracticeSession:
 DELETE FROM PracticeRecord WHERE date = :date;
 
-
+deleteAllPracticeSessions:
+DELETE FROM PracticeRecord;
 ----------------------------------
 --|| Favourites Queries ||--
 ----------------------------------
@@ -76,6 +77,9 @@ SELECT * FROM Favourites;
 
 deleteFavourites:
 DELETE FROM Favourites WHERE key = :key;
+
+deleteAllFavourites:
+DELETE FROM Favourites;
 
 ----------------------------------
 --|| Routines Queries ||--
@@ -92,6 +96,9 @@ SELECT id FROM Routines;
 deleteRoutine:
 DELETE FROM Routines WHERE id = :id;
 
+deleteAllRoutineInfo:
+DELETE FROM Routines;
+
 ----------------------------------
 --|| Routines Items Queries ||--
 ----------------------------------
@@ -106,4 +113,7 @@ DELETE FROM RoutineItems WHERE routineref = :id;
 
 insertPracticeItem:
 INSERT INTO InProgressItems(id, routineref, root, scale, tech) VALUES (?,?,?, ?, ?);
+
+deleteAllRoutineItems:
+DELETE FROM RoutineItems;
 

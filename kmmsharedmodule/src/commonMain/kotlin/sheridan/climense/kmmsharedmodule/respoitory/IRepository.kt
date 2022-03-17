@@ -16,19 +16,22 @@ studentID:991599894
 interface IRepository {
     //Practice Session
     fun insertPracticeSession(practiceSession: PracticeSession) : Flow<Unit>
-    fun updatePracticeSession(practiceSession: PracticeSession)
+    fun updatePracticeSession(practiceSession: PracticeSession) : Flow<Unit>
     fun getAllPracticeSessions(): List<PracticeSession>
     fun getPracticeSessionRange(startDate : Long, endDate : Long): Flow<List<PracticeSession>>
     fun deletePracticeSession(date: Long)
+    fun removeAllPracticeSessions(): Flow<Unit>
 
     //Routines
     fun insertRoutine(routine: Routine) : Flow<Unit>
     fun getAllRoutinesInfo() : Flow<List<RoutineInfo>>
     fun removeRoutine(id : Long) : Flow<Unit>
     fun getAllRoutineItemsById(id : Long) : Flow<List<Practice>>
+    fun removeAllSavedRoutines() : Flow<Unit>
 
     //Favourites
     fun insertFavourites(practice: Practice) : Flow<Unit>
     fun removeFavourites(id : Long) : Flow<Unit>
     fun getAllFavourites():Flow<List<Practice>>
+    fun removeAllFavourites() : Flow<Unit>
 }
