@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="inputs"
-            type="sheridan.climense.scales_app2.models.RoutineInputs" />
-    </data>
-
     <LinearLayout
         style="@style/Theme.Scales_app2.background"
         android:layout_width="match_parent"
