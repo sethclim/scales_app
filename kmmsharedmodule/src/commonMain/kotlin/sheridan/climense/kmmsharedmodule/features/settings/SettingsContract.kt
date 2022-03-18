@@ -16,6 +16,7 @@ class SettingsContract {
         object RemoveAllFavourites : Event()
         object RemoveAllHistory : Event()
         object RemoveALlSavedRoutines : Event()
+        object RemoveALlData : Event()
     }
 
     data class State(

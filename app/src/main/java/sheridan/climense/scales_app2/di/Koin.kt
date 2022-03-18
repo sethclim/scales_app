@@ -5,6 +5,7 @@ import sheridan.climense.kmmsharedmodule.features.practice.PracticeViewModel
 import sheridan.climense.kmmsharedmodule.features.creator.CreatorViewModel
 import sheridan.climense.kmmsharedmodule.features.history.HistoryViewModel
 import sheridan.climense.kmmsharedmodule.features.saved_routines.SavedRoutinesViewModel
+import sheridan.climense.kmmsharedmodule.features.settings.SettingsViewModel
 
 /**
  *scales_app2
@@ -17,4 +18,5 @@ val viewModelModule = module {
     single { PracticeViewModel() }
     single { SavedRoutinesViewModel() }
     single { HistoryViewModel() }
+    single { SettingsViewModel() }
 }

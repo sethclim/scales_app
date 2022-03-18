@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import org.koin.android.ext.android.inject
 import sheridan.climense.scales_app2.databinding.SettingsFragmentBinding
 import sheridan.climense.scales_app2.ui.dialog.ConfirmationDialog
 import sheridan.climense.scales_app2.ui.dialog.RootOptionDialog
@@ -17,7 +18,7 @@ import sheridan.climense.scales_app2.ui.dialog.RootOptionDialog
 class SettingsPage : Fragment() {
 
     lateinit var binding : SettingsFragmentBinding
-    private val viewModel : SettingsViewModel by activityViewModels()
+    //private val viewModel : SettingsViewModel by activityViewModels()
     private lateinit var editor : SharedPreferences.Editor
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View{
@@ -43,29 +44,30 @@ class SettingsPage : Fragment() {
         binding.dayNightSwitch.isChecked = sharedPreferences.getInt("theme", 0) == 1
 
         binding.settingsDeleteFavsBt.setOnClickListener {
-            viewModel.deleteNum = 1
-            openDialog()
+            openDialog(1)
         }
         binding.settingsDeleteSavedBt.setOnClickListener {
-            viewModel.deleteNum = 2
-            openDialog()
-
+            //viewModel.deleteNum = 2
+            openDialog(2)
         }
         binding.settingsDeleteHistoryBt.setOnClickListener {
-            viewModel.deleteNum = 3
-            openDialog()
+            openDialog(3)
 
         }
         binding.settingsDeleteAllBt.setOnClickListener {
-            viewModel.deleteNum = 4
-            openDialog()
+            openDialog(4)
         }
 
         return binding.root
     }
 
-    private fun openDialog(){
+    private fun openDialog(operation : Int){
         val confirmationDialog = ConfirmationDialog()
+
+        val args = Bundle();
+        args.putInt("num", operation);
+        confirmationDialog.arguments = args
+
         confirmationDialog.show(childFragmentManager, "dialogConfirmation" )
     }
 }

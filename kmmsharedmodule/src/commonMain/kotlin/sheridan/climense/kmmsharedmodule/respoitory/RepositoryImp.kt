@@ -36,11 +36,10 @@ class RepositoryImp(private val cacheData: ICacheData,) : IRepository {
         cacheData.deletePracticeSession(date)
     }
 
-    override fun removeAllPracticeSessions(): Flow<Unit> {
-        TODO("Not yet implemented")
+    override fun removeAllPracticeSessions(): Flow<Unit> = flow {
+        cacheData.deleteAllPracticeSessions()
+        emit(Unit)
     }
-
-
 
     //Routine
     override fun insertRoutine(routine: Routine) : Flow<Unit> = flow{
@@ -61,8 +60,9 @@ class RepositoryImp(private val cacheData: ICacheData,) : IRepository {
        emit(cacheData.getAllRoutineItemsById(key = id))
     }
 
-    override fun removeAllSavedRoutines(): Flow<Unit> {
-        TODO("Not yet implemented")
+    override fun removeAllSavedRoutines(): Flow<Unit> = flow {
+        cacheData.deleteAllRoutines()
+        emit(Unit)
     }
 
     //Favourites
@@ -78,7 +78,8 @@ class RepositoryImp(private val cacheData: ICacheData,) : IRepository {
         emit(cacheData.getAllFavourites())
     }
 
-    override fun removeAllFavourites(): Flow<Unit> {
-        TODO("Not yet implemented")
+    override fun removeAllFavourites(): Flow<Unit> = flow {
+        cacheData.deleteAllFavourites()
+        emit(Unit)
     }
 }

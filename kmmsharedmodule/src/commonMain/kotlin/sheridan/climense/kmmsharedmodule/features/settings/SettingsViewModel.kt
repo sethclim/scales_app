@@ -13,6 +13,7 @@ scales_app2
 sheridan.climense.kmmsharedmodule.features.settings
 created by: seth
 on: 2022-03-17           */
+
 class SettingsViewModel : BaseViewModel<SettingsContract.Event, SettingsContract.State, UiEffect>() {
     private val removeAllFavourites : RemoveAllFavourites by inject()
     private val removeAllHistory : RemoveAllHistory by inject()
@@ -29,7 +30,14 @@ class SettingsViewModel : BaseViewModel<SettingsContract.Event, SettingsContract
             SettingsContract.Event.RemoveAllFavourites -> handleRemoveAllFavourites()
             SettingsContract.Event.RemoveAllHistory -> handleRemoveAllHistory()
             SettingsContract.Event.RemoveALlSavedRoutines -> handleRemoveAllSavedRoutines()
+            SettingsContract.Event.RemoveALlData ->removeAllData()
         }
+    }
+
+    private fun removeAllData(){
+        handleRemoveAllFavourites()
+        handleRemoveAllHistory()
+        handleRemoveAllSavedRoutines()
     }
 
     private fun handleRemoveAllFavourites(){
