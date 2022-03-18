@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
 import sheridan.climense.kmmsharedmodule.features.saved_routines.SavedRoutinesContract
+import sheridan.climense.kmmsharedmodule.features.saved_routines.SavedRoutinesViewModel
 import sheridan.climense.scales_app2.R
 import sheridan.climense.scales_app2.databinding.SavedroutinespageBinding
 import sheridan.climense.scales_app2.util.SwipeToDeleteCallback
@@ -27,7 +28,7 @@ class SavedRoutinesPage : Fragment() {
     private lateinit var adapter : SavedRoutinesRecyclerViewAdapter
     private lateinit var navController : NavController
 
-    private val savedRoutinesVM: sheridan.climense.kmmsharedmodule.features.saved_routines.SavedRoutinesViewModel by inject()
+    private val savedRoutinesVM: SavedRoutinesViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,

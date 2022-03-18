@@ -7,14 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
 import org.koin.android.ext.android.inject
 import sheridan.climense.kmmsharedmodule.domain.model.types.RootType
 import sheridan.climense.kmmsharedmodule.features.creator.CreatorContract
 import sheridan.climense.kmmsharedmodule.features.creator.CreatorViewModel
 import sheridan.climense.scales_app2.databinding.DialogRootoptionsBinding
-import sheridan.climense.scales_app2.models.RoutineInputs
-import sheridan.climense.scales_app2.ui.routine.RoutineCreatorViewModel
 
 class RootOptionDialog : DialogFragment() {
 

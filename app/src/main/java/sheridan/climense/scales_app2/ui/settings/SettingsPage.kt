@@ -18,7 +18,6 @@ import sheridan.climense.scales_app2.ui.dialog.RootOptionDialog
 class SettingsPage : Fragment() {
 
     lateinit var binding : SettingsFragmentBinding
-    //private val viewModel : SettingsViewModel by activityViewModels()
     private lateinit var editor : SharedPreferences.Editor
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View{

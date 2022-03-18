@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>-->
-<!--        <variable-->
-<!--            name="practiceViewModel"-->
-<!--            type="sheridan.climense.kmmsharedmodule.viewmodels.PracticeViewModel" />-->
-<!--    </data>-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Theme.Scales_app2.background"
         android:layout_width="match_parent"
@@ -81,6 +75,3 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-
-<!--    android:max="@{practiceViewModel.PMax}"-->
-<!--    android:progress="@{practiceViewModel.progress}"-->

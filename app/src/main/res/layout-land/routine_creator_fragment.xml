@@ -5,9 +5,6 @@
 
     <data>
         <variable
-            name="RoutineViewModel"
-            type="sheridan.climense.scales_app2.ui.routine.RoutineCreatorViewModel" />
-        <variable
             name="inputs"
             type="sheridan.climense.scales_app2.models.RoutineInputs" />
     </data>

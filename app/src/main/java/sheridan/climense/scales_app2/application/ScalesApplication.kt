@@ -15,7 +15,6 @@ studentID:991599894
 class ScalesApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Log.d("ScaleApp", "Starting...")
         initKoin {
             androidContext(this@ScalesApplication)
             modules(

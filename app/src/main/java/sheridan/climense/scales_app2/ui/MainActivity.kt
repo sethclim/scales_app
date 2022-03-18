@@ -10,7 +10,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -20,6 +22,7 @@ import sheridan.climense.scales_app2.R
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +42,10 @@ class MainActivity : AppCompatActivity() {
 
 
         // make the navigation work with the toolbar
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         toolbar.setupWithNavController(navController, appBarConfiguration)
-
-        Greeting().greeting()
 
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
@@ -67,6 +69,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -76,10 +80,10 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return NavigationUI.onNavDestinationSelected(item, findNavController(R.id.nav_host_fragment)) ||
+        return NavigationUI.onNavDestinationSelected(item, navController) ||
                 when (item.itemId) {
                     R.id.action_settings -> {
-                        findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_settingsPage)
+                        navController.navigate(R.id.action_global_settingsPage)
                         true
                     }
                     else -> super.onOptionsItemSelected(item)
