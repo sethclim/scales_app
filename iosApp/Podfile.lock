@@ -1,0 +1,16 @@
+PODS:
+  - kmmsharedmodule (1.6.10)
+
+DEPENDENCIES:
+  - kmmsharedmodule (from `../kmmsharedmodule`)
+
+EXTERNAL SOURCES:
+  kmmsharedmodule:
+    :path: "../kmmsharedmodule"
+
+SPEC CHECKSUMS:
+  kmmsharedmodule: 287b425dc11a9f2070c87235e4fb9406f41024c7
+
+PODFILE CHECKSUM: 69aead7158ddc4b14b08b9c747b867f8c661e0e7
+
+COCOAPODS: 1.11.3

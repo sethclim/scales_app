@@ -14,9 +14,7 @@ import sheridan.climense.kmmsharedmodule.domain.interactors.RemoveFavouriteFromF
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeContainer
 import sheridan.climense.kmmsharedmodule.domain.model.PracticeSession
 import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
-import java.time.LocalDateTime
 import kotlin.random.Random
-import java.time.temporal.ChronoField
 
 /**
     scales_app2

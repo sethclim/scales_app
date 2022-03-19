@@ -1,11 +1,16 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("native.cocoapods")
     id("com.android.library")
     id("com.squareup.sqldelight")
 }
 
+version = "1.6.10"
+
 kotlin {
     android()
+    iosX64()
+    iosArm64()
     
     listOf(
         iosX64(),
@@ -16,6 +21,23 @@ kotlin {
             baseName = "kmmsharedmodule"
         }
     }
+
+    cocoapods {
+        summary = "Some description for a Kotlin/Native module"
+        homepage = "Link to a Kotlin/Native module homepage"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../iosApp/Podfile")
+
+        framework {
+            baseName = "kmmsharedmodule"
+            isStatic = false
+            transitiveExport = false // This is default.
+        }
+        // Maps custom Xcode configuration to NativeBuildType
+        xcodeConfigurationToNativeBuildType["CUSTOM_DEBUG"] = org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.DEBUG
+        xcodeConfigurationToNativeBuildType["CUSTOM_RELEASE"] = org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.RELEASE
+    }
+
 
     sourceSets {
         val commonMain by getting{
@@ -50,13 +72,13 @@ kotlin {
         val iosArm64Main by getting
         //val iosSimulatorArm64Main by getting
         val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
             //iosSimulatorArm64Main.dependsOn(this)
             dependencies{
                 implementation("com.squareup.sqldelight:native-driver:1.5.3")
             }
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
 
         }
         val iosX64Test by getting
@@ -86,3 +108,4 @@ sqldelight {
         packageName = "sheridan.climense.kmmsharedmodule.database"
     }
 }
+

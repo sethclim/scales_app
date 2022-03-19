@@ -1,14 +1,10 @@
 package sheridan.climense.kmmsharedmodule.features.history
 
-import co.touchlab.kermit.Logger
 import org.koin.core.component.inject
 import sheridan.climense.kmmsharedmodule.base.mvi.BaseViewModel
 import sheridan.climense.kmmsharedmodule.base.mvi.BasicUiState
 import sheridan.climense.kmmsharedmodule.base.mvi.UiEffect
 import sheridan.climense.kmmsharedmodule.domain.interactors.GetPracticeSessionsForDateRange
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
-import java.time.temporal.ChronoField
 
 /**
 scales_app2

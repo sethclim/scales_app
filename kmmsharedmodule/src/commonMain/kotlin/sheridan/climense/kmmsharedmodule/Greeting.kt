@@ -23,4 +23,4 @@ class Greeting {
     fun getData(databaseDriverFactory: DatabaseDriverFactory) : List<PracticeSession>{
        return RepositoryImp(CacheDataImp(databaseDriverFactory)).getAllPracticeSessions();
     }
-}
+}å

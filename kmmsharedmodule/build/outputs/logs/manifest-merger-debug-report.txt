@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml:2:1-57
+INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml:2:1-57
+INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml:2:1-57
+	package
+		ADDED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml:2:11-54
+		INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml:2:1-57
+uses-sdk
+INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/seth/coding/Android/ScalesApp2/kmmsharedmodule/src/androidMain/AndroidManifest.xml

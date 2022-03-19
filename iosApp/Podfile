@@ -1,0 +1,7 @@
+workspace 'ScalesApp'
+
+target 'ScalesApp' do
+  use_frameworks!
+  platform :ios, '14.1'
+  pod 'kmmsharedmodule', :path => '../kmmsharedmodule'
+end

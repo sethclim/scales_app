@@ -1,0 +1,2 @@
+sheridan/climense/kmmsharedmodule/BuildConfig.java
+ sheridan.climense.kmmsharedmodule.BuildConfig
