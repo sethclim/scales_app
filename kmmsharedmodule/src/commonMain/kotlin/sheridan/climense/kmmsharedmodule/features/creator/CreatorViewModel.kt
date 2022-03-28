@@ -15,7 +15,7 @@ import sheridan.climense.kmmsharedmodule.domain.model.types.ScaleType
 import sheridan.climense.kmmsharedmodule.domain.model.types.TechType
 import sheridan.climense.kmmsharedmodule.features.practice.PracticeContract
 
-class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.State, UiEffect>() {
+open class CreatorViewModel: BaseViewModel<CreatorContract.Event, CreatorContract.State, UiEffect>() {
 
     private val addRoutineToRoutinesUseCase: AddRoutineToRoutinesUseCase by inject()
     private val practiceMediator : PracticeMediator by inject()

@@ -25,6 +25,10 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
         )
     }
 
+
+// IOS
+fun initKoin() = initKoin {}
+
 val repositoryModule = module {
     single<IRepository>{ RepositoryImp(get()) }
     single<ICacheData> { CacheDataImp(get()) }
